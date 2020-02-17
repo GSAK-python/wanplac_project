@@ -15,7 +15,7 @@ class Kayak(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return 'Model: {}'.format(self.name)
+        return 'Model: {}, typ: {}'.format(self.name, self.type)
 
 
 class Route(models.Model):
@@ -24,7 +24,7 @@ class Route(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return 'Trasa {}'.format(self.name)
+        return 'Trasa {}, dystans: {}'.format(self.name, self.distance)
 
 
 class Booking(models.Model):
@@ -37,10 +37,11 @@ class Booking(models.Model):
     kayak = models.ManyToManyField(Kayak, through='BookingKayaks')
 
     def __str__(self):
-        return 'Rezerwacja: {}, Trasa: {}, Termin: {}, {}'.format(self.user,
-                                                                  self.route,
-                                                                  self.term,
-                                                                  self.time)
+        return 'Rezerwacja: {} {}, Trasa: {}, Termin: {}, {}'.format(self.first_name,
+                                                                     self.last_name,
+                                                                     self.route,
+                                                                     self.term,
+                                                                     self.time)
 
 
 class BookingKayaks(models.Model):
