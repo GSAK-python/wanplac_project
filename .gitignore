@@ -1,0 +1,4 @@
+*.idea
+*.sqlite3
+*pyc
+# pliki mediów
