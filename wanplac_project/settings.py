@@ -154,10 +154,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'vendor')
 ]
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/client_panel/registration/login/'
 
-LOGIN_REDIRECT_URL = '/booking/create/'
+LOGIN_REDIRECT_URL = '/client_panel/booking/create/'
 
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/client_panel/registration/login/'
 
 
