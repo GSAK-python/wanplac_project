@@ -5,6 +5,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('booking/', include('client_panel.urls')),
-    path('login/', LoginView.as_view()),
-    path('logout', LogoutView.as_view())
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout')
 ]

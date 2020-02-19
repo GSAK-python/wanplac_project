@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'celery',
     'django_celery_results',
-    'widget_tweaks'
+    'widget_tweaks',
+    'bootstrapform',
+    'vendor_files'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,34 @@ TEMPLATES = [
         },
     },
 ]
+
+VENDOR = {
+    'jquery': {
+        'url': 'https://code.jquery.com/',
+        'js': [
+            {
+                'path': 'jquery-3.2.1.min.js',
+                'sri': 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=',
+            }
+        ]
+    },
+    'bootstrap': {
+        'url': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/',
+        'js': [
+            {
+                'path': 'js/bootstrap.min.js',
+                'sri': 'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa',
+            }
+        ],
+        'css': [
+            {
+                'path': 'css/bootstrap.min.css',
+                'sri': 'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u',
+            }
+        ]
+    }
+}
+
 
 WSGI_APPLICATION = 'wanplac_project.wsgi.application'
 
@@ -120,12 +150,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'vendor')
 ]
 
-LOGIN_URL = 'login'
+LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = 'booking/create'
+LOGIN_REDIRECT_URL = '/booking/create/'
 
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = '/login/'
+
 
