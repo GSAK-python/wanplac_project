@@ -29,13 +29,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'client_panel',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'client_panel',
     'bootstrap4',
     'crispy_forms',
     'celery',
@@ -159,5 +159,7 @@ LOGIN_URL = '/client_panel/registration/login/'
 LOGIN_REDIRECT_URL = '/client_panel/booking/create/'
 
 LOGOUT_REDIRECT_URL = '/client_panel/registration/login/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
