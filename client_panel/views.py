@@ -1,7 +1,20 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import CreateView
-from client_panel.forms import BookingCreateForm, SignUpCreateForm
+from client_panel.forms import BookingCreateForm, SignUpCreateForm, LoginCreateForm
 from client_panel.models import Booking
+
+
+class Login(LoginView):
+    template_name = 'registration/login.html'
+    form_class = LoginCreateForm
+    
+    def form_valid(self, form):
+        return super(Login, self).form_valid(form)
+
+
+class Logout(LogoutView):
+    next_page = '/'
 
 
 class BookingCreateView(CreateView):

@@ -41,30 +41,39 @@
 					</span>
 
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+					<div class="wrap-input100 validate-input m-b-16">
 						{{ form.username|add_class:"input100"|attr:"type:text"|attr:"placeholder:Nazwa użytkownika"|attr:"name:username" }}
 						<span class="focus-input100"></span>
 					</div>
 					
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<div class="wrap-input100 validate-input m-b-16">
+						{{ form.password.errors }}
 						{{ form.password|add_class:"input100"|attr:"type:password"|attr:"placeholder:Hasło"|attr:"name:pass" }}
 						<span class="focus-input100"></span>
 					</div>
 					
 					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Zapamiętaj mnie
-							</label>
+						<div>
+							<a href="{% url 'registration:sign_up' %}" class="txt1">
+								Zarejestruj się!
+							</a>
 						</div>
-
 						<div>
 							<a href="{% url 'registration:password_reset' %}" class="txt1">
 								Zapomniałeś hasła?
 							</a>
 						</div>
+					</div>
+
+					<div class="text-danger">
+						{% if form.non_field_errors %}
+							<ol>
+							{% for error in form.non_field_errors %}
+								<li><strong>{{ error|escape }}</strong></li>
+							{% endfor %}
+							</ol>
+						{% endif %}
 					</div>
 
 					<div class="container-login100-form-btn m-t-17">

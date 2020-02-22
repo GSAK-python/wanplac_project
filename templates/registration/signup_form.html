@@ -39,13 +39,17 @@
 					<span class="login100-form-title p-b-51">
 						Ekran rejestracji
 					</span>
+					<span class="login100-form-title p-b-20" style="font-size: 20px">
+						Wszystkie pola są wymagane
+					</span>
 
-
-					<div class="wrap-input100 validate-input m-b-16">
+					<div class="wrap-input100 validate-input m-b-3">
 						{{ form.username|add_class:"input100"|attr:"type:text"|attr:"placeholder:Nazwa użytkownika"|attr:"name:username" }}
 						<span class="focus-input100"></span>
 					</div>
-
+					<div class="m-b-3" style="font-size: 12px">
+						{{ form.username.help_text }}
+					</div>
 
 					<div class="wrap-input100 validate-input m-b-16">
 						{{ form.password1|add_class:"input100"|attr:"type:password"|attr:"placeholder:Hasło"|attr:"name:pass" }}
@@ -67,16 +71,22 @@
 						<span class="focus-input100"></span>
 					</div>
 
-                    <div class="wrap-input100 validate-input m-b-16">
+                    <div class="wrap-input100 validate-input m-b-16" data-validate = "Wpisany email wygląda na niepoprawny">
 						{{ form.email|add_class:"input100"|attr:"type:email"|attr:"placeholder:Email"|attr:"name:email" }}
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-16">
-						{{ form.password2.help_text }}
-						<span class="focus-input100"></span>
+					{% for field in form %}
+					<div class="text-danger">
+						{% if field.errors %}
+							<ol>
+							{% for error in field.errors %}
+								<li><strong>{{ error|escape }}</strong></li>
+							{% endfor %}
+							</ol>
+						{% endif %}
 					</div>
-
+					{% endfor %}
 
 					<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn">
