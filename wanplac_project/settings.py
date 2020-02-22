@@ -160,6 +160,6 @@ LOGIN_REDIRECT_URL = '/client_panel/booking/create/'
 
 LOGOUT_REDIRECT_URL = '/client_panel/registration/login/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # testowanie wysyłania maiala
 
 
