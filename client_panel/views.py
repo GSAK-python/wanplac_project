@@ -1,5 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, LoginCreateForm
 from client_panel.models import Booking
@@ -21,9 +24,14 @@ class BookingCreateView(CreateView):
     model = Booking
     template_name = 'booking/create.html'
     form_class = BookingCreateForm
+    success_url = reverse_lazy('booking:create')
 
     def form_valid(self, form):
-        return super(BookingCreateView, self).form_valid(form)
+        form.instance.user = self.request.user
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.save()
+            return super(BookingCreateView, self).form_valid(form)
 
 
 class SignUpCreateView(CreateView):
@@ -33,4 +41,6 @@ class SignUpCreateView(CreateView):
 
     def form_valid(self, form):
         return super(SignUpCreateView, self).form_valid(form)
+
+
 
