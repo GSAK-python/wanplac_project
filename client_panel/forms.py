@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory, DateInput
 
-from client_panel.models import Booking
+from client_panel.models import Booking, BookingKayaks
 
 
 class LoginCreateForm(AuthenticationForm):
@@ -23,6 +24,19 @@ class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
         exclude = ['user']
+
+
+class BookingKayaksForm(forms.ModelForm):
+
+    class Meta:
+        model = BookingKayaks
+        exclude = ['booking']
+
+
+BookingKayaksFormSet = inlineformset_factory(
+    Booking, BookingKayaks, form=BookingKayaksForm,
+    fields=['kayak', 'quantity'], extra=1, can_delete=True
+)
 
 
 class SignUpCreateForm(UserCreationForm):

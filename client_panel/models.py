@@ -34,7 +34,7 @@ class Booking(models.Model):
     time = models.TimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    kayak = models.ManyToManyField(Kayak, through='BookingKayaks')
+    # kayak = models.ManyToManyField(Kayak, through='BookingKayaks')
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Termin: {}, {}'.format(self.first_name,
@@ -46,5 +46,5 @@ class Booking(models.Model):
 
 class BookingKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='reservation', on_delete=models.CASCADE)
-    kayak = models.ForeignKey(Kayak, on_delete=models.CASCADE)
+    kayak = models.ForeignKey(Kayak, related_name='booking_kayaks', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
