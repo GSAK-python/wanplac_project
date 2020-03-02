@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.forms import inlineformset_factory, DateInput
+from django.forms import inlineformset_factory, DateInput, TextInput, Select
 
 from client_panel.models import Booking, BookingKayaks
 
@@ -35,7 +35,7 @@ class BookingKayaksForm(forms.ModelForm):
 
 BookingKayaksFormSet = inlineformset_factory(
     Booking, BookingKayaks, form=BookingKayaksForm,
-    fields=['kayak', 'quantity'], extra=2, can_delete=True, max_num=5
+    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5
 )
 
 

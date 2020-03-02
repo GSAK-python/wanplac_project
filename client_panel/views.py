@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, LoginCreateForm, BookingKayaksFormSet
 from client_panel.models import Booking
+from client_panel.tasks import check_quantity_kayak
 
 
 class Login(LoginView):
@@ -12,6 +13,7 @@ class Login(LoginView):
     form_class = LoginCreateForm
     
     def form_valid(self, form):
+        check_quantity_kayak.delay()
         return super(Login, self).form_valid(form)
 
 
@@ -23,7 +25,7 @@ class BookingCreateView(CreateView):
     model = Booking
     template_name = 'booking/create.html'
     form_class = BookingCreateForm
-    success_url = reverse_lazy('booking:create')
+    success_url = reverse_lazy('registration:login')
 
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
@@ -50,8 +52,8 @@ class BookingCreateView(CreateView):
                 booking_set.instance = booking_form
                 booking_set.save()
                 for detail in booking_set.instance.bookings.all():
-                    detail.kayak.quantity -= detail.quantity
-                    if not detail.kayak.quantity:
+                    detail.kayak.store -= detail.quantity
+                    if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
         return super(BookingCreateView, self).form_valid(form)

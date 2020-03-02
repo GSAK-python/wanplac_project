@@ -9,13 +9,13 @@ class Kayak(models.Model):
         ('Trzyosobowy', 'Trzyosobowy')
     ]
     name = models.CharField(max_length=32)
-    quantity = models.IntegerField()
+    store = models.IntegerField()
     type = models.CharField(max_length=32, choices=TYPECHOICE)
     available = models.BooleanField()
     description = models.TextField()
 
     def __str__(self):
-        return '{} ({})'.format(self.name, self.type)
+        return '{} ({}). Stan: {}'.format(self.name, self.type, self.store)
 
 
 class Route(models.Model):
@@ -47,4 +47,4 @@ class Booking(models.Model):
 class BookingKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)

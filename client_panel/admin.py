@@ -15,7 +15,7 @@ admin.site.register(Booking, BookingAdmin)
 
 
 class KayakAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'quantity', 'type', 'available', 'description']
+    list_display = ['id', 'name', 'store', 'type', 'available', 'description']
 
 admin.site.register(Kayak, KayakAdmin)
 

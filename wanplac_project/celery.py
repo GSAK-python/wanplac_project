@@ -5,9 +5,9 @@ import os
 from celery import Celery
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanplac_panel.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanplac_project.settings')
 
-app = Celery('wanplac_panel',
+app = Celery('wanplac_project',
              broker='amqp://localhost',
              # backend='amqp://',
              )
