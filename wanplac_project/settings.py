@@ -162,4 +162,6 @@ LOGOUT_REDIRECT_URL = '/client_panel/registration/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # testowanie wysyłania maiala
 
-
+# BROKER_URL = 'django://'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'

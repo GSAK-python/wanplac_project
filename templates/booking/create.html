@@ -58,8 +58,8 @@
 					<span class="focus-input100"></span>
 				</div>
 
-				{{ reservation.management_form }}
-				{% for form in reservation %}
+				{{ booking_set.management_form }}
+				{% for form in booking_set %}
 				<div class="row form-row spacer">
 					<div class="col-sm-6">
 						<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
@@ -71,14 +71,14 @@
 					<div class="col-sm-4">
 						<span class="input100" style="height: 25px; padding: 0px">Podaj ilość</span>
 						<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-							{{ form.quantity|add_class:"input100"|attr:"type:text"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
+							{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
 							<span class="focus-input100"></span>
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<span class="input100" style="height: 25px; padding: 0px">Dodaj</span>
 						<div class="wrap-input100 m-b-25">
-							<button class="login100-form-btn add-form-row">+</button>
+							<button class="btn btn-success add-form-row">+</button>
 						</div>
 					</div>
 				</div>

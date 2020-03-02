@@ -8,20 +8,20 @@ class BookingKayakInLine(admin.TabularInline):
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'user', 'route', 'term', 'time']
+    list_display = ['id', 'first_name', 'last_name', 'user', 'route', 'term', 'time']
     inlines = [BookingKayakInLine]
 
 admin.site.register(Booking, BookingAdmin)
 
 
 class KayakAdmin(admin.ModelAdmin):
-    list_display = ['name', 'quantity', 'type', 'available', 'description']
+    list_display = ['id', 'name', 'quantity', 'type', 'available', 'description']
 
 admin.site.register(Kayak, KayakAdmin)
 
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ['name', 'distance', 'description']
+    list_display = ['id', 'name', 'distance', 'description']
 
 admin.site.register(Route, RouteAdmin)
 

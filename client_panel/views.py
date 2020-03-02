@@ -29,15 +29,15 @@ class BookingCreateView(CreateView):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
 
         if self.request.POST:
-            data['reservation'] = BookingKayaksFormSet(self.request.POST, instance=self.object)
+            data['booking_set'] = BookingKayaksFormSet(self.request.POST, instance=self.object)
         else:
-            data['reservation'] = BookingKayaksFormSet(instance=self.object)
+            data['booking_set'] = BookingKayaksFormSet(instance=self.object)
 
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
-        booking_form = context['reservation']
+        booking_set = context['booking_set']
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -45,14 +45,15 @@ class BookingCreateView(CreateView):
                 form.instance.last_name = self.request.user.last_name
 
             form.instance.user = self.request.user
-            reservation = form.save()
-            if booking_form.is_valid():
-                booking_form.instance = reservation
-                booking_form.save()
-                for form in booking_form:
-                    booking = form.save(commit=False)
-                    booking_form.reservation = reservation
-                    booking.save()
+            booking_form = form.save()
+            if booking_set.is_valid():
+                booking_set.instance = booking_form
+                booking_set.save()
+                for detail in booking_set.instance.bookings.all():
+                    detail.kayak.quantity -= detail.quantity
+                    if not detail.kayak.quantity:
+                        detail.kayak.available = False
+                    detail.kayak.save()
         return super(BookingCreateView, self).form_valid(form)
 
 
