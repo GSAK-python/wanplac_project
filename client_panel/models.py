@@ -1,15 +1,5 @@
-from datetime import timedelta
-
 from django.contrib.auth.models import User
 from django.db import models
-import datetime as dt
-
-
-class Term(models.Model):
-    date = models.DateField()
-
-    def __str__(self):
-        return 'Data: {}'.format(self.date)
 
 
 class Kayak(models.Model):
@@ -26,6 +16,13 @@ class Kayak(models.Model):
 
     def __str__(self):
         return '{} ({}). Stan: {}'.format(self.name, self.type, self.store)
+
+
+class Term(models.Model):
+    date = models.DateField()
+
+    def __str__(self):
+        return 'Data: {}'.format(self.date)
 
 
 class Route(models.Model):
@@ -45,7 +42,6 @@ class Booking(models.Model):
     time = models.TimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    # kayak = models.ManyToManyField(Kayak, through='BookingKayaks')
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Termin: {}, {}'.format(self.first_name,
