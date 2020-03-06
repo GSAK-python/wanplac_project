@@ -31,17 +31,7 @@
 							<span class="focus-input100"></span>
 						</div>
 					</div>
-
 				</div>
-
-				<div>
-					<span class="input100" style="height: 25px; padding: 0px">Wybierz godzinę</span>
-					<div class="wrap-input100 validate-input m-b-25">
-						{{ form.time|add_class:"input100"|attr:"type:time"|attr:"name:time" }}
-						<span class="focus-input100"></span>
-					</div>
-				</div>
-
 
 				<span class="input100" style="height: 25px; padding: 0px">Wybierz trasę</span>
 				<div class="wrap-input100 validate-input m-b-25">
@@ -49,28 +39,27 @@
 					<span class="focus-input100"></span>
 				</div>
 
-				{{ booking_set.management_form }}
-				{% for form in booking_set %}
 				<div class="row">
-					<div class="col-sm-6">
-						<span class="input100" style="height: 25px; padding: 0px">Wybierz dzień</span>
-						<div class="wrap-input100 validate-input m-b-25">
-							{{ form.date|add_class:"input100"}}
-							<span class="focus-input100"></span>
-					</div>
-					</div>
-					<div class="col-sm-6">
-						<span class="input100" style="height: 25px; padding: 0px">Aktualny stan</span>
-						<div class="wrap-input100 validate-input m-b-25">
-							{{ form.daily_kayaks|add_class:"input100"}}
-							<span class="focus-input100"></span>
-					</div>
-					</div>
+					{{ booking_set.management_form }}
+					{% for form in booking_set %}
 
+						<div class="col-sm-6">
+							<span class="input100" style="height: 25px; padding: 0px">Wybierz dzień</span>
+							<div class="wrap-input100 validate-input m-b-25 m-r-200">
+								{{ form.date|add_class:"input100" }}
+								<span class="focus-input100"></span>
+							</div>
+						</div>
+					{% endfor %}
+					<div class="col-sm-6">
+						<span class="input100" style="height: 25px; padding: 0px">Wybierz godzinę</span>
+						<div class="wrap-input100 validate-input m-b-25">
+							{{ form.time|add_class:"input100"|attr:"type:time"|attr:"name:time" }}
+							<span class="focus-input100"></span>
+						</div>
+					</div>
 				</div>
 
-
-				{% endfor %}
 
 				{{ kayak_set.management_form }}
 				{% for form in kayak_set %}

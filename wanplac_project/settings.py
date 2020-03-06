@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_celery_results',
     'widget_tweaks',
     'bootstrapform',
-    'vendor_files'
+    'vendor_files',
+    'app1'
 ]
 
 MIDDLEWARE = [

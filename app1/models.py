@@ -9,20 +9,14 @@ class Term(models.Model):
         return 'Data: {}'.format(self.date)
 
 
-class Kayak(models.Model):
-    TYPECHOICE = [
-        ('Jednosoboy', 'Jednoosobwy'),
-        ('Dwuosobowy', 'Dwuosobowy'),
-        ('Trzyosobowy', 'Trzyosobowy')
-    ]
-    name = models.CharField(max_length=32)
-    store = models.IntegerField()
-    type = models.CharField(max_length=32, choices=TYPECHOICE)
-    available = models.BooleanField()
-    description = models.TextField()
+class DailyKayak(models.Model):
+    date = models.ForeignKey(Term, on_delete=models.CASCADE, related_name="term")
+    finder = models.IntegerField()
+    eoli = models.IntegerField()
+    protour = models.IntegerField()
 
     def __str__(self):
-        return '{} ({})'.format(self.name, self.store)
+        return '{}'.format(self.date)
 
 
 class Route(models.Model):
@@ -38,7 +32,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='user_app1', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -48,15 +42,7 @@ class Booking(models.Model):
                                                                  self.time)
 
 
-class TermKayaks(models.Model):
-    booking = models.ForeignKey(Booking, related_name='term_bookings', on_delete=models.CASCADE)
-    kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
-
-
-class BookingKayaks(models.Model):
-    booking = models.ForeignKey(Booking, related_name='bookings', on_delete=models.CASCADE)
-    date = models.ForeignKey(Term, related_name='dates', on_delete=models.CASCADE)
-
-
-
+class DailyKayakBooking(models.Model):
+    booking = models.ForeignKey(Booking, related_name='daily_booking', on_delete=models.CASCADE)
+    amount = models.ForeignKey(DailyKayak, related_name='amount', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()

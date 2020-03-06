@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Booking, Kayak, Route, BookingKayaks, Term, TermKayaks, DailyKayak, DailyKayakBooking
+from .models import Booking, Kayak, Route, BookingKayaks, Term, TermKayaks
 
 
 class BookingKayakInLine(admin.TabularInline):
@@ -13,15 +13,9 @@ class BookingTermKayakInLine(admin.TabularInline):
     raw_id_fields = ['kayak']
 
 
-class DailyKayakBookingInLine(admin.TabularInline):
-    model = DailyKayakBooking
-    raw_id_fields = ['amount']
-    max_num = 4
-
-
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'last_name', 'user', 'route', 'time']
-    inlines = [DailyKayakBookingInLine, BookingKayakInLine, BookingTermKayakInLine]
+    inlines = [BookingKayakInLine, BookingTermKayakInLine]
 
 
 class KayakAdmin(admin.ModelAdmin):
@@ -36,6 +30,6 @@ admin.site.register(Route, RouteAdmin)
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Kayak, KayakAdmin)
 admin.site.register(Term)
-admin.site.register(DailyKayak)
+
 
 
