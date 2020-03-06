@@ -2,6 +2,23 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Term(models.Model):
+    date = models.DateField()
+
+    def __str__(self):
+        return 'Data: {}'.format(self.date)
+
+
+class DailyKayak(models.Model):
+    date = models.ForeignKey(Term, on_delete=models.CASCADE, related_name="term")
+    finder = models.IntegerField()
+    eoli = models.IntegerField()
+    protour = models.IntegerField()
+
+    def __str__(self):
+        return '{}'.format(self.date)
+
+
 class Kayak(models.Model):
     TYPECHOICE = [
         ('Jednosoboy', 'Jednoosobwy'),
@@ -15,14 +32,7 @@ class Kayak(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return '{} ({}). Stan: {}'.format(self.name, self.type, self.store)
-
-
-class Term(models.Model):
-    date = models.DateField()
-
-    def __str__(self):
-        return 'Data: {}'.format(self.date)
+        return '{} ({})'.format(self.name, self.store)
 
 
 class Route(models.Model):
@@ -37,21 +47,30 @@ class Route(models.Model):
 class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
-    # term = models.DateField()
-    date = models.ForeignKey(Term, on_delete=models.CASCADE)
     time = models.TimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'Rezerwacja: {} {}, Trasa: {}, Termin: {}, {}'.format(self.first_name,
-                                                                     self.last_name,
-                                                                     self.route,
-                                                                     self.date,
-                                                                     self.time)
+        return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,
+                                                                 self.last_name,
+                                                                 self.route,
+                                                                 self.time)
+
+
+class TermKayaks(models.Model):
+    booking = models.ForeignKey(Booking, related_name='term_bookings', on_delete=models.CASCADE)
+    kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
 
 
 class BookingKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='bookings', on_delete=models.CASCADE)
-    kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
+    date = models.ForeignKey(Term, related_name='dates', on_delete=models.CASCADE)
+    daily_kayaks = models.ForeignKey(Kayak, on_delete=models.CASCADE, related_name='daily_kayaks', default=[0])
+
+
+class DailyKayakBooking(models.Model):
+    booking = models.ForeignKey(Booking, related_name='daily_booking', on_delete=models.CASCADE)
+    amount = models.ForeignKey(DailyKayak, related_name='amount', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()

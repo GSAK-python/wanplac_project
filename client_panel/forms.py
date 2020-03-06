@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import inlineformset_factory, DateInput, TextInput, Select
 
-from client_panel.models import Booking, BookingKayaks
+from client_panel.models import Booking, BookingKayaks, Term, TermKayaks, DailyKayakBooking
 
 
 class LoginCreateForm(AuthenticationForm):
@@ -35,6 +35,18 @@ class BookingKayaksForm(forms.ModelForm):
 
 BookingKayaksFormSet = inlineformset_factory(
     Booking, BookingKayaks, form=BookingKayaksForm,
+    fields=['date', 'daily_kayaks'], extra=1, can_delete=True, max_num=1
+)
+
+
+class TermKayaksForm(forms.ModelForm):
+    class Meta:
+        model = TermKayaks
+        exclude = ['booking']
+
+
+TermKayaksFormSet = inlineformset_factory(
+    Booking, TermKayaks, form=TermKayaksForm,
     fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5
 )
 
@@ -53,5 +65,17 @@ class SignUpCreateForm(UserCreationForm):
         help_texts = {
             'username': '150 znaków lub mniej. Litery, cyfry oraz @/./+/-/_ ',
         }
+
+
+class DailyKayakBookingForm(forms.ModelForm):
+    class Meta:
+        model = DailyKayakBooking
+        exclude = ['booking']
+
+
+DailyKayakBookingFormSet = inlineformset_factory(
+    Booking, DailyKayakBooking, form=DailyKayakBookingForm,
+    fields=['amount', 'quantity'], extra=1, can_delete=True
+)
 
 
