@@ -3,9 +3,11 @@ from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, 
 from django.urls import path, include, reverse_lazy
 from client_panel.views import BookingCreateView, SignUpCreateView, Login, Logout
 
+
 booking_patterns = ([
                         path('create/', BookingCreateView.as_view(), name='create'),
                     ], 'booking')
+
 
 registration_patterns = ([
                              path('login/', Login.as_view(), name='login'),
@@ -23,6 +25,6 @@ registration_patterns = ([
                          ], 'registration')
 
 urlpatterns = [
-    path('booking/', include(booking_patterns)),
-    path('registration/', include(registration_patterns)),
+    path('booking/', include(booking_patterns, namespace='booking')),
+    path('registration/', include(registration_patterns, namespace='registration')),
 ]

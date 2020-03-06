@@ -1,12 +1,8 @@
 from django.urls import include, path
 from app1.views import DailyBookingCreateView
 
-
-booking_patterns = ([
-                        path('create2/', DailyBookingCreateView.as_view(), name='create2')
-                    ], 'booking')
-
+app_name = 'app1'
 
 urlpatterns = [
-    path('booking/', include(booking_patterns)),
+    path('create2/', DailyBookingCreateView.as_view(), name='create2'),
 ]

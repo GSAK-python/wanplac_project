@@ -157,7 +157,7 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = '/client_panel/registration/login/'
 
-LOGIN_REDIRECT_URL = '/client_panel/booking/create/'
+LOGIN_REDIRECT_URL = '/main/'
 
 LOGOUT_REDIRECT_URL = '/client_panel/registration/login/'
 
