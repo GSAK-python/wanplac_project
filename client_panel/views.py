@@ -3,16 +3,16 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from client_panel.forms import BookingCreateForm, SignUpCreateForm, LoginCreateForm, BookingKayaksFormSet, \
-    TermKayaksFormSet
-from client_panel.models import Booking, Term, Kayak
+from client_panel.forms import BookingCreateForm, SignUpCreateForm, BookingKayaksFormSet, \
+    TermKayaksFormSet, LoginCreateForm
+from client_panel.models import Booking, Term
 from client_panel.tasks import check_quantity_kayak
 
 
 class Login(LoginView):
     template_name = 'registration/login.html'
     form_class = LoginCreateForm
-    
+
     def form_valid(self, form):
         check_quantity_kayak.delay()
         return super(Login, self).form_valid(form)
