@@ -1,12 +1,14 @@
+import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
 
-class Term(models.Model):
-    date = models.DateField()
-
-    def __str__(self):
-        return 'Data: {}'.format(self.date)
+# class Term(models.Model):
+#     date = models.DateField()
+#
+#     def __str__(self):
+#         return 'Data: {}'.format(self.date)
 
 
 class Kayak(models.Model):
@@ -38,6 +40,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
+    date = models.CharField(max_length=32, default=datetime.date.today)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
@@ -52,11 +55,6 @@ class TermKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='term_bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
-
-
-class BookingKayaks(models.Model):
-    booking = models.ForeignKey(Booking, related_name='bookings', on_delete=models.CASCADE)
-    date = models.ForeignKey(Term, related_name='dates', on_delete=models.CASCADE)
 
 
 
