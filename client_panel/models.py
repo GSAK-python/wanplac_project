@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# class Term(models.Model):
-#     date = models.DateField()
-#
-#     def __str__(self):
-#         return 'Data: {}'.format(self.date)
+class DateList(models.Model):
+    date = models.DateField()
+
+    def __str__(self):
+        return '{}'.format(self.date)
 
 
 class Kayak(models.Model):

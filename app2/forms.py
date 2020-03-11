@@ -1,26 +1,16 @@
 from django import forms
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, TextInput
 
-from app2.models import Booking, BookingKayaks, TermKayaks
+from app2.models import Booking, TermKayaks
 
 
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
         exclude = ['user']
-
-
-class BookingKayaksForm(forms.ModelForm):
-
-    class Meta:
-        model = BookingKayaks
-        exclude = ['booking']
-
-
-BookingKayaksFormSet = inlineformset_factory(
-    Booking, BookingKayaks, form=BookingKayaksForm,
-    fields=['date'], extra=1, can_delete=True, max_num=1
-)
+        widgets = {
+            'date': TextInput(attrs={'readonly':'readonly'})
+        }
 
 
 class TermKayaksForm(forms.ModelForm):

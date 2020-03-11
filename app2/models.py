@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
+import datetime
 
 # Create your models here.
+from wanplac_project import settings
 
 
-class Term(models.Model):
+class DateList(models.Model):
     date = models.DateField()
 
     def __str__(self):
@@ -40,6 +42,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
+    date = models.CharField(max_length=32, default=datetime.datetime.now().date() + datetime.timedelta(days=1))
     user = models.ForeignKey(User, related_name='user_app2', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
@@ -54,8 +57,3 @@ class TermKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='app2_term_bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='app2_kayaks', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
-
-
-class BookingKayaks(models.Model):
-    booking = models.ForeignKey(Booking, related_name='app2_bookings', on_delete=models.CASCADE)
-    date = models.ForeignKey(Term, related_name='app2_dates', on_delete=models.CASCADE)

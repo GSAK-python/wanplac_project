@@ -2,6 +2,8 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load bootstrap4 %}
+{% load i18n %}
+
 
 {% block title %} Strona startowa {% endblock %}
 {% block body %}
@@ -14,29 +16,33 @@
 				<span class="login100-form-title p-b-51">
 					Wybierz datę spływu
 				</span>
-<!--				<div class="container-login100-form-btn m-t-17">-->
-<!--					<a class="login100-form-btn" href="app1">-->
-<!--						app1-->
-<!--					</a>-->
-<!--				</div>-->
 
-				{% load i18n %}
 				{% language 'pl' %}
-				<div class="container-login100-form-btn m-t-17">
-					<a class="login100-form-btn" href="client_panel">
-						{{ client_panel_date }}
-					</a>
-				</div>
-				<div class="container-login100-form-btn m-t-17">
-					<a class="login100-form-btn" href="app2">
-						{{ app2 }}
-					</a>
-				</div>
+				{% if current_day in client_panel_date_list %}
+					<div class="container-login100-form-btn m-t-17">
+						<a class="login100-form-btn" href="client_panel">
+							{{ current_day }}
+						</a>
+					</div>
+					<div class="container-login100-form-btn m-t-17">
+						<a class="login100-form-btn" href="app2">
+							{{ next_day }}
+						</a>
+					</div>
+				{% elif current_day in app2_date_list %}
+					<div class="container-login100-form-btn m-t-17">
+						<a class="login100-form-btn" href="app2">
+							{{ current_day }}
+						</a>
+					</div>
+					<div class="container-login100-form-btn m-t-17">
+						<a class="login100-form-btn" href="client_panel">
+							{{ next_day }}
+						</a>
+					</div>
+				{% endif %}
 				{% endlanguage %}
-				{% load i18n %}
-				{% language 'es' %}
-				<p class="date">{{ article.publishing_date|date:'D, d N H:i:s e' }}</p>
-				{% endlanguage %}
+
 			</form>
 		</div>
 	</div>

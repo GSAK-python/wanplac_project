@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Booking, Kayak, Route, TermKayaks
+from .models import Booking, Kayak, Route, TermKayaks, DateList
 
 
 class BookingTermKayakInLine(admin.TabularInline):
@@ -23,6 +23,7 @@ class RouteAdmin(admin.ModelAdmin):
 admin.site.register(Route, RouteAdmin)
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Kayak, KayakAdmin)
+admin.site.register(DateList)
 
 
 
