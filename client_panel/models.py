@@ -36,11 +36,22 @@ class Route(models.Model):
         return 'Trasa {}, dystans: {}'.format(self.name, self.distance)
 
 
+def get_current_data():
+    date_list = DateList.objects.values_list('date', flat=True)
+    current_day = datetime.datetime.now().date()
+    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
+    if current_day in date_list:
+        display_day = current_day
+    else:
+        display_day = next_day
+    return display_day
+
+
 class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
-    date = models.CharField(max_length=32, default=datetime.date.today)
+    date = models.CharField(max_length=32, default=get_current_data())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
