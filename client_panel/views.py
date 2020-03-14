@@ -29,10 +29,6 @@ class BookingCreateView(CreateView):
     form_class = BookingCreateForm
     success_url = reverse_lazy('registration:login')
 
-    # def get(self, request, *args, **kwargs):
-    #     view = MainPageView.as_view()
-    #     return view(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
 

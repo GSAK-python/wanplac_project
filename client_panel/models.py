@@ -18,13 +18,14 @@ class Kayak(models.Model):
         ('Trzyosobowy', 'Trzyosobowy')
     ]
     name = models.CharField(max_length=32)
+    stock = models.IntegerField()
     store = models.IntegerField()
     type = models.CharField(max_length=32, choices=TYPECHOICE)
     available = models.BooleanField()
     description = models.TextField()
 
     def __str__(self):
-        return '{} ({})'.format(self.name, self.store)
+        return '{}. Na stanie {}. Dostępność {}'.format(self.name, self.stock, self.store)
 
 
 class Route(models.Model):

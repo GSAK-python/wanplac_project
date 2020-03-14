@@ -8,10 +8,11 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanplac_project.settings')
 
 app = Celery('wanplac_project',
-             broker='amqp://localhost',
-             # backend='amqp://',
+             # broker='amqp://localhost//',
+             broker='amqp://test:test@localhost//',
+             backend='amqp'
              )
-
+app.conf.broker_heartbeat = 0
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
 # - namespace='CELERY' means all celery-related configuration keys
