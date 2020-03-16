@@ -1,10 +1,9 @@
 from __future__ import absolute_import, unicode_literals
-
 import os
-
 from celery import Celery
+from celery.schedules import crontab
 
-# set the default Django settings module for the 'celery' program.
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanplac_project.settings')
 
 app = Celery('wanplac_project',
@@ -23,6 +22,20 @@ app.conf.update(
 )
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
+
+
+app.conf.beat_schedule = {
+    'Checking booking status every 5 minutes': {
+        'task': 'client_panel.tasks.check_booking_status',
+        'schedule': crontab(minute='*/5'),
+        'args': (),
+    },
+    'Adding 1 kayak to Finder store': {
+        'task': 'client_panel.tasks.db_test_func',
+        'schedule': crontab(),
+        'args': (),
+    },
+}
 
 
 @app.task(bind=True)

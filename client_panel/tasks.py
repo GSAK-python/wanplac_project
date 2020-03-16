@@ -2,8 +2,8 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
-from datetime import time
-from client_panel.models import Booking, Kayak, DateList, TermKayaks
+from client_panel.models import Booking, Kayak, DateList
+from celery.schedules import crontab
 
 
 @shared_task
@@ -27,12 +27,6 @@ def check_quantity_kayak():
         object.save()
 
     return 'Baza zauktalizowana: {} kajaki wróciły do nas!'.format(sum(d.values()))
-
-
-@shared_task
-def add(x, y):
-    result = x + y
-    return result
 
 
 @shared_task
@@ -67,6 +61,18 @@ def check_kayak_status():
     return 'Rezerwacja kajakow zostala zakonczona'
 
 
+@shared_task
+def db_test_func():
+    # rdb.set_trace()
+    kayak_item = Kayak.objects.get(id=1)
+    kayak_item.store += 1
+    kayak_item.save()
+    return 'Dodawanie 1 sztuki co minutę'
+
+
 """
 celery -A wanplac_project  worker --loglevel=info -P solo
+
+celery -A wanplac_project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
 """
