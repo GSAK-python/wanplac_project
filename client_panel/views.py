@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm
 from client_panel.models import Booking
-from client_panel.tasks import check_quantity_kayak
 from main_page.views import MainPageView
 
 
@@ -15,7 +14,7 @@ class Login(LoginView):
     form_class = LoginCreateForm
 
     def form_valid(self, form):
-        check_quantity_kayak.delay()
+        # check_quantity_kayak.delay()
         return super(Login, self).form_valid(form)
 
 

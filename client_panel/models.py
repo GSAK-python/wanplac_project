@@ -1,5 +1,7 @@
 import datetime
+from datetime import date
 
+from celery.contrib import rdb
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -38,14 +40,18 @@ class Route(models.Model):
 
 
 def get_current_data():
+    rdb.set_trace()
     date_list = DateList.objects.values_list('date', flat=True)
     current_day = datetime.datetime.now().date()
-    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
-    if current_day in date_list:
-        display_day = current_day
-    else:
-        display_day = next_day
-    return display_day
+    next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
+    current_time = datetime.datetime.now().time()
+    change_time = datetime.time(19, 15)
+    if current_day in date_list and current_time < change_time:
+        day = current_day
+        return day
+    elif current_day in date_list and current_time >= change_time:
+        day = next_next_day
+        return day
 
 
 class Booking(models.Model):

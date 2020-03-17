@@ -25,16 +25,16 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    'Checking booking status every 5 minutes': {
-        'task': 'client_panel.tasks.check_booking_status',
-        'schedule': crontab(minute='*/5'),
-        'args': (),
-    },
-    'Adding 1 kayak to Finder store': {
-        'task': 'client_panel.tasks.db_test_func',
+    'Data change every day at EXACT TIME': {
+        'task': 'client_panel.tasks.change_date',
         'schedule': crontab(),
         'args': (),
     },
+    'Equalization of kayak store to stock ammount': {
+        'task': 'client_panel.tasks.return_kayak_store',
+        'schedule': crontab(),
+        'args': (),
+    }
 }
 
 

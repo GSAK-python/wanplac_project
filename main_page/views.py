@@ -14,6 +14,7 @@ class MainPageView(TemplateView):
         if self.request:
             context['current_day'] = datetime.datetime.now().date()
             context['next_day'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
+            context['next_next_day'] = datetime.datetime.now().date() + datetime.timedelta(days=2)
             context['client_panel_date_list'] = client_panel.models.DateList.objects.values_list('date', flat=True)
             context['app2_date_list'] = app2.models.DateList.objects.values_list('date', flat=True)
             return context
