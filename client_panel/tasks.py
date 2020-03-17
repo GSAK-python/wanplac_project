@@ -8,23 +8,30 @@ from client_panel.models import Kayak, DateList
 @shared_task
 def change_date():
     # rdb.set_trace()
+    days_list = DateList.objects.values_list('date', flat=True)
     current_day = datetime.datetime.now().date()
-    day_to_upload = DateList.objects.filter(date__exact=current_day)
-    for object in day_to_upload:
-        day = current_day + datetime.timedelta(days=2)
-        object.date = day
-        object.save()
-    return 'DZIEN ZOSTAL ZAKTUALIZOWANY NA {}'.format(day)
+    for day in days_list:
+        if day == current_day:
+            day_to_upload = DateList.objects.filter(date__exact=current_day)
+            for object in day_to_upload:
+                day = current_day + datetime.timedelta(days=2)
+                object.date = day
+                object.save()
+            return 'DZIEN ZOSTAL ZAKTUALIZOWANY NA {}'.format(day)
 
 
 @shared_task
 def return_kayak_store():
     # rdb.set_trace()
+    days_list = DateList.objects.values_list('date', flat=True)
+    current_day = datetime.datetime.now().date()
     kayak_list = Kayak.objects.all()
-    for kayak in kayak_list:
-        kayak.store = kayak.stock
-        kayak.save()
-    return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
+    for day in days_list:
+        if day == current_day:
+            for kayak in kayak_list:
+                kayak.store = kayak.stock
+                kayak.save()
+            return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
 
 # @shared_task
 # def check_quantity_kayak():
