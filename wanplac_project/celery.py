@@ -19,6 +19,8 @@ app.conf.broker_heartbeat = 0
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.update(
     result_expires=3600,
+    enable_utc=True,
+    timezone='Europe/Warsaw'
 )
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
@@ -37,12 +39,12 @@ app.conf.beat_schedule = {
     },
     'Date change - APP2': {
         'task': 'app2.tasks.change_date',
-        'schedule': crontab(),
+        'schedule': crontab(minute=40, hour=13),
         'args': (),
     },
     'Equalization of store - APP2': {
         'task': 'app2.tasks.return_kayak_store',
-        'schedule': crontab(),
+        'schedule': crontab(minute=40, hour=13),
         'args': (),
     }
 }

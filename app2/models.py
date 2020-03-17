@@ -1,10 +1,7 @@
+import datetime
 from celery.contrib import rdb
 from django.contrib.auth.models import User
 from django.db import models
-import datetime
-
-# Create your models here.
-from wanplac_project import settings
 
 
 class DateList(models.Model):
@@ -40,30 +37,24 @@ class Route(models.Model):
         return 'Trasa {}, dystans: {}'.format(self.name, self.distance)
 
 
-def get_current_data():
+def get_date():
     # rdb.set_trace()
-    date_list = DateList.objects.values_list('date', flat=True)
     current_day = datetime.datetime.now().date()
-    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
     next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
-    current_time = datetime.datetime.now().time()
-    change_time = datetime.time(10, 15)
-    if current_day in date_list and current_time < change_time:
-        day = current_day
-        return day
-    elif current_day in date_list and current_time >= change_time:
-        day = next_next_day
-        return day
-    elif current_day not in date_list:
-        day = next_day
-        return day
+    day_list = DateList.objects.values_list('date', flat=True)
+    for day in day_list:
+        if day == current_day:
+            display_day = day
+        else:
+            display_day = next_next_day
+        return display_day
 
 
 class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
-    date = models.CharField(max_length=32, default=get_current_data())
+    date = models.CharField(max_length=32, default=get_date())  # datetime.datetime.now().date()
     user = models.ForeignKey(User, related_name='user_app2', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
@@ -71,6 +62,7 @@ class Booking(models.Model):
         return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,
                                                                  self.last_name,
                                                                  self.route,
+
                                                                  self.time)
 
 
