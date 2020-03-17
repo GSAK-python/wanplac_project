@@ -27,7 +27,7 @@ class Kayak(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return '{}. Na stanie {}. Dostępność {}'.format(self.name, self.stock, self.store)
+        return '{}. Na stanie {}. Dostępnosc {}'.format(self.name, self.stock, self.store)
 
 
 class Route(models.Model):
@@ -40,9 +40,10 @@ class Route(models.Model):
 
 
 def get_current_data():
-    rdb.set_trace()
+    # rdb.set_trace()
     date_list = DateList.objects.values_list('date', flat=True)
     current_day = datetime.datetime.now().date()
+    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
     next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
     current_time = datetime.datetime.now().time()
     change_time = datetime.time(19, 15)
@@ -51,6 +52,9 @@ def get_current_data():
         return day
     elif current_day in date_list and current_time >= change_time:
         day = next_next_day
+        return day
+    elif current_day not in date_list:
+        day = next_day
         return day
 
 

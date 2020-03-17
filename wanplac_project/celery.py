@@ -25,13 +25,23 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    'Data change every day at EXACT TIME': {
+    'Date change - CLIENT_PANEL': {
         'task': 'client_panel.tasks.change_date',
         'schedule': crontab(),
         'args': (),
     },
-    'Equalization of kayak store to stock ammount': {
+    'Equalization of store - CLIENT_PANEL': {
         'task': 'client_panel.tasks.return_kayak_store',
+        'schedule': crontab(),
+        'args': (),
+    },
+    'Date change - APP2': {
+        'task': 'app2.tasks.change_date',
+        'schedule': crontab(),
+        'args': (),
+    },
+    'Equalization of store - APP2': {
+        'task': 'app2.tasks.return_kayak_store',
         'schedule': crontab(),
         'args': (),
     }
