@@ -2,23 +2,38 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
-from client_panel.models import Kayak, DateList
+from client_panel.models import Kayak, DateList, BookingDate
 
 
 @shared_task
-def change_date():
-    rdb.set_trace()
+def template_change_date():
+    # rdb.set_trace()
     days_list = DateList.objects.values_list('date', flat=True)
     current_day = datetime.datetime.now().date()
     for day in days_list:
         if day == current_day:
             day_to_upload = DateList.objects.filter(date__exact=current_day)
             for object in day_to_upload:
-                day = current_day + datetime.timedelta(days=2)
-                object.create(day)
-                object.save()
-                object.refresh_from_db()
-            return 'DZIEN ZOSTAL ZAKTUALIZOWANY NA {}'.format(day)
+                if object.date == current_day:
+                    day = current_day + datetime.timedelta(days=2)
+                    object.date = day
+                    object.save()
+                    object.refresh_from_db()
+                    return 'DZIEN ZOSTAL ZAKTUALIZOWANY NA {}'.format(day)
+
+
+@shared_task
+def booking_change_date():
+    # rdb.set_trace()
+    days_list = BookingDate.objects.values_list('date', flat=True)
+    current_day = datetime.datetime.now().date()
+    for day in days_list:
+        if day == current_day:
+            day = current_day + datetime.timedelta(days=2)
+            new_date = BookingDate.objects.create(date=day)
+            new_date.save()
+            new_date.refresh_from_db()
+            return 'DODANO NOWY DZIEN {}'.format(day)
 
 
 @shared_task
@@ -31,28 +46,29 @@ def return_kayak_store():
         if day == current_day:
             for kayak in kayak_list:
                 kayak.store = kayak.stock
+                kayak.available = True
                 kayak.save()
             return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
 
 
-@shared_task
-def set_proper_date():
-    # rdb.set_trace()
-    days_list = DateList.objects.values_list('date', flat=True)
-    current_day = datetime.datetime.now().date()
-    current_time = datetime.datetime.now().time()
-    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
-    next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
-    change_time = datetime.time(10, 40)
-    for day in days_list:
-        if day == current_day and current_time < change_time:
-            display_date = current_day
-            return display_date
-        elif day == current_day and current_time >= change_time:
-            display_date = next_next_day
-            return display_date
-
-
+# @shared_task
+# def set_proper_date():
+#     # rdb.set_trace()
+#     days_list = DateList.objects.values_list('date', flat=True)
+#     current_day = datetime.datetime.now().date()
+#     current_time = datetime.datetime.now().time()
+#     next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
+#     next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
+#     change_time = datetime.time(10, 40)
+#     for day in days_list:
+#         if day == current_day and current_time < change_time:
+#             display_date = current_day
+#             return display_date
+#         elif day == current_day and current_time >= change_time:
+#             display_date = next_next_day
+#             return display_date
+#
+#
 # @shared_task
 # def check_quantity_kayak():
 #     # rdb.set_trace()

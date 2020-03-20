@@ -27,14 +27,19 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
-    'Date change - CLIENT_PANEL': {
-        'task': 'client_panel.tasks.change_date',
+    'TEMPLATE date change - CLIENT_PANEL': {
+        'task': 'client_panel.tasks.template_change_date',
         'schedule': crontab(minute=2, hour=15),
         'args': (),
     },
     'Equalization of store - CLIENT_PANEL': {
         'task': 'client_panel.tasks.return_kayak_store',
         'schedule': crontab(minute=1, hour=15),
+        'args': (),
+    },
+    'BOOKING date change - CLIENT_PANEL': {
+        'task': 'client_panel.tasks.booking_change_date',
+        'schedule': crontab(minute=2, hour=15),
         'args': (),
     },
     'Date change - APP2': {
@@ -45,11 +50,6 @@ app.conf.beat_schedule = {
     'Equalization of store - APP2': {
         'task': 'app2.tasks.return_kayak_store',
         'schedule': crontab(minute=1, hour=15),
-        'args': (),
-    },
-    'SET DATE - CLIENT_PANEL': {
-        'task': 'client_panel.tasks.set_proper_date',
-        'schedule': crontab(),
         'args': (),
     }
 }
