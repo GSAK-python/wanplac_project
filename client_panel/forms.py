@@ -1,9 +1,10 @@
+from celery.contrib import rdb
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms import inlineformset_factory, TextInput
 
-from client_panel.models import Booking, TermKayaks
+from client_panel.models import Booking, TermKayaks, DateList
 
 
 class LoginCreateForm(AuthenticationForm):
@@ -24,9 +25,9 @@ class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
         exclude = ['user']
-        widgets = {
-            'date': TextInput(attrs={'readonly':'readonly'})
-        }
+        # widgets = {
+        #     'date': TextInput(attrs={'readonly':'readonly'})
+        # }
 
 
 class TermKayaksForm(forms.ModelForm):

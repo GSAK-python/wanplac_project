@@ -50,13 +50,27 @@ def get_date():
         return display_day
 
 
+def set_date():
+    # rdb.set_trace()
+    # obj = DateList.objects.first()
+    # obj.refresh_from_db_lazy()
+    return datetime.datetime.now().date()
+
+
 class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
-    date = models.CharField(max_length=32, default=get_date())  # datetime.datetime.now().date()
+    date = models.DateField(default=DateList.objects.values_list('date', flat=True)[0])  # datetime.datetime.now().date()
     user = models.ForeignKey(User, related_name='user_app2', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        if self.date == datetime.datetime.now().date() and datetime.datetime.now().time() < datetime.time(12):
+            self.date = datetime.datetime.now().date()
+        elif self.date == datetime.datetime.now().date() and datetime.datetime.now().time() >= datetime.time(12):
+            self.date = datetime.datetime.now().date() + datetime.timedelta(days=2)
+        super(Booking, self).save(*args, **kwargs)
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,

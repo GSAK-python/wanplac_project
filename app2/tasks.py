@@ -34,11 +34,6 @@ def return_kayak_store():
             return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
 
 
-@shared_task
-def get_current_time():
-    return datetime.datetime.now().time()
-
-
 # @shared_task
 # def get_current_data():
 #     # rdb.set_trace()

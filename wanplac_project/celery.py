@@ -46,6 +46,11 @@ app.conf.beat_schedule = {
         'task': 'app2.tasks.return_kayak_store',
         'schedule': crontab(minute=1, hour=15),
         'args': (),
+    },
+    'SET DATE - CLIENT_PANEL': {
+        'task': 'client_panel.tasks.set_proper_date',
+        'schedule': crontab(),
+        'args': (),
     }
 }
 
