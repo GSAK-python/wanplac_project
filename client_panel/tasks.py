@@ -15,7 +15,7 @@ def change_date():
             day_to_upload = DateList.objects.filter(date__exact=current_day)
             for object in day_to_upload:
                 day = current_day + datetime.timedelta(days=2)
-                object.date = day
+                object.create(day)
                 object.save()
                 object.refresh_from_db()
             return 'DZIEN ZOSTAL ZAKTUALIZOWANY NA {}'.format(day)
