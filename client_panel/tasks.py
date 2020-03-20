@@ -25,12 +25,12 @@ def template_change_date():
 @shared_task
 def booking_change_date():
     # rdb.set_trace()
-    days_list = BookingDate.objects.values_list('date', flat=True)
+    days_list = BookingDate.objects.values_list('booking_date', flat=True)
     current_day = datetime.datetime.now().date()
     for day in days_list:
         if day == current_day:
             day = current_day + datetime.timedelta(days=2)
-            new_date = BookingDate.objects.create(date=day)
+            new_date = BookingDate.objects.create(booking_date=day)
             new_date.save()
             new_date.refresh_from_db()
             return 'DODANO NOWY DZIEN {}'.format(day)

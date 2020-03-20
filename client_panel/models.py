@@ -46,30 +46,20 @@ class Route(models.Model):
         return 'Trasa {}, dystans: {}'.format(self.name, self.distance)
 
 
-def get_current_data():
-    # rdb.set_trace()
-    date_list = DateList.objects.values_list('date', flat=True)
-    current_day = datetime.datetime.now().date()
-    next_day = datetime.datetime.now().date() + datetime.timedelta(days=1)
-    next_next_day = datetime.datetime.now().date() + datetime.timedelta(days=2)
+def booking_dates_limit():
     current_time = datetime.datetime.now().time()
-    change_time = datetime.time(19, 15)
-    if current_day in date_list and current_time < change_time:
-        day = current_day
-        return day
-    elif current_day in date_list and current_time >= change_time:
-        day = next_next_day
-        return day
-    elif current_day not in date_list:
-        day = next_day
-        return day
+    change_time = datetime.time(16, 52)
+    if current_time < change_time:
+        return {'booking_date__exact': datetime.datetime.now().date()}
+    elif current_time >= change_time:
+        return {'booking_date__gt': datetime.datetime.now().date()}
 
 
 class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
-    booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, default='')
+    booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, limit_choices_to=booking_dates_limit, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
 
