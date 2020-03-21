@@ -8,9 +8,6 @@ class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
         exclude = ['user']
-        widgets = {
-            'date': TextInput(attrs={'readonly':'readonly'})
-        }
 
 
 class TermKayaksForm(forms.ModelForm):

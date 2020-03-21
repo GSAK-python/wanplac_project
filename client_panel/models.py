@@ -1,6 +1,4 @@
 import datetime
-from datetime import date
-
 from celery.contrib import rdb
 from django.contrib.auth.models import User
 from django.db import models
@@ -47,11 +45,16 @@ class Route(models.Model):
 
 
 def booking_dates_limit():
+    current_day = datetime.datetime.now().date()
+    booking_dates_list = BookingDate.objects.values_list('booking_date', flat=True)
     current_time = datetime.datetime.now().time()
     change_time = datetime.time(16, 52)
-    if current_time < change_time:
-        return {'booking_date__exact': datetime.datetime.now().date()}
-    elif current_time >= change_time:
+    if current_day in booking_dates_list:
+        if current_time < change_time:
+            return {'booking_date__exact': datetime.datetime.now().date()}
+        elif current_time >= change_time:
+            return {'booking_date__gt': datetime.datetime.now().date()}
+    else:
         return {'booking_date__gt': datetime.datetime.now().date()}
 
 
