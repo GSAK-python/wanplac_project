@@ -1,19 +1,28 @@
 from django.contrib import admin
-from app1.models import DailyKayakBooking, DailyKayak, Route, Booking, Term
+
+from app1.models import TermKayaks, Route, Booking, Kayak, DateList, BookingDate
 
 
-# class DailyKayakBookingInLine(admin.TabularInline):
-#     model = DailyKayakBooking
-#     raw_id_fields = ['amount']
-#     max_num = 4
-#
-#
-# class BookingAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'first_name', 'last_name', 'user', 'route', 'time']
-#     inlines = [DailyKayakBookingInLine]
-#
-#
-# admin.site.register(DailyKayak)
-# admin.site.register(Route)
-# admin.site.register(Booking, BookingAdmin)
-# admin.site.register(Term)
+class BookingTermKayakInLine(admin.TabularInline):
+    model = TermKayaks
+    raw_id_fields = ['kayak']
+
+
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['id', 'first_name', 'last_name', 'user', 'route', 'booking_date', 'time']
+    inlines = [BookingTermKayakInLine]
+
+
+class KayakAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'store', 'type', 'available', 'description']
+
+
+class RouteAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'distance', 'description']
+
+
+admin.site.register(Route, RouteAdmin)
+admin.site.register(Booking, BookingAdmin)
+admin.site.register(Kayak, KayakAdmin)
+admin.site.register(DateList)
+admin.site.register(BookingDate)

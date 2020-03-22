@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
-from client_panel.models import Kayak, DateList, BookingDate
+from app1.models import DateList, Kayak, BookingDate
 
 
 @shared_task
@@ -29,11 +29,11 @@ def booking_change_date():
     current_day = datetime.datetime.now().date()
     for day in days_list:
         if day == current_day:
-            c_p_next_day = current_day + datetime.timedelta(days=3)
-            c_p_next_date = BookingDate.objects.create(booking_date=c_p_next_day)
-            c_p_next_date.save()
-            c_p_next_date.refresh_from_db()
-            return 'DODANO NOWY DZIEN {}'.format(c_p_next_day)
+            app1_next_day = current_day + datetime.timedelta(days=2)
+            app1_next_date = BookingDate.objects.create(booking_date=app1_next_day)
+            app1_next_date.save()
+            app1_next_date.refresh_from_db()
+            return 'DODANO NOWY DZIEN {}'.format(app1_next_day)
 
 
 @shared_task
@@ -49,10 +49,3 @@ def return_kayak_store():
                 kayak.available = True
                 kayak.save()
             return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
-
-"""
-celery -A wanplac_project  worker --loglevel=info -P solo
-
-celery -A wanplac_project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
-
-"""

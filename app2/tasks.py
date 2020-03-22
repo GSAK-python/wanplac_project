@@ -15,7 +15,7 @@ def template_change_date():
             day_to_upload = DateList.objects.filter(date__exact=current_day)
             for object in day_to_upload:
                 if object.date == current_day:
-                    day = current_day + datetime.timedelta(days=2)
+                    day = current_day + datetime.timedelta(days=3)
                     object.date = day
                     object.save()
                     object.refresh_from_db()
@@ -29,11 +29,11 @@ def booking_change_date():
     current_day = datetime.datetime.now().date()
     for day in days_list:
         if day == current_day:
-            next_next_day = current_day + datetime.timedelta(days=2)
-            next_next_date = BookingDate.objects.create(booking_date=next_next_day)
-            next_next_date.save()
-            next_next_date.refresh_from_db()
-            return 'DODANO NOWY DZIEN {}'.format(next_next_day)
+            app2_next_day = current_day + datetime.timedelta(days=3)
+            app2_next_date = BookingDate.objects.create(booking_date=app2_next_day)
+            app2_next_date.save()
+            app2_next_date.refresh_from_db()
+            return 'DODANO NOWY DZIEN {}'.format(app2_next_day)
 
 
 @shared_task

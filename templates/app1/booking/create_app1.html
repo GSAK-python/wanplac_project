@@ -12,7 +12,7 @@
 			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
 				{% csrf_token %}
 				<span class="login100-form-title p-b-51">
-					Zarezerwuj kajak
+					Zarezerwuj kajak APP1
 				</span>
 
 				<div class="row">
@@ -31,17 +31,7 @@
 							<span class="focus-input100"></span>
 						</div>
 					</div>
-
 				</div>
-
-				<div>
-					<span class="input100" style="height: 25px; padding: 0px">Wybierz godzinę</span>
-					<div class="wrap-input100 validate-input m-b-25">
-						{{ form.time|add_class:"input100"|attr:"type:time"|attr:"name:time" }}
-						<span class="focus-input100"></span>
-					</div>
-				</div>
-
 
 				<span class="input100" style="height: 25px; padding: 0px">Wybierz trasę</span>
 				<div class="wrap-input100 validate-input m-b-25">
@@ -49,41 +39,51 @@
 					<span class="focus-input100"></span>
 				</div>
 
-				{{ daily_kayak.management_form }}
-<!--				{% for form in daily_kayak %}-->
-				<span class="input100" style="height: 25px; padding: 0px">Data</span>
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-					{{ form.amount|add_class:"input100" }}
-					<span class="focus-input100"></span>
-				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<span class="input100" style="height: 25px; padding: 0px">Wybrany dzień</span>
+						<div class="wrap-input100 validate-input m-b-25 m-r-200">
+							{{ form.booking_date|add_class:"input100" }}
+							<span class="focus-input100"></span>
+						</div>
+					</div>
 
-				<span class="input100" style="height: 25px; padding: 0px">Finder</span>
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-					{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
-					<span class="focus-input100"></span>
-				</div>
-
-				<span class="input100" style="height: 25px; padding: 0px">Eoli</span>
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-					{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
-					<span class="focus-input100"></span>
-				</div>
-
-				<span class="input100" style="height: 25px; padding: 0px">Pro-tour</span>
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-					{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
-					<span class="focus-input100"></span>
+					<div class="col-sm-6">
+						<span class="input100" style="height: 25px; padding: 0px">Wybierz godzinę</span>
+						<div class="wrap-input100 validate-input m-b-25">
+							{{ form.time|add_class:"input100"|attr:"type:time"|attr:"name:time" }}
+							<span class="focus-input100"></span>
+						</div>
+					</div>
 				</div>
 
 
-<!--					<div class="col-sm-2">-->
-<!--						<span class="input100" style="height: 25px; padding: 0px">Dodaj</span>-->
-<!--						<div class="wrap-input100 m-b-25">-->
-<!--							<button class="btn btn-success add-form-row">+</button>-->
-<!--						</div>-->
-<!--					</div>-->
+				{{ kayak_set.management_form }}
+				{% for form in kayak_set %}
+					<div class="row form-row spacer">
+						<div class="col-sm-8">
+							<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
+							<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+								{{ form.kayak|add_class:"input100"|attr:"type:text"|attr:"placeholder:Wybierz sprzęt"|attr:"name:kayak" }}
+								<span class="focus-input100"></span>
+							</div>
+						</div>
 
-<!--				{% endfor %}-->
+						<div class="col-sm-4">
+							<span class="input100" style="height: 25px; padding: 0px">Podaj ilość</span>
+							<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+								{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
+								<span class="focus-input100"></span>
+							</div>
+						</div>
+	<!--					<div class="col-sm-2">-->
+	<!--						<span class="input100" style="height: 25px; padding: 0px">Dodaj</span>-->
+	<!--						<div class="wrap-input100 m-b-25">-->
+	<!--							<button class="btn btn-success add-form-row">+</button>-->
+	<!--						</div>-->
+	<!--					</div>-->
+					</div>
+				{% endfor %}
 
 				<div class="container-login100-form-btn m-t-17">
 					<button class="login100-form-btn">

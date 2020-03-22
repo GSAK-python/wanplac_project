@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 
-from app1.models import DailyKayakBooking, Booking
+from app1.models import Booking, TermKayaks
 
 
 class BookingCreateForm(forms.ModelForm):
@@ -10,13 +10,13 @@ class BookingCreateForm(forms.ModelForm):
         exclude = ['user']
 
 
-class DailyKayakBookingForm(forms.ModelForm):
+class TermKayaksForm(forms.ModelForm):
     class Meta:
-        model = DailyKayakBooking
+        model = TermKayaks
         exclude = ['booking']
 
 
-DailyKayakBookingFormSet = inlineformset_factory(
-    Booking, DailyKayakBooking, form=DailyKayakBookingForm,
-    fields=['amount', 'quantity'], extra=1, can_delete=True
+TermKayaksFormSet = inlineformset_factory(
+    Booking, TermKayaks, form=TermKayaksForm,
+    fields=['kayak', 'quantity'], extra=1, can_delete=True
 )

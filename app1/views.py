@@ -2,29 +2,29 @@ from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from app1.forms import BookingCreateForm, DailyKayakBookingFormSet
+from app1.forms import BookingCreateForm, TermKayaksFormSet
 from app1.models import Booking
 
 
-class DailyBookingCreateView(CreateView):
+class BookingCreateView(CreateView):
     model = Booking
-    template_name = 'app1/booking/create2.html'
+    template_name = 'app1/booking/create_app1.html'
     form_class = BookingCreateForm
     success_url = reverse_lazy('registration:login')
 
     def get_context_data(self, **kwargs):
-        data = super(DailyBookingCreateView, self).get_context_data(**kwargs)
+        data = super(BookingCreateView, self).get_context_data(**kwargs)
 
         if self.request.POST:
-            data['daily_kayak'] = DailyKayakBookingFormSet(self.request.POST, instance=self.object, prefix='daily_kayak')
+            data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
         else:
-            data['daily_kayak'] = DailyKayakBookingFormSet(instance=self.object, prefix='daily_kayak')
+            data['kayak_set'] = TermKayaksFormSet(instance=self.object, prefix='kayak_set')
 
         return data
 
     def form_valid(self, form):
         context = self.get_context_data()
-        daily_kayak = context['daily_kayak']
+        kayak_set = context['kayak_set']
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -33,7 +33,12 @@ class DailyBookingCreateView(CreateView):
 
             form.instance.user = self.request.user
             booking_form = form.save()
-            if daily_kayak.is_valid():
-                daily_kayak.instance = booking_form
-                daily_kayak.save()
-        return super(DailyBookingCreateView, self).form_valid(form)
+            if kayak_set.is_valid():
+                kayak_set.instance = booking_form
+                kayak_set.save()
+                for detail in kayak_set.instance.app1_term_bookings.all():
+                    detail.kayak.store -= detail.quantity
+                    if not detail.kayak.store:
+                        detail.kayak.available = False
+                    detail.kayak.save()
+        return super(BookingCreateView, self).form_valid(form)

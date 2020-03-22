@@ -56,6 +56,21 @@ app.conf.beat_schedule = {
         'task': 'app2.tasks.booking_change_date',
         'schedule': crontab(minute=52, hour=16),
         'args': (),
+    },
+    'TEMPLATE date change - APP1': {
+        'task': 'app1.tasks.template_change_date',
+        'schedule': crontab(minute=52, hour=16),
+        'args': (),
+    },
+    'Equalization of store - APP1': {
+        'task': 'app1.tasks.return_kayak_store',
+        'schedule': crontab(minute=51, hour=16),
+        'args': (),
+    },
+    'BOOKING date change - APP1': {
+        'task': 'app1.tasks.booking_change_date',
+        'schedule': crontab(minute=52, hour=16),
+        'args': (),
     }
 }
 

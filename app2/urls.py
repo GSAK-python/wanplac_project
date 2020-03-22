@@ -1,5 +1,4 @@
 from django.urls import path
-
 from app2.views import BookingCreateView
 
 app_name = 'app2'
