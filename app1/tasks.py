@@ -39,7 +39,7 @@ def booking_change_date():
 @shared_task
 def return_kayak_store():
     # rdb.set_trace()
-    days_list = DateList.objects.values_list('date', flat=True)
+    days_list = BookingDate.objects.values_list('booking_date', flat=True)
     current_day = datetime.datetime.now().date()
     kayak_list = Kayak.objects.all()
     for day in days_list:
