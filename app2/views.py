@@ -1,3 +1,4 @@
+from celery.contrib import rdb
 from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -24,6 +25,7 @@ class BookingCreateView(CreateView):
         return data
 
     def form_valid(self, form):
+        # rdb.set_trace()
         context = self.get_context_data()
         kayak_set = context['kayak_set']
         with transaction.atomic():

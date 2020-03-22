@@ -29,7 +29,7 @@ def booking_change_date():
     current_day = datetime.datetime.now().date()
     for day in days_list:
         if day == current_day:
-            app1_next_day = current_day + datetime.timedelta(days=2)
+            app1_next_day = current_day + datetime.timedelta(days=3)
             app1_next_date = BookingDate.objects.create(booking_date=app1_next_day)
             app1_next_date.save()
             app1_next_date.refresh_from_db()
