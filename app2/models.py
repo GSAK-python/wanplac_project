@@ -49,6 +49,7 @@ def get_date():
 
 
 def booking_dates_limit():
+    # rdb.set_trace()
     current_day = datetime.datetime.now().date()
     booking_dates_list = BookingDate.objects.values_list('booking_date', flat=True)
     current_time = datetime.datetime.now().time()
