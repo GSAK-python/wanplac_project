@@ -21,4 +21,7 @@ class MainPageView(TemplateView):
             context['client_panel_date_list'] = client_panel.models.DateList.objects.values_list('date', flat=True)
             context['app2_date_list'] = app2.models.DateList.objects.values_list('date', flat=True)
             context['app1_date_list'] = app1.models.DateList.objects.values_list('date', flat=True)
+            context['current_time'] = datetime.datetime.now().time()
+            context['start_break'] = datetime.time(11, 45)
+            context['stop_break'] = datetime.time(12, 15)
             return context

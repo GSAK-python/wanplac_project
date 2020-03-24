@@ -1,0 +1,21 @@
+Viertual enviroment to wanplac_project:
+
+C:\Users\HP Gaming\Envs
+
+In terminal execute: C:\Users\HP Gaming\OneDrive\Pulpit\wanplac_project\wanplac_project>workon wanplac_project
+
+If u want to create new VENV:
+
+1. python -m pip install virtualenvwrapper-win --user
+2. mkvirtualenv myproject - name of VENV folder in above path
+3. in terminal: workon myporject - u can choose VENV to your project
+4. pip install Requirements.txt --user
+
+
+Requirements:
+
+pip install -r requirements.txt
+
+
+BEAT
+pip install -U django-celery-beat
