@@ -16,113 +16,107 @@
 				<span class="login100-form-title p-b-51">
 					Wybierz datę spływu
 				</span>
-				{% if current_time >= start_break and current_time <= stop_break %}
-					<span class="login100-form-title p-b-51">
-						Przerwa techniczna
-						Wracamy o 12:15 :)
-					</span>
-				{% else %}
-					{% language 'pl' %}
-						{% if current_day in client_panel_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ current_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ next_next_day }}
-								</a>
-							</div>
-						{% elif current_day in app2_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ current_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ next_next_day }}
-								</a>
-							</div>
-						{% elif current_day in app1_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ current_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ next_next_day }}
-								</a>
-							</div>
-						{% elif next_next_next_day in client_panel_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ next_next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ next_next_next_day }}
-								</a>
-							</div>
-						{% elif next_next_next_day in app2_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ next_next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ next_next_next_day }}
-								</a>
-							</div>
-						{% elif next_next_next_day in app1_date_list %}
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="client_panel">
-									{{ next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app2">
-									{{ next_next_day }}
-								</a>
-							</div>
-							<div class="container-login100-form-btn m-t-17">
-								<a class="login100-form-btn" href="app1">
-									{{ next_next_next_day }}
-								</a>
-							</div>
-						{% endif %}
-					{% endlanguage %}
 
-				{% endif %}
+				{% language 'pl' %}
+					{% if current_day in client_panel_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif current_day in app2_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif current_day in app1_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in client_panel_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in app2_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in app1_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% endif %}
+				{% endlanguage %}
+
 			</form>
 		</div>
 	</div>
@@ -134,10 +128,6 @@
 
 {% block body_scripts_additional %}
 
-
-<script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
-<script>refreshAt(11, 45, 10)</script>
-<script>refreshAt(12, 15, 10)</script>
 
 
 {% endblock body_scripts_additional %}

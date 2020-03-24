@@ -9,7 +9,13 @@
 <div class="limiter">
 	<div class="container-login100">
 		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
-			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
+			{% if current_time >= start_break and current_time <= stop_break and current_day in app1_date_list %}
+				<span class="login100-form-title p-b-51">
+						Przerwa techniczna
+						Wracamy o 12:30 :)
+				</span>
+			{% else %}
+				<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
 				{% csrf_token %}
 				<span class="login100-form-title p-b-51">
 					Zarezerwuj kajak CLIENT_PANEL
@@ -92,6 +98,7 @@
 				</div>
 
 			</form>
+			{% endif %}
 		</div>
 	</div>
 </div>
@@ -167,7 +174,10 @@ $(document).on('click', '.remove-form-row', function(e){
 });
 
 </script>
+
 <script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
+<script>refreshAt(12, 0, 0)</script>
+<script>refreshAt(12, 30, 10)</script>
 
 
 {% endblock body_scripts_additional %}

@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.db import transaction
@@ -5,7 +7,7 @@ from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm
-from client_panel.models import Booking
+from client_panel.models import Booking, DateList
 from main_page.views import MainPageView
 
 
@@ -30,6 +32,11 @@ class BookingCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
+        data['current_time'] = datetime.datetime.now().time()
+        data['start_break'] = datetime.time(12)
+        data['stop_break'] = datetime.time(12, 30)
+        data['app1_date_list'] = DateList.objects.values_list('date', flat=True)
+        data['current_day'] = datetime.datetime.now().date()
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')

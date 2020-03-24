@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 import datetime
 
@@ -62,6 +63,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.TimeField()
+    exact_time = models.TimeField(auto_now_add=True)
     booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
                                      default='')
     user = models.ForeignKey(User, related_name='user_app1', on_delete=models.CASCADE)

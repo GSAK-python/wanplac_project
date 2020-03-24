@@ -29,47 +29,47 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'TEMPLATE date change - CLIENT_PANEL': {
         'task': 'client_panel.tasks.template_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=30, hour=12),
         'args': (),
     },
     'Equalization of store - CLIENT_PANEL': {
         'task': 'client_panel.tasks.return_kayak_store',
-        'schedule': crontab(minute=59, hour=11),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     },
     'BOOKING date change - CLIENT_PANEL': {
         'task': 'client_panel.tasks.booking_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     },
     'TEMPLATE date change - APP2': {
         'task': 'app2.tasks.template_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=30, hour=12),
         'args': (),
     },
     'Equalization of store - APP2': {
         'task': 'app2.tasks.return_kayak_store',
-        'schedule': crontab(minute=59, hour=11),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     },
     'BOOKING date change - APP2': {
         'task': 'app2.tasks.booking_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     },
     'TEMPLATE date change - APP1': {
         'task': 'app1.tasks.template_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=30, hour=12),
         'args': (),
     },
     'Equalization of store - APP1': {
         'task': 'app1.tasks.return_kayak_store',
-        'schedule': crontab(minute=59, hour=11),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     },
     'BOOKING date change - APP1': {
         'task': 'app1.tasks.booking_change_date',
-        'schedule': crontab(minute=0, hour=12),
+        'schedule': crontab(minute=5, hour=12),
         'args': (),
     }
 }
