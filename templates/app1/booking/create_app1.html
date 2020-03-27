@@ -9,8 +9,8 @@
 <div class="limiter">
 	<div class="container-login100">
 		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
-			{% if current_time >= start_break and current_time <= stop_break and current_day in app1_date_list %}
-				<span class="login100-form-title p-b-51">
+			{% if current_time >= start_break and current_time <= stop_break %}
+				<span class="input100">
 						Przerwa techniczna
 						Wracamy o 12:30 :)
 				</span>
@@ -20,11 +20,20 @@
 				<span class="login100-form-title p-b-51">
 					Zarezerwuj kajak APP1
 				</span>
-
+				{% if form.non_field_errors %}
+					<div class="input100 text-danger m-b-5" style="text-align:center">
+						{{ form.non_field_errors }}
+					</div>
+				{% endif %}
+				{% if kayak_set.non_form_errors %}
+					<div class="input100 text-danger m-b-5" style="text-align:center">
+						{{ kayak_set.non_form_errors }}
+					</div>
+				{% endif %}
 				<div class="row">
 					<div class="col-sm-6">
 						<span class="input100" style="height: 25px; padding: 0px">Podaj imię</span>
-						<div class="wrap-input100 validate-input m-b-25">
+						<div class="wrap-input100 validate-input m-b-25" data-validate = "Username is required">
 							{{ form.first_name|add_class:"input100"|attr:"type:text"|attr:"placeholder:Imię"|attr:"name:first_name" }}
 							<span class="focus-input100"></span>
 						</div>
@@ -66,6 +75,7 @@
 
 				{{ kayak_set.management_form }}
 				{% for form in kayak_set %}
+
 					<div class="row form-row spacer">
 						<div class="col-sm-8">
 							<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
@@ -89,7 +99,10 @@
 	<!--						</div>-->
 	<!--					</div>-->
 					</div>
+
 				{% endfor %}
+
+
 
 				<div class="container-login100-form-btn m-t-17">
 					<button class="login100-form-btn">
