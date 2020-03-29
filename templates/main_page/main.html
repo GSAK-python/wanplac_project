@@ -130,7 +130,9 @@
 {% endblock %}
 
 {% block body_scripts_additional %}
-
+<script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
+<script>refreshAt(12, 0, 0)</script>
+<script>refreshAt(12, 30, 10)</script>
 
 
 {% endblock body_scripts_additional %}

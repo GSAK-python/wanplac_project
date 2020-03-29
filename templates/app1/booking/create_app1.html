@@ -5,6 +5,31 @@
 
 {% block title %} Formularz rezerwacji {% endblock %}
 {% block body %}
+<script type="text/javascript" src="{% static 'js/add_formset.js' %}"></script>
+<script type="text/html" id="item-template">
+	<div id="item-__prefix__" class="form-row">
+		<div class="row form-row spacer">
+			<div class="col-sm-8">
+				<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
+				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+					{{ kayak_set.empty_form.kayak|add_class:"input100"|attr:"type:text" }}
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<span class="input100" style="height: 25px; padding: 0px">Ilość</span>
+				<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+					{{ kayak_set.empty_form.quantity|add_class:"input100"|attr:"type:number" }}
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<a class="btn btn-danger remove-form-row">Usuń kajak</a>
+		</div>
+	</div>
+</script>
+
+
 
 <div class="limiter">
 	<div class="container-login100">
@@ -15,7 +40,8 @@
 						Wracamy o 12:30 :)
 				</span>
 			{% else %}
-				<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
+
+			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
 				{% csrf_token %}
 				<span class="login100-form-title p-b-51">
 					Zarezerwuj kajak APP1
@@ -74,35 +100,27 @@
 
 
 				{{ kayak_set.management_form }}
-				{% for form in kayak_set %}
+				<div id="items-form-container">
+					{% for form in kayak_set %}
 
-					<div class="row form-row spacer">
-						<div class="col-sm-8">
-							<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
-							<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-								{{ form.kayak|add_class:"input100"|attr:"type:text"|attr:"placeholder:Wybierz sprzęt"|attr:"name:kayak" }}
-								<span class="focus-input100"></span>
+						<div class="row form-row spacer" id="item-{{ forloop.counter0 }}">
+							<div class="col-sm-8">
+								<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
+								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+									{{ form.kayak|add_class:"input100"|attr:"type:text" }}
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<span class="input100" style="height: 25px; padding: 0px">Ilość</span>
+								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+									{{ form.quantity|add_class:"input100"|attr:"type:number" }}
+								</div>
 							</div>
 						</div>
-
-						<div class="col-sm-4">
-							<span class="input100" style="height: 25px; padding: 0px">Podaj ilość</span>
-							<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-								{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
-								<span class="focus-input100"></span>
-							</div>
-						</div>
-	<!--					<div class="col-sm-2">-->
-	<!--						<span class="input100" style="height: 25px; padding: 0px">Dodaj</span>-->
-	<!--						<div class="wrap-input100 m-b-25">-->
-	<!--							<button class="btn btn-success add-form-row">+</button>-->
-	<!--						</div>-->
-	<!--					</div>-->
-					</div>
-
-				{% endfor %}
-
-
+					{% endfor %}
+				</div>
+				<a href="#" id="add_form" class="btn btn-info add-item">Dodaj kajak</a>
 
 				<div class="container-login100-form-btn m-t-17">
 					<button class="login100-form-btn">
@@ -122,7 +140,28 @@
 
 {% block body_scripts_additional %}
 
-<!--	<script type="text/javascript" src="{% static 'js/add_row.js' %}"></script>-->
+<script>
+$(document).ready(function() {
+    $('.add-item').click(function(ev) {
+        ev.preventDefault();
+        var count = $('#items-form-container').children().length;
+        var tmplMarkup = $('#item-template').html();
+        var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+        $('div#items-form-container').append(compiledTmpl);
+
+        // update form count
+        $('#id_kayak_set-TOTAL_FORMS').attr('value', count+1);
+
+        // some animate to scroll to view our new form
+        $('html, body').animate({
+                scrollTop: $("#add-item-button").position().top-200
+            }, 800);
+    });
+});
+</script>
+
+<script type="text/javascript" src="{% static 'js/add_formset.js' %}"></script>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript">
