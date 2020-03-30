@@ -1,0 +1,53 @@
+https://stackoverflow.com/questions/21260987/add-a-dynamic-form-to-a-django-formset-using-javascript-in-a-right-way
+
+1. This script put under management_form and above add-form-row button. This html script is diplaying what will u add with js button
+
+                <script type="text/html" id="item-template">
+					<div id="item-__prefix__" class="form-row">
+						<div class="row form-row spacer">
+							<div class="col-sm-8">
+								<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
+								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+									{{ kayak_set.empty_form.kayak|add_class:"input100"|attr:"type:text" }}
+								</div>
+							</div>
+
+							<div class="col-sm-2">
+								<span class="input100" style="height: 25px; padding: 0px">Ilość</span>
+								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
+									{{ kayak_set.empty_form.quantity|add_class:"input100"|attr:"type:number" }}
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<span class="input100" style="height: 25px; padding: 0px"><br></span>
+								<a class="btn remove-form-row m-l-25 m-t-5" style="background-color: red;"><i class="far fa-trash-alt" style="font-size: 35px;"></i></a>
+							</div>
+						</div>
+					</div>
+				</script>
+
+
+2. This script put into block body_scripts_additional or in static/js file and href this
+
+                <script>
+                $(document).ready(function() {
+                    $('.add-item').click(function(ev) {
+                        ev.preventDefault();
+                        var count = $('#items-form-container').children().length;
+                        var tmplMarkup = $('#item-template').html();
+                        var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+                        $('div#items-form-container').append(compiledTmpl);
+
+                        // update form count
+                        $('#id_kayak_set-TOTAL_FORMS').attr('value', count+1);
+
+                        // some animate to scroll to view our new form
+                        $('html, body').animate({
+                                scrollTop: $("#add-item-button").position().top-200
+                            }, 800);
+                    });
+                });
+                </script>
+
+
+3. also your main mangement need to be with <div id="items-form-container"> at first place

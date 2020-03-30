@@ -35,7 +35,7 @@ function cloneMore(selector, prefix) {
 }
 function deleteForm(prefix, btn) {
     var total = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
-    if (total > 1){
+    if (total> 1){
         btn.closest('.form-row').remove();
         var forms = $('.form-row');
         $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);

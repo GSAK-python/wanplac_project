@@ -38,7 +38,7 @@ class TermKayaksForm(forms.ModelForm):
 
 TermKayaksFormSet = inlineformset_factory(
     Booking, TermKayaks, form=TermKayaksForm,
-    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5
+    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5, validate_max=True
 )
 
 

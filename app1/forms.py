@@ -13,12 +13,18 @@ class BookingCreateForm(forms.ModelForm):
 
 
 class TermKayaksForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(TermKayaksForm, self).__init__(*args, **kwargs)
+        self.fields['quantity'].initial = 1
+
     class Meta:
         model = TermKayaks
         exclude = ['booking']
-
+       
 
 class CustomFormSet(BaseInlineFormSet):
+
     def clean(self):
         # rdb.set_trace()
         if any(self.errors):
@@ -26,11 +32,17 @@ class CustomFormSet(BaseInlineFormSet):
         for form in self.forms:
             quantity = form.cleaned_data['quantity']
             kayak = form.cleaned_data['kayak']
+            if quantity == 0:
+                raise forms.ValidationError('Ilość wybranych kajaków nie może być równa 0.')
             if quantity > kayak.store:
-                raise forms.ValidationError('Ilość wybranych kajaków nie może być większa od ilości dostępnych kajaków')
+                raise forms.ValidationError('Ilość wybranych kajaków nie może być większa od ilości dostępnych kajaków.')
 
 
+"""
+max_num - depends on how amny kayaks type we want to rent
+"""
 TermKayaksFormSet = inlineformset_factory(
     Booking, TermKayaks, form=TermKayaksForm, formset=CustomFormSet,
-    fields=['kayak', 'quantity'], extra=1, can_delete=True
+    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=2, validate_max=True
+
 )
