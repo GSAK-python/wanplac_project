@@ -1,7 +1,5 @@
 from celery.contrib import rdb
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator
 from django.db import models
 import datetime
 
@@ -62,14 +60,25 @@ def booking_dates_limit():
 
 
 class Booking(models.Model):
+    TIMECHOICE = [
+        ('', 'Kliknij'),
+        ('9:00', '9:00'),
+        ('9:30', '9:30'),
+        ('10:00', '10:00'),
+        ('10:30', '10:30'),
+        ('11:00', '11:00'),
+        ('11:30', '11:30'),
+        ('12:00', '12:00'),
+    ]
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
-    time = models.TimeField()
-    exact_time = models.TimeField(auto_now_add=True)
+    time = models.CharField(choices=TIMECHOICE, max_length=32, default='')
+    exact_time = models.DateTimeField(auto_now_add=True)
     booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
                                      default='')
     user = models.ForeignKey(User, related_name='user_app1', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=13)
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,

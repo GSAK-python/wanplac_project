@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'bootstrapform',
     'vendor_files',
-    'app1'
+    'app1',
+    'phone_field',
 ]
 
 MIDDLEWARE = [
