@@ -32,7 +32,7 @@ class Kayak(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return '{}. Na stanie {}. Dostępnosc {}'.format(self.name, self.stock, self.store)
+        return '{}. Dostępnosc {}'.format(self.name, self.store)
 
 
 class Route(models.Model):
@@ -76,7 +76,7 @@ class Booking(models.Model):
 class TermKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='term_bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='kayaks', on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=1)
 
 
 

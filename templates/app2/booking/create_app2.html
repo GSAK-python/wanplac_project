@@ -20,6 +20,16 @@
 					<span class="login100-form-title p-b-51">
 						Zarezerwuj kajak APP2
 					</span>
+					{% if form.non_field_errors %}
+						<div class="input100 text-danger m-b-5" style="text-align:center">
+							{{ form.non_field_errors }}
+						</div>
+					{% endif %}
+					{% if kayak_set.non_form_errors %}
+						<div class="input100 text-danger m-b-5" style="text-align:center">
+							{{ kayak_set.non_form_errors }}
+						</div>
+					{% endif %}
 
 					<div class="row">
 						<div class="col-sm-6">
@@ -48,7 +58,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<span class="input100" style="height: 25px; padding: 0px">Wybrany dzień</span>
-							<div class="wrap-input100 validate-input m-b-25 m-r-200">
+							<div class="wrap-input100 validate-input m-b-25 m-r-250">
 								{{ form.booking_date|add_class:"input100" }}
 								<span class="focus-input100"></span>
 							</div>
@@ -67,33 +77,36 @@
 					{{ kayak_set.management_form }}
 					{% for form in kayak_set %}
 					<div class="row form-row spacer">
-						<div class="col-sm-8">
+						<div class="col-sm-7">
 							<div class="form-group">
 								<span class="input100" style="height: 25px; padding: 0px">Wybierz kajak</span>
 								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-									{{ form.kayak|add_class:"input100"|attr:"type:text"|attr:"placeholder:Wybierz sprzęt"|attr:"name:kayak" }}
+									{{ form.kayak|add_class:"input100"|attr:"type:text" }}
 								<span class="focus-input100"></span>
 								</div>
 							</div>
 
 						</div>
 
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="form-group">
 								<span class="input100" style="height: 25px; padding: 0px">Podaj ilość</span>
 								<div class="wrap-input100 validate-input m-b-25" data-validate = "">
-									{{ form.quantity|add_class:"input100"|attr:"type:number"|attr:"placeholder:Wybierz ilość"|attr:"name:quantity" }}
+									{{ form.quantity|add_class:"input100"|attr:"type:number" }}
 									<span class="focus-input100"></span>
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<a class="btn btn-danger remove-form-row">Usuń kajak</a>
+						<div class="col-sm-2">
+							<span class="input100" style="height: 25px; padding: 0px"><br></span>
+							<a class="btn remove-form-row m-l-25 m-t-5" style="background-color: red;"><i class="far fa-trash-alt" style="font-size: 35px;"></i></a>
 						</div>
 					</div>
-					<a class="btn btn-success add-form-row">Dodaj kajak</a>
 
 					{% endfor %}
+
+					<span class="input100" style="height: 25px; padding: 0px">Dodaj kolejny rodzaj kajaka</span>
+					<a href="#" id="add_form" class="btn btn-success add-form-row m-t-5" style="color: black"><i class="fas fa-plus" style="font-size: 35px;"></i></a>
 
 					<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn">
@@ -112,9 +125,8 @@
 {% endblock %}
 
 {% block body_scripts_additional %}
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'js/add_formset.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
 <script>refreshAt(12, 0, 0)</script>

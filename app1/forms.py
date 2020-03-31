@@ -1,9 +1,8 @@
 from celery.contrib import rdb
 from django import forms
-from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory, BaseInlineFormSet
-from django.utils.translation import gettext_lazy as _
-from app1.models import Booking, TermKayaks, Kayak
+
+from app1.models import Booking, TermKayaks
 
 
 class BookingCreateForm(forms.ModelForm):
@@ -21,9 +20,15 @@ class TermKayaksForm(forms.ModelForm):
     class Meta:
         model = TermKayaks
         exclude = ['booking']
-       
+
 
 class CustomFormSet(BaseInlineFormSet):
+    
+    def full_clean(self):
+        super(CustomFormSet, self).full_clean()
+        for error in self._non_form_errors.as_data():
+            if error.code == 'too_many_forms':
+                error.message = "Maksymalna ilość dodatkowych pól z kajakami to %d." % self.max_num
 
     def clean(self):
         # rdb.set_trace()
@@ -35,7 +40,7 @@ class CustomFormSet(BaseInlineFormSet):
             if quantity == 0:
                 raise forms.ValidationError('Ilość wybranych kajaków nie może być równa 0.')
             if quantity > kayak.store:
-                raise forms.ValidationError('Ilość wybranych kajaków nie może być większa od ilości dostępnych kajaków.')
+                raise forms.ValidationError('Ilość wybranych kajaków ({}) nie może być większa od ilości dostępnych kajaków ({}).'.format(quantity, kayak.store))
 
 
 """
@@ -43,6 +48,6 @@ max_num - depends on how amny kayaks type we want to rent
 """
 TermKayaksFormSet = inlineformset_factory(
     Booking, TermKayaks, form=TermKayaksForm, formset=CustomFormSet,
-    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=2, validate_max=True
+    fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5, validate_max=True
 
 )

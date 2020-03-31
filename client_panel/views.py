@@ -35,8 +35,6 @@ class BookingCreateView(CreateView):
         data['current_time'] = datetime.datetime.now().time()
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
-        data['app1_date_list'] = DateList.objects.values_list('date', flat=True)
-        data['current_day'] = datetime.datetime.now().date()
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
@@ -55,8 +53,8 @@ class BookingCreateView(CreateView):
                 form.instance.last_name = self.request.user.last_name
 
             form.instance.user = self.request.user
-            booking_form = form.save()
             if kayak_set.is_valid():
+                booking_form = form.save()
                 kayak_set.instance = booking_form
                 kayak_set.save()
                 for detail in kayak_set.instance.term_bookings.all():
@@ -64,7 +62,9 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
-        return super(BookingCreateView, self).form_valid(form)
+                return super(BookingCreateView, self).form_valid(form)
+
+        return super(BookingCreateView, self).form_invalid(form)
 
 
 class SignUpCreateView(CreateView):

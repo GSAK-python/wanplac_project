@@ -41,8 +41,8 @@ class BookingCreateView(CreateView):
                 form.instance.last_name = self.request.user.last_name
 
             form.instance.user = self.request.user
-            booking_form = form.save()
             if kayak_set.is_valid():
+                booking_form = form.save()
                 kayak_set.instance = booking_form
                 kayak_set.save()
                 for detail in kayak_set.instance.app2_term_bookings.all():
@@ -50,4 +50,6 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
-        return super(BookingCreateView, self).form_valid(form)
+                return super(BookingCreateView, self).form_valid(form)
+
+        return super(BookingCreateView, self).form_invalid(form)
