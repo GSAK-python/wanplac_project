@@ -11,7 +11,15 @@
 	<div class="container-login100">
 		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
 
-			<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
+
+			<div class="login100-form row flex-sb flex-w m-l-1">
+				<div class=".col-md-4">
+					<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
+				</div>
+				<div class=".col-md-4 .offset-md-4">
+					<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+				</div>
+			</div>
 
 			{% if current_time >= start_break and current_time <= stop_break %}
 				<span class="input100">
@@ -22,7 +30,7 @@
 
 			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
 				{% csrf_token %}
-				<span class="login100-form-title p-b-51 p-t-25">
+				<span class="login100-form-title p-b-51 p-t-40">
 					Zarezerwuj kajak APP1
 				</span>
 				{% if form.non_field_errors %}
@@ -38,7 +46,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<span class="input100" style="height: 25px; padding: 0px">Podaj imię</span>
-						<div class="wrap-input100 validate-input m-b-25" data-validate = "Username is required">
+						<div class="wrap-input100 m-b-25" data-validate = "Username is required">
 							{{ form.first_name|add_class:"input100"|attr:"type:text"|attr:"placeholder:Imię"|attr:"name:first_name" }}
 							<span class="focus-input100"></span>
 						</div>
@@ -46,7 +54,7 @@
 
 					<div class="col-sm-6">
 						<span class="input100" style="height: 25px; padding: 0px">Podaj nazwisko</span>
-						<div class="wrap-input100 validate-input m-b-25">
+						<div class="wrap-input100 m-b-25">
 							{{ form.last_name|add_class:"input100"|attr:"type:text"|attr:"placeholder:Nazwisko"|attr:"name:last_name" }}
 							<span class="focus-input100"></span>
 						</div>
@@ -61,7 +69,7 @@
 
 				<span class="input100" style="height: 25px; padding: 0px">Numer telefonu komórkowego</span>
 				<div class="wrap-input100 validate-input m-b-25">
-					{{ form.phone|add_class:"input100"|attr:"name:phone"|attr:"placeholder:Np. 48123123123 (2 cyfry kraj + 9 nr tel.)" }}
+					{{ form.phone|add_class:"input100"|attr:"name:phone"|attr:"placeholder:Np. 600600600" }}
 					<span class="focus-input100"></span>
 				</div>
 

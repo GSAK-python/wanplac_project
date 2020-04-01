@@ -51,8 +51,8 @@ class BookingCreateView(CreateView):
                 form.instance.first_name = self.request.user.first_name
             if not form.cleaned_data['last_name']:
                 form.instance.last_name = self.request.user.last_name
-
             form.instance.user = self.request.user
+            form.instance.email = self.request.user.email
             if kayak_set.is_valid():
                 booking_form = form.save()
                 kayak_set.instance = booking_form

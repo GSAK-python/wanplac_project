@@ -6,7 +6,13 @@ from app2.models import Booking, TermKayaks
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['user']
+        exclude = ['user', 'email']
+
+    def clean(self):
+        super(BookingCreateForm, self).clean()
+        phone = self.cleaned_data['phone']
+        if len(phone) != 9:
+            raise forms.ValidationError('Nieprawiodłowa długość numeru telefonu.')
 
 
 class CustomFormSet(BaseInlineFormSet):

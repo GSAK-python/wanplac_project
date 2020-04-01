@@ -8,10 +8,10 @@ from app1.models import Booking, TermKayaks
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['user']
+        exclude = ['user', 'email']
 
     def clean(self):
-        rdb.set_trace()
+        # rdb.set_trace()
         super(BookingCreateForm, self).clean()
         phone = self.cleaned_data['phone']
         eu_country_code = ['48', '43', '32', '420', '45', '358', '33', '49', '39', '31', '47', '46', '7', '380']
@@ -19,15 +19,11 @@ class BookingCreateForm(forms.ModelForm):
         eu_number_leght_10 = ['358', '7']
         eu_number_leght_10_11 = ['43', '49']
         eu_country_code_7_10 = ['420', '45', '39', '47', '46', '380']
-        for code in eu_number_leght_9:
-            if phone.startswith(code) and len(phone) != 11:
-                raise forms.ValidationError('Nieprawiodłowa długość numeru telefonu.')
-        for code in eu_number_leght_10:
-            if phone.startswith(code) and 11 <= len(phone) <= 13:
-                raise forms.ValidationError('Nieprawiodłowa długość numeru telefonu.')
-        for code in eu_country_code:
-            if not phone.startswith(code):
-                raise forms.ValidationError('Nieprawidłowy numer kierunkowy ({})'.format(phone[:2]))
+        if len(phone) != 9:
+            raise forms.ValidationError('Nieprawiodłowa długość numeru telefonu.')
+        # for code in eu_country_code:
+        #     if not phone.startswith(code):
+        #         raise forms.ValidationError('Nieprawidłowy numer kierunkowy ({})'.format(phone[:2]))
 
 
 class TermKayaksForm(forms.ModelForm):

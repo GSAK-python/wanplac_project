@@ -79,6 +79,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User, related_name='user_app1', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     phone = models.CharField(max_length=13)
+    email = models.EmailField()
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,

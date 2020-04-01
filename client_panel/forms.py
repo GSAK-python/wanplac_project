@@ -24,10 +24,16 @@ class LoginCreateForm(AuthenticationForm):
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['user']
+        exclude = ['user', 'email']
         # widgets = {
         #     'date': TextInput(attrs={'readonly':'readonly'})
         # }
+
+    def clean(self):
+        super(BookingCreateForm, self).clean()
+        phone = self.cleaned_data['phone']
+        if len(phone) != 9:
+            raise forms.ValidationError('Nieprawiodłowa długość numeru telefonu.')
 
 
 class TermKayaksForm(forms.ModelForm):
