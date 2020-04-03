@@ -22,10 +22,11 @@
 			</div>
 
 			{% if current_time >= start_break and current_time <= stop_break %}
-				<span class="input100">
-						Przerwa techniczna
-						Wracamy o 12:30 :)
-				</span>
+				<div class="p-t-50" style="width: 100%">
+					<span class="login100-form-title p-b-40 p-t-100" style="text-align:center">Przerwa techniczna</span>
+					<span class="login100-form-title p-b-150" style="text-align:center">Wracamy o 12:30 :)</span>
+				</div>
+
 			{% else %}
 
 			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
@@ -123,7 +124,7 @@
 				<a href="#" id="add_form" class="btn btn-success add-form-row m-t-5" style="color: black"><i class="fas fa-plus" style="font-size: 35px;"></i></a>
 
 				<div class="container-login100-form-btn m-t-17">
-					<button class="login100-form-btn">
+					<button class="login100-form-btn" onclick="clicked(event)">
 						Złóż zamówienie
 					</button>
 				</div>
@@ -139,6 +140,13 @@
 {% block body_scripts_additional %}
 <script type="text/javascript" src="{% static 'js/add_formset.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script>
+function clicked(e)
+{
+    if(!confirm('Jesteś pewny swojego zamówienia? Nie będziesz mógł już go zmienić.'))e.preventDefault();
+}
+</script>
 
 <script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
 <script>refreshAt(12, 0, 0)</script>

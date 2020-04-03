@@ -20,10 +20,10 @@
 			</div>
 
 			{% if current_time >= start_break and current_time <= stop_break %}
-				<span class="input100">
-						Przerwa techniczna
-						Wracamy o 12:30 :)
-				</span>
+				<div class="p-t-50" style="width: 100%">
+					<span class="login100-form-title p-b-40 p-t-100" style="text-align:center">Przerwa techniczna</span>
+					<span class="login100-form-title p-b-150" style="text-align:center">Wracamy o 12:30 :)</span>
+				</div>
 			{% else %}
 				<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
 					{% csrf_token %}

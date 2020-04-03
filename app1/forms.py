@@ -34,7 +34,7 @@ class TermKayaksForm(forms.ModelForm):
 
     class Meta:
         model = TermKayaks
-        exclude = ['booking']
+        exclude = ['booking', 'user']
 
 
 class CustomFormSet(BaseInlineFormSet):

@@ -4,7 +4,7 @@ from celery.contrib import rdb
 from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 from requests import request
 
 from app1.forms import BookingCreateForm, TermKayaksFormSet
@@ -15,7 +15,7 @@ class BookingCreateView(CreateView):
     model = Booking
     template_name = 'app1/booking/create_app1.html'
     form_class = BookingCreateForm
-    success_url = reverse_lazy('registration:login')
+    success_url = reverse_lazy('main:my_booking')
 
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
@@ -54,4 +54,5 @@ class BookingCreateView(CreateView):
                 return super(BookingCreateView, self).form_valid(form)
 
         return super(BookingCreateView, self).form_invalid(form)
+
 
