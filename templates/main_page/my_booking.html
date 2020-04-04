@@ -10,7 +10,7 @@
 
 <div class="limiter">
 	<div class="container-login100">
-		<div class="row wrap-login100 p-t-50 p-b-90 border border-dark" style="width:600px">
+		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
 
 			{% csrf_token %}
 			<span class="login100-form-title p-b-51 p-t-40">
@@ -19,26 +19,102 @@
 
 			{% language 'pl' %}
 			{% for booking in union %}
-				<div class="m-b-50 m-t-20">
-					<div class="input100" style="height: 25px">
-						{{ booking.exact_time }}
-					</div>
-					<div class="input100" style="height: 25px">
-						Numer rezerwacji <font color="red">{{ booking.id }}</font>
-					</div>
-					<div class="input100" style="height: 25px">
-						{{ booking }}
-					</div>
-					<div class="m-t-30">
-						{% for kayak in kayak %}
-							{% if kayak.booking_id == booking.id and booking and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
-								<div class="input100" style="height: 25px">
-									{{ kayak.kayak.name }} {{ kayak.quantity }}
+
+
+				<div class="container-login100-form-btn m-b-10" style="width: 100%">
+					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.id }}" aria-expanded="true">{{ booking.exact_time}}</button>
+				</div>
+				<div class="collapse" id="{{ booking.id }}">
+					<div class="m-b-50 m-t-20" style="width: 100%">
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data zamówienia:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.exact_time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Rezerwacja na:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.first_name }} {{ booking.last_name }}
+							</div>
+						</div>
+						<div class="row" style="height: 65px">
+							<div class="input100 col-sm-6">
+								Wybrana trasa:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.route }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data spływu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.booking_date }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Godzina spływu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Nr telefonu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.phone }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Adres email:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.email }}
+							</div>
+						</div>
+
+
+							<div class="row m-t-30" style="height: 35px">
+								<div class="input100 col-sm-5">
+									Wypożyczony sprzęt:
 								</div>
-							{% endif %}
-						{% endfor %}
+								<div class="input100 col-sm-3">
+									Rodzaj
+								</div>
+								<div class="input100 col-sm-2">
+									Ilość
+								</div>
+							</div>
+							{% for kayak in kayak %}
+								{% if kayak.booking_id == booking.id and booking and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
+									<div class="row" style="height: 35px">
+										<div class="input100 col-sm-5">
+
+										</div>
+										<div class="input100 col-sm-3">
+											{{ kayak }}
+										</div>
+										<div class="input100 col-sm-2">
+											{{ kayak.quantity }}
+										</div>
+									</div>
+								{% endif %}
+							{% endfor %}
+
 					</div>
 				</div>
+
+
 			{% endfor %}
 			{% endlanguage %}
 
