@@ -8,6 +8,8 @@
 {% block title %} Wybierz datę {% endblock %}
 {% block body %}
 
+{% include "main_page/navbar.html" %}
+
 <div class="limiter">
 	<div class="container-login100">
 		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
@@ -133,7 +135,6 @@
 <script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
 <script>refreshAt(12, 0, 0)</script>
 <script>refreshAt(12, 30, 10)</script>
-
 
 {% endblock body_scripts_additional %}
 

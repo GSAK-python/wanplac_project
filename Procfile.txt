@@ -1,0 +1,1 @@
+web: gunicornwanplac_project.wsgi --log-file -
