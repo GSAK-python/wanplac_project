@@ -79,6 +79,7 @@ class Booking(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     phone = models.CharField(max_length=13)
     email = models.EmailField()
+    exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,
@@ -91,6 +92,7 @@ class TermKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='app1_term_bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='app1_kayaks', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
+    exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.kayak.name)
