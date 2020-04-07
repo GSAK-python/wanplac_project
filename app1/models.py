@@ -73,7 +73,6 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.CharField(choices=TIMECHOICE, max_length=32, default='')
-    exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
                                      default='')
     user = models.ForeignKey(User, related_name='user_app1', on_delete=models.CASCADE)
@@ -92,7 +91,6 @@ class TermKayaks(models.Model):
     booking = models.ForeignKey(Booking, related_name='app1_term_bookings', on_delete=models.CASCADE)
     kayak = models.ForeignKey(Kayak, related_name='app1_kayaks', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
-    exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.kayak.name)
