@@ -1,1 +1,1 @@
-web: gunicorn wanplac_project.config.settings.wsgi --log-file -
+web: gunicorn wanplac_project.wsgi --log-file -
