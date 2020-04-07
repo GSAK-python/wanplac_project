@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('client_panel', '0074_booking_exact_time'),
+        ('client_panel', '0073_auto_20200401_1118'),
     ]
 
     operations = [
