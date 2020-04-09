@@ -1,14 +1,11 @@
 import datetime
-
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.db import transaction
-from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm
-from client_panel.models import Booking, DateList
-from main_page.views import MainPageView
+from client_panel.models import Booking
 
 
 class Login(LoginView):
@@ -18,10 +15,6 @@ class Login(LoginView):
     def form_valid(self, form):
         # check_quantity_kayak.delay()
         return super(Login, self).form_valid(form)
-
-
-class Logout(LogoutView):
-    next_page = '/'
 
 
 class BookingCreateView(CreateView):

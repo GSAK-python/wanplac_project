@@ -9,7 +9,7 @@
 {% block body %}
 
 <div class="limiter">
-	<div class="container-login100 flex-sb flex-w">
+	<div class="container-login100 flex-sb flex-w" >
 		<div class="row login100-form p-t-50 p-b-90" style="width:600px">
 
 			{% csrf_token %}
@@ -21,11 +21,11 @@
 			{% for booking in union %}
 
 
-				<div class="container-login100-form-btn m-b-10" style="width: 100%">
+				<div class="container-login100-form-btn m-b-10">
 					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.id }}" aria-expanded="true">{{ booking.exact_time}}</button>
 				</div>
 				<div class="collapse" id="{{ booking.id }}">
-					<div class="m-b-50 m-t-20" style="width: 100%">
+					<div class="m-b-50 m-t-20" style="width:470px">
 						<div class="row" style="height: 35px">
 							<div class="input100 col-sm-6">
 								Data zamówienia:

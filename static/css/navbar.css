@@ -1,0 +1,7 @@
+a {
+    font-size: 17px;
+}
+
+.dropdown-item:hover {
+  background-color: #827ffe;
+}
