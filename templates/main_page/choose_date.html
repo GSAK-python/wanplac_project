@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+{% block title %} Wybierz datę {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+<div class="limiter">
+	<div class="container-login100" style="min-height: 80vh">
+		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
+			<form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
+				{% csrf_token %}
+				<span class="login100-form-title p-b-51">
+					Wybierz datę spływu
+				</span>
+				<span class="input100">
+					<center>Uwaga! Od godziny <font color="red">12:00</font> do <font color="red">12:30</font> przerwa w rezerwacji kajaków.</center>
+				</span>
+
+				{% language 'pl' %}
+					{% if current_day in client_panel_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif current_day in app2_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif current_day in app1_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ current_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in client_panel_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in app2_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% elif next_next_next_day in app1_date_list %}
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="client_panel">
+								{{ next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app2">
+								{{ next_next_day }}
+							</a>
+						</div>
+						<div class="container-login100-form-btn m-t-17">
+							<a class="login100-form-btn" href="app1">
+								{{ next_next_next_day }}
+							</a>
+						</div>
+					{% endif %}
+				{% endlanguage %}
+
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+<script type="text/javascript" src="{% static 'js/page_refresh.js' %}"></script>
+<script>refreshAt(12, 0, 0)</script>
+<script>refreshAt(12, 30, 10)</script>
+
+{% endblock body_scripts_additional %}
+
+
+

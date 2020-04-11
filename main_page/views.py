@@ -14,8 +14,12 @@ from app1.models import DateList
 class MainPageView(TemplateView):
     template_name = 'main_page/main.html'
 
+
+class ChooseDateView(TemplateView):
+    template_name = 'main_page/choose_date.html'
+
     def get_context_data(self, **kwargs):
-        context = super(MainPageView, self).get_context_data(**kwargs)
+        context = super(ChooseDateView, self).get_context_data(**kwargs)
         if self.request:
             context['current_day'] = datetime.datetime.now().date()
             context['next_day'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
