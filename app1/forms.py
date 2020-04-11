@@ -1,11 +1,13 @@
 from celery.contrib import rdb
 from django import forms
-from django.forms import inlineformset_factory, BaseInlineFormSet
+from django.forms import inlineformset_factory, BaseInlineFormSet, DateInput, TextInput
 
 from app1.models import Booking, TermKayaks
+from wanplac_project import settings
 
 
 class BookingCreateForm(forms.ModelForm):
+
     class Meta:
         model = Booking
         exclude = ['user', 'email']

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Strona główna {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+<div class="limiter">
+	<div class="container-login100 flex-sb flex-w" style="min-height: 30vh">
+		<div class="row login100-form p-b-90" style="width:600px">
+
+			{% csrf_token %}
+			<span class="login100-form-title p-t-20 p-b-30" style="font-size: 20px">
+				Szczegóły procesu rezerwacji
+			</span>
+
+			{% language 'pl' %}
+
+				<div class="container-login100-form-btn m-b-50">
+					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ union.id }}" aria-expanded="true">Sprawdź szczegóły swojego zamówienia</button>
+				</div>
+				<div class="collapse" id="{{ union.id }}" style="width:550px">
+					<div class="m-b-50 m-t-20">
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data zamówienia:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.exact_time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Rezerwacja na:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.first_name }} {{ union.last_name }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Wybrana trasa:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.route.name }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Dystans:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.route.distance }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data spływu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.booking_date }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Godzina spływu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Nr telefonu:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.phone }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Adres email:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ union.email }}
+							</div>
+						</div>
+
+
+                        <div class="row m-t-30" style="height: 35px">
+                            <div class="input100 col-sm-5">
+                                Wypożyczony sprzęt:
+                            </div>
+                            <div class="input100 col-sm-3">
+                                Rodzaj
+                            </div>
+                            <div class="input100 col-sm-2">
+                                Ilość
+                            </div>
+                        </div>
+                        <div class="row" style="height: 35px">
+                            <div class="input100 col-sm-5"></div>
+                            <div class="input100 col-sm-3">
+                                {{ kayak.kayak.name }}
+                            </div>
+                            <div class="input100 col-sm-2">
+                                {{ kayak.quantity }}
+                            </div>
+                        </div>
+					</div>
+				</div>
+
+
+				<span class="login100-form-title p-b-20" style="font-size: 20px; text-align: left; color: red">
+					UWAGA! WAŻNE!
+				</span>
+				<span class="login100 m-b-30">Rezerwacja pozostanie <b>aktywna</b> jeśli zostanie potwierdzona w dniu spływu
+											<b>({{ union.booking_date }})</b> do godziny <b>9.00</b>!</span>
+				<span class="login100 m-b-15">Sposoby potwierdzenia rezerwacji (do wyboru):</span>
+				<span class="login100 ">1. Wysłać wiadomość <b>SMS</b> pod numer <b>600 029 035</b> z informacją:</span>
+				<span class="login100 m-b-15" style="color: #827ffe; text-align: center; width: 100%"><b>Imię Nazwisko potwierdzam rezerwację.</b></span>
+				<span class="login100 m-b-20">2. <b>Zadzwonić</b> pod numer <b>600 029 035</b> i potwierdzić swój przyjazd.</span>
+
+				<span class="login100 m-b-5">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
+											formularzu numer telefonu w celu weryfikacji rezerwacji.</span>
+
+
+			{% endlanguage %}
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

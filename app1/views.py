@@ -8,14 +8,14 @@ from django.views.generic import CreateView, DetailView
 from requests import request
 
 from app1.forms import BookingCreateForm, TermKayaksFormSet
-from app1.models import Booking, DateList
+from app1.models import Booking, DateList, TermKayaks
 
 
 class BookingCreateView(CreateView):
     model = Booking
     template_name = 'app1/booking/create_app1.html'
     form_class = BookingCreateForm
-    success_url = reverse_lazy('main:my_booking')
+    success_url = reverse_lazy('main:booking_detail')
 
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)

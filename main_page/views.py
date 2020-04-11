@@ -51,3 +51,21 @@ class BookingListView(ListView):
         context['union'] = union
         context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         return context
+
+
+class BookingDetailView(ListView):
+    template_name = 'main_page/booking_detail.html'
+    queryset = app1.models.Booking.objects.all()
+
+    def get_context_data(self, **kwargs):
+        data = super(BookingDetailView, self).get_context_data()
+        my_booking_app1 = app1.models.Booking.objects.filter(user=self.request.user)
+        my_kayak_app1 = app1.models.TermKayaks.objects.filter(booking__user=self.request.user)
+        my_booking_app2 = app2.models.Booking.objects.filter(user=self.request.user)
+        my_kayak_app2 = app2.models.TermKayaks.objects.filter(booking__user=self.request.user)
+        my_booking_client_panel = client_panel.models.Booking.objects.filter(user=self.request.user)
+        my_kayak_client_panel = client_panel.models.TermKayaks.objects.filter(booking__user=self.request.user)
+        union = my_booking_app1.union(my_booking_app2, my_booking_client_panel).latest('exact_time')
+        data['union'] = union
+        data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id').latest('exact_time')
+        return data

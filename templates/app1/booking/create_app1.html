@@ -9,22 +9,29 @@
 {% include "main_page/navbar.html" %}
 
 <div class="limiter">
-	<div class="container-login100">
-		<div class="row wrap-login100 p-t-50 p-b-90" style="width:600px">
-
-
-			<div class="login100-form row flex-sb flex-w m-l-1">
-				<div class=".col-md-4">
-					<a class="btn" href="{% url 'main:choose_date' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
-				</div>
-				<div class=".col-md-4 .offset-md-4">
-					<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
-				</div>
+	<div class="container-login100" style="min-height: 10vh">
+		<div class="login100-form row flex-sb flex-w">
+			<div class=".col-md-4">
+				<a class="btn" href="{% url 'main:choose_date' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
 			</div>
+			<div class=".col-md-4 .offset-md-4">
+				<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="limiter">
+	<div class="container-login100" style="min-height: 80vh">
+		<div class="row wrap-login100 p-b-90" style="width:600px">
+
+
+
 
 			{% if current_time >= start_break and current_time <= stop_break %}
 				<div class="p-t-50" style="width: 100%">
-					<span class="login100-form-title p-b-40 p-t-100" style="text-align:center">Przerwa techniczna</span>
+					<span class="login100-form-title p-b-40" style="text-align:center">Przerwa techniczna</span>
 					<span class="login100-form-title p-b-150" style="text-align:center">Wracamy o 12:30 :)</span>
 				</div>
 
