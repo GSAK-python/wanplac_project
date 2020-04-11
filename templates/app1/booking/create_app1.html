@@ -15,7 +15,7 @@
 
 			<div class="login100-form row flex-sb flex-w m-l-1">
 				<div class=".col-md-4">
-					<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
+					<a class="btn" href="{% url 'main:choose_date' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do wyboru daty</a>
 				</div>
 				<div class=".col-md-4 .offset-md-4">
 					<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
@@ -145,7 +145,7 @@
 <script>
 function clicked(e)
 {
-    if(!confirm('Jesteś pewny swojego zamówienia? Nie będziesz mógł już go zmienić.'))e.preventDefault();
+    if(!confirm('Jesteś pewny swojego zamówienia? Jeśli tak wciśnij OK.'))e.preventDefault();
 }
 </script>
 

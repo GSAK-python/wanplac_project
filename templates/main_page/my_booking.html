@@ -26,8 +26,8 @@
 				<div class="container-login100-form-btn m-b-10">
 					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.id }}" aria-expanded="true">{{ booking.exact_time}}</button>
 				</div>
-				<div class="collapse" id="{{ booking.id }}">
-					<div class="m-b-50 m-t-20" style="width:470px">
+				<div class="collapse" id="{{ booking.id }}" style="width:550px">
+					<div class="m-b-50 m-t-20">
 						<div class="row" style="height: 35px">
 							<div class="input100 col-sm-6">
 								Data zamówienia:
@@ -44,12 +44,20 @@
 								{{ booking.first_name }} {{ booking.last_name }}
 							</div>
 						</div>
-						<div class="row" style="height: 65px">
+						<div class="row" style="height: 35px">
 							<div class="input100 col-sm-6">
 								Wybrana trasa:
 							</div>
 							<div class="input100 col-sm-6">
-								{{ booking.route }}
+								{{ booking.route.name }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Dystans:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.route.distance }}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">

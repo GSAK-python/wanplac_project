@@ -12,7 +12,7 @@ class BookingCreateView(CreateView):
     model = Booking
     template_name = 'app2/booking/create_app2.html'
     form_class = BookingCreateForm
-    success_url = reverse_lazy('registration:login')
+    success_url = reverse_lazy('main:my_booking')
 
     def get_context_data(self, **kwargs):
         data = super(BookingCreateView, self).get_context_data(**kwargs)
