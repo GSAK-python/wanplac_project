@@ -19,13 +19,13 @@
     <nav class="navbar navbar-expand-lg static-top" style="background-color: #fb8c00">
         <div class="container">
             <div>
-                <a class="nav-item" href="https://krutyniasplywy.pl/" style="text-align:left; color: #fff; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Odwiedź naszą stronę internetową</a>
+                <a class="nav-item" href="https://krutyniasplywy.pl/" style="text-align:left; color: #fff" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Odwiedź naszą stronę internetową</a>
             </div>
             <div id="navbarResponsive">
                 <ul class="navbar">
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
-                            <button class="nav-link dropdown" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color: #fff; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">
+                            <button class="nav-link dropdown" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color: #fff; font-size: 20px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">
                                 Menu <i class="fas fa-bars"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
@@ -34,11 +34,14 @@
                             </div>
                         </li>
                     {% else %}
-                        <li class="nav-item" >
-                            <a class="nav-link" href="{% url 'registration:login' %}" style=" color: #fff; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Zaloguj się</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registration:sign_up' %}" style=" color: #fff; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Zarejestruj się</a>
+                         <li class="nav-item dropdown">
+                            <button class="nav-link dropdown" id="navbarDropdownNoLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color: #fff; font-size: 20px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">
+                                Menu <i class="fas fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownNoLogin" style="right: 0; left: auto;">
+                                <a class="dropdown-item" href="{% url 'registration:login' %}" style=" color: #black;">Zaloguj się</a>
+                                <a class="dropdown-item" href="{% url 'registration:sign_up' %}" style=" color: #black;">Załóż konto</a>
+                            </div>
                         </li>
                     {% endif %}
                 </ul>
@@ -55,6 +58,6 @@
     </nav>
 </div>
 
-    <link type="text/css" rel="stylesheet" href="{% static 'css/navbar.css' %}" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<!--    <link type="text/css" rel="stylesheet" href="{% static 'css/navbar.css' %}" />-->
+<!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>-->

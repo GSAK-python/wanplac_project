@@ -4,16 +4,19 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-
-{% block title %} Wybierz datę {% endblock %}
+{% block title %} Moje zamówienia {% endblock %}
 {% block body %}
 
-<div class="limiter">
-	<div class="container-login100 flex-sb flex-w" >
-		<div class="row login100-form p-t-50 p-b-90" style="width:600px">
+{% include "main_page/navbar.html" %}
+
+<body>
+
+	<div class="limiter">
+	<div class="container-login100 flex-sb flex-w" style="min-height: 80vh">
+		<div class="row login100-form p-b-90" style="width:600px">
 
 			{% csrf_token %}
-			<span class="login100-form-title p-b-51 p-t-40">
+			<span class="login100-form-title p-b-51">
 				Twoje zamówienia
 			</span>
 
@@ -122,11 +125,12 @@
 	</div>
 </div>
 
-
+</body>
 
 {% endblock %}
 
 {% block body_scripts_additional %}
+
 
 
 {% endblock body_scripts_additional %}
