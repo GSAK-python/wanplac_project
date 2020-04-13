@@ -1,14 +1,11 @@
 import datetime
-
 from celery.contrib import rdb
 from django.db import transaction
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
-from requests import request
-
+from django.views.generic import CreateView
 from app1.forms import BookingCreateForm, TermKayaksFormSet
-from app1.models import Booking, DateList, TermKayaks
+from app1.models import Booking
+from django.core.mail import EmailMessage
 
 
 class BookingCreateView(CreateView):
@@ -34,6 +31,7 @@ class BookingCreateView(CreateView):
         # rdb.set_trace()
         context = self.get_context_data()
         kayak_set = context['kayak_set']
+
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -41,6 +39,8 @@ class BookingCreateView(CreateView):
                 form.instance.last_name = self.request.user.last_name
             form.instance.user = self.request.user
             form.instance.email = self.request.user.email
+            email = EmailMessage('Rezerwacja kajaków', 'Tutaj jest teks rezerwacji kajakow',
+                                 to=[self.request.user.email])
             if kayak_set.is_valid():
                 booking_form = form.save()
                 kayak_set.instance = booking_form
@@ -50,6 +50,7 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
+                    email.send()
 
                 return super(BookingCreateView, self).form_valid(form)
 
