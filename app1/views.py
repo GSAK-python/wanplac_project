@@ -1,11 +1,13 @@
 import datetime
 from celery.contrib import rdb
 from django.db import transaction
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views.generic import CreateView
 from app1.forms import BookingCreateForm, TermKayaksFormSet
-from app1.models import Booking
-from django.core.mail import EmailMessage
+from app1.models import Booking, TermKayaks
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 
 class BookingCreateView(CreateView):
@@ -39,8 +41,7 @@ class BookingCreateView(CreateView):
                 form.instance.last_name = self.request.user.last_name
             form.instance.user = self.request.user
             form.instance.email = self.request.user.email
-            email = EmailMessage('Rezerwacja kajaków', 'Tutaj jest teks rezerwacji kajakow',
-                                 to=[self.request.user.email])
+
             if kayak_set.is_valid():
                 booking_form = form.save()
                 kayak_set.instance = booking_form
@@ -50,7 +51,13 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
-                    email.send()
+
+                subject, from_email, to = 'Rezerwacja kajaków - Wan-Plac Krutyń', 'gsak.python@gmail.com', self.request.user.email
+                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set})
+                text_content = strip_tags(html_content)
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
 
                 return super(BookingCreateView, self).form_valid(form)
 

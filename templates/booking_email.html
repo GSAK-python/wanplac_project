@@ -1,0 +1,58 @@
+
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+         Dziękujemy za rezerwację kajaków poprzez aplikację WAN-PLAC Krutyń
+    </div>
+
+
+    {% language 'pl' %}
+
+        Data wykonania zamówienia: {{ detail.booking.exact_time }}
+        <div>
+            Rezerwacja na: {{ detail.booking.first_name }} {{ detail.booking.last_name }}
+        </div>
+        <div>
+            Trasa: {{ detail.booking.route.name }}
+        </div>
+        <div>
+            Dystans: {{ detail.booking.route.distance }}
+        </div>
+        <div>
+            Czas spyłwu: {{ detail.booking.time }}
+        </div>
+        <div>
+            Data spyłwu: {{ detail.booking.booking_date }}
+        </div>
+        <div>
+            Podany nr telefonu: {{ detail.booking.phone }}
+        </div>
+        <div>
+            Podany email: {{ detail.booking.email }}
+        </div>
+        <div>
+            Wypożyczony sprzęt:
+        </div>
+
+        <div>
+            Rodzaj: {{ detail.kayak.name }}
+        </div>
+        <div>
+            Ilość: {{ detail.quantity }}
+        </div>
+
+
+
+    {% endlanguage %}
+
+</body>
+</html>
