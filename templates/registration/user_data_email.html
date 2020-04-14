@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block body %}
+
+    <div>
+         Dziękujemy za utworzenie konta  w aplikacji do rezerwacji kajaków online WAN-PLAC Krutyń.
+    </div>
+    <div>
+        <br>
+        Dane konta:
+    </div>
+    <div>
+        Nazwa użytkownika: <b>{{ username }}</b>
+    </div>
+    <div>
+        Hasło: <b>{{ pass }}</b>
+    </div>
+    <div>
+        Imię i nazwisko: <b>{{ first_name }} {{ last_name }}</b>
+    </div>
+    <div>
+        Adres email przypisany do konta: <b>{{ email }}</b>
+    </div>
+
+    <div>
+        <br>
+        Prosimy o zachowanie tego maila, dostęp do tych danych nie będzie możliwy z poziomu palikacji.
+    </div>
+
+    <div>
+        <br>
+        W razie jakichkolwiek pytań zapraszamy do kontaktu pod numerami telefonów:<br>
+        <b><a href="tel:+48600029035">600 029 035</a></b><br>
+        <b><a href="tel:+48600449852">600 449 852</a></b><br>
+        Oraz drogą mailową:<br>
+        <b>wanplac@gmail.com</b>
+    </div>
+
+{% endblock %}
