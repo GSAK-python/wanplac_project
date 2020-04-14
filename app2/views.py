@@ -1,11 +1,13 @@
 import datetime
-
 from celery.contrib import rdb
+from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views.generic import CreateView
 from app2.forms import BookingCreateForm, TermKayaksFormSet
-from app2.models import Booking, DateList
+from app2.models import Booking
 
 
 class BookingCreateView(CreateView):
@@ -19,8 +21,6 @@ class BookingCreateView(CreateView):
         data['current_time'] = datetime.datetime.now().time()
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
-        data['app1_date_list'] = DateList.objects.values_list('date', flat=True)
-        data['current_day'] = datetime.datetime.now().date()
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
@@ -50,6 +50,14 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
+
+                subject, from_email, to = 'Rezerwacja kajaków - Wan-Plac Krutyń', 'gsak.python@gmail.com', self.request.user.email
+                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set.instance.app2_term_bookings.all()})
+                text_content = strip_tags(html_content)
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
                 return super(BookingCreateView, self).form_valid(form)
 
         return super(BookingCreateView, self).form_invalid(form)

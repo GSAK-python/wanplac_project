@@ -1,58 +1,79 @@
-
+{% extends "base.html" %}
 {% load static %}
 {% load widget_tweaks %}
 {% load bootstrap4 %}
 {% load i18n %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
+{% block body %}
+
     <div>
-         Dziękujemy za rezerwację kajaków poprzez aplikację WAN-PLAC Krutyń
+         Dziękujemy za skorzystanie z aplikacji do rezerwacji kajaków online WAN-PLAC Krutyń.
     </div>
-
-
+    <br>
+    <div>
+        <b>Pamiętaj żeby potwierdzić swoją rezerwację!</b> Należy tego dokonać w <b>dzień spływu</b> do godziny <b>9:00</b>.<br>
+        <br>
+        Sposoby potwierdzenia rezerwacji:<br>
+        1. Wysłać wiadomość <b>SMS</b> pod numer <b><a href="tel:+48600029035">600 029 035</a></b> z informacją: <b>Imię Nazwisko potwierdzam rezerwację</b>.<br>
+        2  <b>Zadzwonić</b> pod numer <b><a href="tel:+48600029035">600 029 035</a></b> i potwierdzić swój przyjazd.<br>
+    </div>
+    <div style="color: red">
+        <br>
+        <b>Nie potwierdzenie rezerwacji ozanacza anulowanie zamówienia!</b>
+    </div>
+    <div>
+        <br>
+        Szczegóły rezerwacji:
+    </div>
     {% language 'pl' %}
 
-        Data wykonania zamówienia: {{ detail.booking.exact_time }}
+        Data wykonania zamówienia: <b>{{ detail.booking.exact_time }}</b>
         <div>
-            Rezerwacja na: {{ detail.booking.first_name }} {{ detail.booking.last_name }}
+            Rezerwacja na: <b>{{ detail.booking.first_name }} {{ detail.booking.last_name }}</b>
         </div>
         <div>
-            Trasa: {{ detail.booking.route.name }}
+            Trasa: <b>{{ detail.booking.route.name }}</b>
         </div>
         <div>
-            Dystans: {{ detail.booking.route.distance }}
+            Dystans: <b>{{ detail.booking.route.distance }}</b>
         </div>
         <div>
-            Czas spyłwu: {{ detail.booking.time }}
+            Czas spyłwu: <b>{{ detail.booking.time }}</b>
         </div>
         <div>
-            Data spyłwu: {{ detail.booking.booking_date }}
+            Data spyłwu: <b>{{ detail.booking.booking_date }}</b>
         </div>
         <div>
-            Podany nr telefonu: {{ detail.booking.phone }}
+            Podany nr telefonu: <b>{{ detail.booking.phone }}</b>
         </div>
         <div>
-            Podany email: {{ detail.booking.email }}
+            Podany email: <b>{{ detail.booking.email }}</b>
         </div>
         <div>
             Wypożyczony sprzęt:
         </div>
 
-        <div>
-            Rodzaj: {{ detail.kayak.name }}
-        </div>
-        <div>
-            Ilość: {{ detail.quantity }}
-        </div>
+        {% for detail in kayak %}
+            <div>
+                Rodzaj: <b>{{ detail.kayak.name }}</b>
+            </div>
+            <div>
+                Ilość: <b>{{ detail.quantity }}</b>
+            </div>
+        {% endfor %}
 
+        <div>
+            <br>
+            Swoje dotychczasowe zamówienia możesz zawsze sprawdzic na stronie aplikacji w zakładce <b>Moje zamówienia</b>.<br>
+            <br>
+            W razie jakichkolwiek pytań zapraszamy do kontaktu z nami pod numerami telefonów:<br>
+            <b><a href="tel:+48600029035">600 029 035</a></b><br>
+            <b><a href="tel:+48600449852">600 449 852</a></b><br>
+            Oraz drogą mailową:<br>
+            <b>wanplac@gmail.com</b>
+        </div>
 
 
     {% endlanguage %}
 
-</body>
-</html>
+{% endblock %}

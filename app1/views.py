@@ -53,7 +53,7 @@ class BookingCreateView(CreateView):
                     detail.kayak.save()
 
                 subject, from_email, to = 'Rezerwacja kajaków - Wan-Plac Krutyń', 'gsak.python@gmail.com', self.request.user.email
-                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set})
+                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set.instance.app1_term_bookings.all()})
                 text_content = strip_tags(html_content)
                 msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                 msg.attach_alternative(html_content, "text/html")

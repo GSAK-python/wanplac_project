@@ -1,8 +1,11 @@
 import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
+from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.html import strip_tags
 from django.views.generic import CreateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm
 from client_panel.models import Booking
@@ -55,6 +58,14 @@ class BookingCreateView(CreateView):
                     if not detail.kayak.store:
                         detail.kayak.available = False
                     detail.kayak.save()
+
+                subject, from_email, to = 'Rezerwacja kajaków - Wan-Plac Krutyń', 'gsak.python@gmail.com', self.request.user.email
+                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set.instance.term_bookings.all()})
+                text_content = strip_tags(html_content)
+                msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                msg.attach_alternative(html_content, "text/html")
+                msg.send()
+
                 return super(BookingCreateView, self).form_valid(form)
 
         return super(BookingCreateView, self).form_invalid(form)
