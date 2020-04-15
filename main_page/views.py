@@ -9,6 +9,7 @@ import client_panel
 from client_panel.models import DateList
 from app2.models import DateList
 from app1.models import DateList
+from itertools import chain
 
 
 class MainPageView(TemplateView):
@@ -67,5 +68,6 @@ class BookingDetailView(ListView):
         my_kayak_client_panel = client_panel.models.TermKayaks.objects.filter(booking__user=self.request.user)
         union = my_booking_app1.union(my_booking_app2, my_booking_client_panel).latest('exact_time')
         data['union'] = union
-        data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id').latest('exact_time')
+        data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id').latest(
+            'exact_time')
         return data

@@ -77,7 +77,7 @@ class Booking(models.Model):
     first_name = models.CharField(max_length=32, blank=True)
     last_name = models.CharField(max_length=32, blank=True)
     time = models.CharField(choices=TIMECHOICE, max_length=32, default='')
-    booking_date = models.ForeignKey(BookingDate, on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
+    booking_date = models.ForeignKey(BookingDate, related_name='app2_booking_date', on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
                                      default='')
     user = models.ForeignKey(User, related_name='user_app2', on_delete=models.CASCADE)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
@@ -86,10 +86,11 @@ class Booking(models.Model):
     exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
-        return 'Rezerwacja: {} {}, Trasa: {}, Godzina {}'.format(self.first_name,
-                                                                 self.last_name,
-                                                                 self.route,
-                                                                 self.time)
+        return 'Rezerwacja: {} {}, {}, {} Godzina {}'.format(self.first_name,
+                                                             self.last_name,
+                                                             self.route,
+                                                             self.booking_date,
+                                                             self.time)
 
 
 class TermKayaks(models.Model):

@@ -24,9 +24,9 @@
 
 
 				<div class="container-login100-form-btn m-b-10">
-					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.id }}" aria-expanded="true">{{ booking.exact_time}}</button>
+					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">{{ booking.exact_time}}</button>
 				</div>
-				<div class="collapse" id="{{ booking.id }}" style="width:550px">
+				<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
 					<div class="m-b-50 m-t-20">
 						<div class="row" style="height: 35px">
 							<div class="input100 col-sm-6">
@@ -34,6 +34,14 @@
 							</div>
 							<div class="input100 col-sm-6">
 								{{ booking.exact_time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								ID rezerwacji:
+							</div>
+							<div class="input100 col-sm-6">
+								{{ booking.id }}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">
