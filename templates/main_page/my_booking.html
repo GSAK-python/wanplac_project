@@ -73,7 +73,7 @@
 								Data spływu:
 							</div>
 							<div class="input100 col-sm-6">
-								{{ booking.booking_date }}
+								{{ booking.query }}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">
@@ -102,33 +102,32 @@
 						</div>
 
 
-							<div class="row m-t-30" style="height: 35px">
-								<div class="input100 col-sm-5">
-									Wypożyczony sprzęt:
-								</div>
-								<div class="input100 col-sm-3">
-									Rodzaj
-								</div>
-								<div class="input100 col-sm-2">
-									Ilość
-								</div>
+						<div class="row m-t-30" style="height: 35px">
+							<div class="input100 col-sm-5">
+								Wypożyczony sprzęt:
 							</div>
-							{% for kayak in kayak %}
-								{% if kayak.booking_id == booking.id and booking and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
-									<div class="row" style="height: 35px">
-										<div class="input100 col-sm-5">
-
-										</div>
-										<div class="input100 col-sm-3">
-											{{ kayak }}
-										</div>
-										<div class="input100 col-sm-2">
-											{{ kayak.quantity }}
-										</div>
+							<div class="input100 col-sm-3">
+								Rodzaj
+							</div>
+							<div class="input100 col-sm-2">
+								Ilość
+							</div>
+						</div>
+						{% for kayak in kayak %}
+							{% if kayak.booking_id == booking.id and booking and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
+								<div class="row" style="height: 35px">
+									<div class="input100 col-sm-5">
+										{{ kayak.id }}
 									</div>
-								{% endif %}
-							{% endfor %}
-
+									<div class="input100 col-sm-3">
+										{{ kayak }}
+									</div>
+									<div class="input100 col-sm-2">
+										{{ kayak.quantity }}
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
 					</div>
 				</div>
 
