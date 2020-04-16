@@ -10,5 +10,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunSQL("ALTER SEQUENCE app2_bookingdate_seq START with 500 RESTART;"),
+        migrations.RunSQL("ALTER SEQUENCE app2_bookingdate START with 500 RESTART;"),
     ]
