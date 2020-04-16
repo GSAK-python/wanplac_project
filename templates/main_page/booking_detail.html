@@ -24,8 +24,7 @@
 				<span class="login100-form-title p-b-20" style="font-size: 20px; text-align: left; color: red">
 					UWAGA! WAŻNE!
 				</span>
-				<span class="m-b-30">Rezerwacja pozostanie <b>aktywna</b> jeśli zostanie potwierdzona w dniu spływu
-											<b>({{ union.booking_date }})</b> do godziny <b>9.00</b>!</span>
+			<span class="m-b-30">Rezerwacja pozostanie <b>aktywna</b> jeśli zostanie potwierdzona w <b>dniu spływu</b> do godziny <b>9.00</b>!</span>
 				<span class="m-b-15">Sposoby potwierdzenia rezerwacji (do wyboru):</span>
 				<span>1. Wysłać wiadomość <b>SMS</b> pod numer<b><a style="color: #827ffe; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="tel:+48600029035"> <i class="fas fa-phone"></i> 600 029 035</a></b> z informacją:</span>
 				<span class="m-b-15 m-t-15" style="text-align: center; width: 100%"><b>Imię Nazwisko potwierdzam rezerwację.</b></span>
@@ -77,7 +76,11 @@
 								Data spływu:
 							</div>
 							<div class="input100 col-sm-6">
-								{{ union.booking_date }}
+								{% for date in date %}
+									{% if date.id == union.booking_date_id%}
+										{{ date.booking_date }}
+									{% endif %}
+								{% endfor %}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">

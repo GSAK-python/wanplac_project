@@ -28,78 +28,84 @@
 				</div>
 				<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
 					<div class="m-b-50 m-t-20">
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Data zamówienia:
+
+
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Data zamówienia:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.exact_time }}
+								</div>
 							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.exact_time }}
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									ID rezerwacji:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.id }}
+								</div>
 							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								ID rezerwacji:
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Rezerwacja na:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.first_name }} {{ booking.last_name }}
+								</div>
 							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.id }}
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Wybrana trasa:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.route.name }}
+								</div>
 							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Rezerwacja na:
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Dystans:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.route.distance }}
+								</div>
 							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.first_name }} {{ booking.last_name }}
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Data spływu:
+								</div>
+								<div class="input100 col-sm-6">
+									{% for date in date %}
+										{% if date.id == booking.booking_date_id%}
+											{{ date.booking_date }}
+										{% endif %}
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Wybrana trasa:
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Godzina spływu:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.time }}
+								</div>
 							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.route.name }}
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Nr telefonu:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.phone }}
+								</div>
 							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Dystans:
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6">
+									Adres email:
+								</div>
+								<div class="input100 col-sm-6">
+									{{ booking.email }}
+								</div>
 							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.route.distance }}
-							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Data spływu:
-							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.query }}
-							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Godzina spływu:
-							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.time }}
-							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Nr telefonu:
-							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.phone }}
-							</div>
-						</div>
-						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
-								Adres email:
-							</div>
-							<div class="input100 col-sm-6">
-								{{ booking.email }}
-							</div>
-						</div>
 
 
 						<div class="row m-t-30" style="height: 35px">
@@ -114,7 +120,7 @@
 							</div>
 						</div>
 						{% for kayak in kayak %}
-							{% if kayak.booking_id == booking.id and booking and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
+							{% if kayak.booking_id == booking.id and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
 								<div class="row" style="height: 35px">
 									<div class="input100 col-sm-5">
 										{{ kayak.id }}

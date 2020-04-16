@@ -48,9 +48,13 @@ class BookingListView(ListView):
         my_kayak_app2 = app2.models.TermKayaks.objects.filter(booking__user=self.request.user)
         my_booking_client_panel = client_panel.models.Booking.objects.filter(user=self.request.user)
         my_kayak_client_panel = client_panel.models.TermKayaks.objects.filter(booking__user=self.request.user)
+        my_date_app1 = app1.models.BookingDate.objects.all()
+        my_date_app2 = app2.models.BookingDate.objects.all()
+        my_date_client_panel = client_panel.models.BookingDate.objects.all()
         union = my_booking_app1.union(my_booking_app2, my_booking_client_panel).order_by('-exact_time')
         context['union'] = union
         context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
+        context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
         return context
 
 
@@ -67,6 +71,10 @@ class BookingDetailView(ListView):
         my_booking_client_panel = client_panel.models.Booking.objects.filter(user=self.request.user)
         my_kayak_client_panel = client_panel.models.TermKayaks.objects.filter(booking__user=self.request.user)
         union = my_booking_app1.union(my_booking_app2, my_booking_client_panel).latest('exact_time')
+        my_date_app1 = app1.models.BookingDate.objects.all()
+        my_date_app2 = app2.models.BookingDate.objects.all()
+        my_date_client_panel = client_panel.models.BookingDate.objects.all()
         data['union'] = union
         data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
+        data['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
         return data
