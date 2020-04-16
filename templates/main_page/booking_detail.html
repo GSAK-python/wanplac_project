@@ -77,7 +77,7 @@
 							</div>
 							<div class="input100 col-sm-6">
 								{% for date in date %}
-									{% if date.id == union.booking_date_id%}
+									{% if date.id == union.booking_date_id %}
 										{{ date.booking_date }}
 									{% endif %}
 								{% endfor %}
@@ -125,7 +125,7 @@
 
 									<div class="row" style="height: 35px">
 										<div class="input100 col-sm-5">
-											{{ kayak.id }}
+
 										</div>
 										<div class="input100 col-sm-3">
 											{{ kayak.kayak.name }}
