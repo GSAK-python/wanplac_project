@@ -1,5 +1,6 @@
 import datetime
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
@@ -20,7 +21,7 @@ class Login(LoginView):
         return super(Login, self).form_valid(form)
 
 
-class BookingCreateView(CreateView):
+class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     template_name = 'client_panel/booking/create.html'
     form_class = BookingCreateForm

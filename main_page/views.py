@@ -1,15 +1,13 @@
 import datetime
-
 from celery.contrib import rdb
-from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView, DetailView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, ListView
 import app1
 import app2
 import client_panel
 from client_panel.models import DateList
 from app2.models import DateList
 from app1.models import DateList
-from itertools import chain
 
 
 class MainPageView(TemplateView):
@@ -28,7 +26,15 @@ class ContactView(TemplateView):
     template_name = 'main_page/contact.html'
 
 
-class ChooseDateView(TemplateView):
+class RouteView(TemplateView):
+    template_name = 'main_page/route.html'
+
+
+class KayaksView(TemplateView):
+    template_name = 'main_page/kayaks.html'
+
+
+class ChooseDateView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/choose_date.html'
 
     def get_context_data(self, **kwargs):
@@ -47,7 +53,7 @@ class ChooseDateView(TemplateView):
             return context
 
 
-class BookingListView(ListView):
+class BookingListView(LoginRequiredMixin, ListView):
     template_name = 'main_page/my_booking.html'
     queryset = app1.models.Booking.objects.all()
 
@@ -70,7 +76,7 @@ class BookingListView(ListView):
         return context
 
 
-class BookingDetailView(ListView):
+class BookingDetailView(LoginRequiredMixin, ListView):
     template_name = 'main_page/booking_detail.html'
     queryset = app1.models.Booking.objects.all()
 

@@ -17,13 +17,13 @@
             Witamy w aplikacji do rezerawcji kajków firmy WAN-PLAC KRUTYŃ.
         </div>
         <div class="m-b-20" style="text-align: justify; font-family: Ubuntu-Bold">
-            Nasza aplikacja pozwoli Ci w prosty sposób na rezerawcję kajków w kilku krokach. Zanim przejdziesz do wybierania swoich kajaków zapoznaj się z:
+            Nasza aplikacja pozwoli Ci w prosty sposób na rezerawcję kajków w kilku krokach. Zanim przejdziesz do realizacji swojego zamówienia zapoznaj się z:
         </div>
 
         <div class="container-login100-form-btn m-b-10">
             <button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#info" aria-expanded="true">Rozwiń</button>
 
-            <div class="collapse" id="info" style="width: 100%; border-color: #827ffe; border-style: solid; border-width: 2px; text-align:center; border-radius: 5px">
+            <div class="collapse" id="info" style="width: 100%; text-align:center">
                 <span style="font-family: Ubuntu-Bold">Dowiedz się kim jesteśmy:<a class="btn m-b-15" href="{% url 'main:about_us' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
                     <b class="m-r-10">Wan-Plac Krutyń</b><i class="far fa-address-card fa-2x"></i></a>
                 </span><br>
@@ -37,9 +37,26 @@
 
         </div>
 
-        <div>
-            <a  type="button" class="border" >Krok pierwszy - TRASY</a>
+        <div class="m-t-50">
+            <a type="button" class="btn main-page-button" href="{% url 'main:route' %}">
+                <span class="m-r-10 m-t-15">1. Zobacz nasze TRASY </span><i class="fas fa-map-marked-alt fa-2x m-t-5" style="color: #827ffe"></i></a>
         </div>
+
+        <div class="m-t-50">
+            <a type="button" class="btn main-page-button" href="{% url 'main:kayaks' %}">
+                <span class="m-r-10 m-t-15">2. Zobacz nasze KAJAKI </span><i class="fas fa-swimmer fa-2x m-t-5" style="color: #827ffe"></i></a>
+        </div>
+
+        <div class="m-t-50">
+            <a type="button" class="btn main-page-button" href="{% url 'registration:sign_up' %}">
+                <span class="m-r-10 m-t-15">3. Załóż KONTO </span><i class="fas fa-user-plus fa-2x" style="color: #827ffe"></i></a>
+        </div>
+
+        <div class="m-t-50">
+            <a type="button" class="btn main-page-button" href="{% url 'main:choose_date' %}">
+                <span class="m-r-10 m-t-15">4. Zarezewuj KAJAKI </span><i class="far fa-check-circle fa-2x" style="color: #827ffe"></i></a>
+        </div>
+
 
     </div>
 </div>

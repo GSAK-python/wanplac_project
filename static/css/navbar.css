@@ -5,3 +5,21 @@ a {
 .dropdown-item:hover {
   background-color: #827ffe;
 }
+
+.main-page-button {
+    font-size: 25px;
+    font-family: Ubuntu-Bold;
+    width: 600px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    color: black;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 3px;
+}
+
+.main-page-button:hover {
+    background-color:  rgba(62, 69, 81, 0.1);
+}

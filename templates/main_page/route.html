@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Trasy {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+
+<div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
+    <div class="row login100-form" style="width:600px">
+        {% csrf_token %}
+        <div class="m-b-20">
+            Trasy
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

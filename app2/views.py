@@ -1,5 +1,6 @@
 import datetime
 from celery.contrib import rdb
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
 from django.template.loader import render_to_string
@@ -10,7 +11,7 @@ from app2.forms import BookingCreateForm, TermKayaksFormSet
 from app2.models import Booking
 
 
-class BookingCreateView(CreateView):
+class BookingCreateView(LoginRequiredMixin, CreateView):
     model = Booking
     template_name = 'app2/booking/create_app2.html'
     form_class = BookingCreateForm
