@@ -16,6 +16,18 @@ class MainPageView(TemplateView):
     template_name = 'main_page/main.html'
 
 
+class AboutUsView(TemplateView):
+    template_name = 'main_page/about_us.html'
+
+
+class FAQView(TemplateView):
+    template_name = 'main_page/FAQ.html'
+
+
+class ContactView(TemplateView):
+    template_name = 'main_page/contact.html'
+
+
 class ChooseDateView(TemplateView):
     template_name = 'main_page/choose_date.html'
 
