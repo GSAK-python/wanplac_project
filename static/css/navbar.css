@@ -23,3 +23,13 @@ a {
 .main-page-button:hover {
     background-color:  rgba(62, 69, 81, 0.1);
 }
+
+.box {
+    height: 100%;
+    width: 100%;
+}
+
+.route {
+    height: auto;
+    text-align: justify
+}

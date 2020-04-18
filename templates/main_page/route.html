@@ -13,8 +13,95 @@
 <div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
-        <div class="m-b-20">
-            Trasy
+        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+        <div class="m-b-20 m-t-20" style="text-align: justify; font-family: Ubuntu-Bold; font-size: 20px">
+            Mapa z trasami spływów jednodniowych:
+        </div>
+        <div>
+            <img src="/static/media/mapa_trasy.jpg" class="box">
+        </div>
+        <div class="m-b-20 m-t-20" style="text-align: justify; font-family: Ubuntu-Bold; font-size: 20px">
+            Opis tras:
+        </div>
+
+        {% for route in route %}
+
+            <div class="container-login100-form-btn m-b-10">
+                <button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ route.id }}" aria-expanded="true">{{ route.name }}</button>
+            </div>
+            <div class="collapse" id="{{ route.id }}" style="width:100%">
+                <div class="m-b-50 m-t-20">
+
+                    <div class="row route">
+                        <div class="input100 col-sm-6">
+                            Długość spływu:
+                        </div>
+                        <div class="input100 col-sm-6">
+                            {{ route.distance }}
+                        </div>
+                    </div>
+
+                    <div class="row route">
+                        <div class="input100 col-sm-6">
+                            Średni czas trwania:
+                        </div>
+                        <div class="input100 col-sm-6">
+                            {{ route.average_time }}
+                        </div>
+                    </div>
+                    <div class="row m-b-20 route">
+                        <div class="input100 col-sm-6">
+                            Charakterystyczne miejsca:
+                        </div>
+                        <div class="input100 col-sm-6 route">
+                            {{ route.main_points }}
+                        </div>
+                    </div>
+                    <div class="row m-b-10 route">
+                        <div class="input100 col-sm-6">
+                            Koniec spływu:
+                        </div>
+                        <div class="input100 col-sm-6 route">
+                            {{ route.stop_place }}
+                        </div>
+                    </div>
+                    <div class="row route">
+                        <div class="input100 col-sm-6">
+                            Dalszy etap:
+                        </div>
+                        <div class="input100 col-sm-6">
+                            {{ route.next_stage }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input100 m-b-10 route">
+                            Opis:
+                        </div>
+                        <div class="input100 route">
+                            {{ route.description }}
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <div class="m-b-10 m-t-20" style="text-align: justify; font-family: Ubuntu-Bold; font-size: 20px">
+            Dodatkowe informacje:
+        </div>
+        <div class="m-b-20" style="text-align: justify; font-size: 20px">
+            Nasza aplikacja oferuje wybór tras na najbardziej popularne spływy jednodniowe po rzece Krutyni.
+            Cały szlak kajakowy wynosi około 106 km i istnieje możliwość pływania w wielu innych miejscach.
+            Aby zapoznać się z innymi odcinakami zapraszamy na stronę:
+        </div>
+        <div class="m-b-10">
+            <a href="https://krutyniasplywy.pl/szlak-kajakowy-rzeki-krutyni.html" style="text-align: center; font-family: Ubuntu-Bold; font-size: 20px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                krutyniasplywy.pl/szlak-kajakowy-rzeki-krutyni</a>
         </div>
     </div>
 </div>

@@ -39,6 +39,10 @@ class Route(models.Model):
     name = models.CharField(max_length=32)
     distance = models.CharField(max_length=32)
     description = models.TextField()
+    average_time = models.TextField()
+    main_points = models.TextField()
+    stop_place = models.TextField()
+    next_stage = models.TextField()
 
     def __str__(self):
         return 'Trasa {}, dystans: {}'.format(self.name, self.distance)

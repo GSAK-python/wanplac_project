@@ -29,6 +29,11 @@ class ContactView(TemplateView):
 class RouteView(TemplateView):
     template_name = 'main_page/route.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(RouteView, self).get_context_data()
+        context['route'] = client_panel.models.Route.objects.all()
+        return context
+
 
 class KayaksView(TemplateView):
     template_name = 'main_page/kayaks.html'
