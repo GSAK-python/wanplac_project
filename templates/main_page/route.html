@@ -36,7 +36,7 @@
                         <div class="input100 col-sm-6">
                             Długość spływu:
                         </div>
-                        <div class="input100 col-sm-6">
+                        <div class="input100 col-sm-6" style="font-family: Ubuntu">
                             {{ route.distance }}
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="input100 col-sm-6">
                             Średni czas trwania:
                         </div>
-                        <div class="input100 col-sm-6">
+                        <div class="input100 col-sm-6" style="font-family: Ubuntu">
                             {{ route.average_time }}
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <div class="input100 col-sm-6">
                             Charakterystyczne miejsca:
                         </div>
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
                             {{ route.main_points }}
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="input100 col-sm-6">
                             Koniec spływu:
                         </div>
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
                             {{ route.stop_place }}
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <div class="input100 col-sm-6">
                             Dalszy etap:
                         </div>
-                        <div class="input100 col-sm-6">
+                        <div class="input100 col-sm-6" style="font-family: Ubuntu">
                             {{ route.next_stage }}
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="input100 m-b-10 route">
                             Opis:
                         </div>
-                        <div class="input100 route">
+                        <div class="input100 route" style="font-family: Ubuntu">
                             {{ route.description }}
                         </div>
                     </div>
@@ -99,10 +99,17 @@
             Cały szlak kajakowy wynosi około 106 km i istnieje możliwość pływania w wielu innych miejscach.
             Aby zapoznać się z innymi odcinakami zapraszamy na stronę:
         </div>
-        <div class="m-b-10">
+        <div class="m-b-20">
             <a href="https://krutyniasplywy.pl/szlak-kajakowy-rzeki-krutyni.html" style="text-align: center; font-family: Ubuntu-Bold; font-size: 20px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
                 krutyniasplywy.pl/szlak-kajakowy-rzeki-krutyni</a>
         </div>
+        <div class="m-b-20" style="text-align: justify; font-size: 20px">
+            Rezerwacja kajaków na inne trasy niż przedstawione w aplikacji możliwa jest tylko telefonicznie.
+        </div>
+        <span style="font-family: Ubuntu-Bold">Numer znajdziesz tutaj:<a class="btn m-b-20" href="{% url 'main:contact' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+            <b class="m-r-10">Kontakt</b><i class="fas fa-mobile-alt fa-2x"></i></a>
+        </span><br>
+
     </div>
 </div>
 
