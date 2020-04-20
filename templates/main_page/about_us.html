@@ -10,11 +10,49 @@
 {% include "main_page/navbar.html" %}
 
 
-<div class="container-login100 flex-sb flex-w border border-dark" style="min-height: 20vh">
-    <div class="row login100-form border border-dark" style="width:600px">
+<div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
+    <div class="row login100-form" style="width:600px">
         {% csrf_token %}
-        <div class="m-b-20">
-            O nas
+
+        <div>
+            <img src="/static/media/parking.png" class="box">
+        </div>
+
+        <div class="m-t-40 m-b-20" style="width: 100%; text-align: center; font-family: Ubuntu-Bold; font-size: 20px">
+                A teraz trochę o nas <i class="far fa-smile-beam"></i>
+            </div>
+
+        <div class="m-b-20" style="text-align: justify">
+            <div class="m-b-15">
+                Jesteśmy pasjonatami aktywnego wypoczynku, kochamy przygodę i uwielbiamy spędzać czas w otoczeniu zadziwiającej przyrody.
+                Bądźmy szczerzy: czym innym moglibyśmy się zajmować w tym malowniczym miejscu Mazur? :)
+            </div>
+            <div class="m-b-15">
+                Wszystkie trasy kajakowe wyznaczaliśmy z myślą o naszych pierwszych wodnych wyprawach.
+                Dopiero z biegiem lat zaowocował pomysł by poświecic się temu stylowi życia. Dzisiaj mamy wyjątkową możliwość spotkania osób,
+                które spragnione są przygody lub chcą odetchnąć od codziennego pośpiechu.
+            </div>
+            <div class="m-b-15">
+                Dziękujemy z całego serca wszystkim,
+                którzy nam zaufali i dali radość dzielenia się wspólną pasją. Szczególne gorąco myślimy o wszytkich nowych osobach,
+                które przygodę z kajakami zdecydowały rozpocząć właśnie z nami. Gorąco pozdrawiamy!
+            </div>
+            <div class="m-b-15">
+                 Olga i Dariusz.
+            </div>
+
+            <div class="m-t-50" style="width: 100%">
+                <div class="row">
+                    <div class="col-3">
+                        <i class="fas fa-star fa-6x" style="color: gold"></i>
+                    </div>
+                    <div class="col-8"><br>
+                        <b><a target="_blank" style="color: #827ffe; font-size: 20px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="https://www.google.com/maps/place/Wan+Plac+-+Sp%C5%82ywy+Kajakami+i+%C5%81odziami/@53.6899193,21.4336224,17z/data=!4m7!3m6!1s0x0:0xebe729de3a837142!8m2!3d53.6899193!4d21.4358111!9m1!1b1">
+                            sprawdź opinie o nas w wizytówce google!</a></b><br>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
