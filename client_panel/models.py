@@ -30,9 +30,14 @@ class Kayak(models.Model):
     type = models.CharField(max_length=32, choices=TYPECHOICE)
     available = models.BooleanField()
     description = models.TextField()
+    photo = models.ImageField(null=True, blank=True, upload_to='media')
+    prize = models.IntegerField()
+    weight = models.CharField(max_length=32)
+    dimenstions = models.CharField(max_length=64)
+    displacement = models.CharField(max_length=64)
 
     def __str__(self):
-        return '{}. Dostępnosc {}'.format(self.name, self.store)
+        return '{} - dostępnych sztuk: {} '.format(self.name, self.store)
 
 
 class Route(models.Model):

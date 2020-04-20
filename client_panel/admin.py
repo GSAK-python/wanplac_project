@@ -13,11 +13,11 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 class KayakAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'store', 'type', 'available', 'description']
+    list_display = ['id', 'name', 'stock', 'store', 'type', 'available', 'prize']
 
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'distance', 'description']
+    list_display = ['id', 'name', 'distance', 'average_time', 'stop_place', 'next_stage']
 
 
 admin.site.register(Route, RouteAdmin)

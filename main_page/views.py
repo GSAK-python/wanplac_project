@@ -38,6 +38,11 @@ class RouteView(TemplateView):
 class KayaksView(TemplateView):
     template_name = 'main_page/kayaks.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(KayaksView, self).get_context_data()
+        context['kayak'] = client_panel.models.Kayak.objects.all()
+        return context
+
 
 class ChooseDateView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/choose_date.html'

@@ -13,8 +13,16 @@
 <div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
-        <div class="m-b-20">
-            Kajaki
+
+        {% for kayak in kayak %}
+
+            <div class="m-b-50 m-t-20">
+                <div>
+                    <img src="{{kayak.photo.url}}" class="box">
+                </div>
+            </div>
+
+        {% endfor %}
         </div>
     </div>
 </div>
