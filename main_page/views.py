@@ -40,7 +40,7 @@ class KayaksView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(KayaksView, self).get_context_data()
-        context['kayak'] = client_panel.models.Kayak.objects.all()
+        context['kayak'] = client_panel.models.Kayak.objects.all().order_by('type')
         return context
 
 

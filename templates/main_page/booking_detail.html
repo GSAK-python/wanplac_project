@@ -12,25 +12,38 @@
 <div class="limiter">
 	<div class="container-login100 flex-sb flex-w" style="min-height: 30vh">
 		<div class="row login100-form p-b-90" style="width:600px">
-
 			{% csrf_token %}
+
+			<div class="limiter">
+	        <div class="container-login100" style="min-height: 5vh; padding: 0px">
+                <div class="login100-form row flex-sb flex-w">
+                    <div class=".col-md-4">
+                        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+                    </div>
+                    <div class=".col-md-4 .offset-md-4">
+                        <a class="btn" href="{% url 'main:my_booking' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Moje zamówienia</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 			<span class="login100-form-title p-t-20 p-b-30" style="font-size: 20px">
 				Rezerwacja została zatwierdzona!
 			</span>
 
-			<span class="m-b-20">Na adres <b>{{ union.email }}</b> została wysłana wiadomość z najważniejszeymi informacjami dotyczącymi Twojego zamówienia.</span>
+			<span class="m-b-20" style="text-align: justify">Na adres <b>{{ union.email }}</b> została wysłana wiadomość z informacjami dotyczącymi Twojego zamówienia.</span>
 			{% language 'pl' %}
 
 				<span class="login100-form-title p-b-20" style="font-size: 20px; text-align: left; color: red">
 					UWAGA! WAŻNE!
 				</span>
-			<span class="m-b-30">Rezerwacja pozostanie <b>aktywna</b> jeśli zostanie potwierdzona w <b>dniu spływu</b> do godziny <b>9.00</b>!</span>
+			<span class="m-b-30" style="text-align: justify">Rezerwacja pozostanie <b>aktywna</b> jeśli zostanie potwierdzona w <b>dniu spływu</b> do godziny <b>9.00</b>!</span>
 				<span class="m-b-15">Sposoby potwierdzenia rezerwacji (do wyboru):</span>
 				<span>1. Wysłać wiadomość <b>SMS</b> pod numer<b><a style="color: #827ffe; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="tel:+48600029035"> <i class="fas fa-phone"></i> 600 029 035</a></b> z informacją:</span>
 				<span class="m-b-15 m-t-15" style="text-align: center; width: 100%"><b>Imię Nazwisko potwierdzam rezerwację.</b></span>
 				<span class="m-b-20">2. <b>Zadzwonić</b> pod numer <b><a style="color: #827ffe; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="tel:+48600029035"> <i class="fas fa-phone"></i> 600 029 035</a></b> i potwierdzić swój przyjazd.</span>
 
-				<span class="m-b-5">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
+				<span class="m-b-5" style="text-align: justify">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
 											formularzu numer telefonu w celu weryfikacji rezerwacji.</span>
 
 
@@ -141,13 +154,6 @@
 				</div>
 
 			{% endlanguage %}
-
-			<div>
-				<span>Przejdź do swoich zamówień:<a class="btn m-b-5" href="{% url 'main:my_booking' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'"><i class="fas fa-long-arrow-alt-right"></i>  Moje zamówienia</a></span><br>
-				<span>Przejdź do strony głównej:<a class="btn m-b-5" href="{% url 'main:main' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'"><i class="fas fa-long-arrow-alt-right"></i>  Strona główna</a></span>
-			</div>
-
-
 
 		</div>
 	</div>

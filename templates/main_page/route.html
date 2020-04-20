@@ -13,7 +13,22 @@
 <div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
-        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+
+
+        <div class="limiter">
+	        <div class="container-login100" style="min-height: 5vh; padding: 0px">
+                <div class="login100-form row flex-sb flex-w">
+                    <div class=".col-md-4">
+                        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+                    </div>
+                    <div class=".col-md-4 .offset-md-4">
+                        <a class="btn" href="{% url 'main:kayaks' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Zobacz kajaki</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="m-b-20 m-t-20" style="text-align: justify; font-family: Ubuntu-Bold; font-size: 20px">
             Mapa z trasami spływów jednodniowych:
         </div>

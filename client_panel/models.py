@@ -20,7 +20,7 @@ class DateList(models.Model):
 
 class Kayak(models.Model):
     TYPECHOICE = [
-        ('Jednosoboy', 'Jednoosobwy'),
+        ('Jednoosobowy', 'Jednoosobowy'),
         ('Dwuosobowy', 'Dwuosobowy'),
         ('Trzyosobowy', 'Trzyosobowy')
     ]

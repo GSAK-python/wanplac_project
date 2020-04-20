@@ -11,10 +11,23 @@
 
 
 <div class="limiter">
-	<div class="container-login100 flex-sb flex-w" style="min-height: 80vh">
+	<div class="container-login100 flex-sb flex-w" style="min-height: 40vh">
 		<div class="row login100-form p-b-90" style="width:600px">
-
 			{% csrf_token %}
+
+			<div class="limiter">
+	        <div class="container-login100" style="min-height: 10vh; padding: 0px">
+                <div class="login100-form row flex-sb flex-w">
+                    <div class=".col-md-4">
+                        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+                    </div>
+                    <div class=".col-md-4 .offset-md-4">
+                        <a class="btn" href="{% url 'main:booking_detail' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Potwierdzenie ostatniej rezerwacji</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 			<span class="login100-form-title p-b-51">
 				Moje zamówienia
 			</span>

@@ -32,7 +32,7 @@ class Kayak(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        return '{}. Dostępnosc {}'.format(self.name, self.store)
+        return '{} - dostępnych sztuk: {} '.format(self.name, self.store)
 
 
 class Route(models.Model):
