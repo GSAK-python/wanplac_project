@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'vendor_files',
     'app1',
     'phone_field',
+    'storages'
 ]
 
 MIDDLEWARE = [
