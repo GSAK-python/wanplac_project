@@ -184,10 +184,12 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # BROKER_URL = 'django://'
-CELERY_BROKER_URL = 'amqp://localhost'
+# CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_ACKS_LATE = True
+BROKER_POOL_LIMIT = 3
+CELERY_BROKER_URL = 'amqp://felhazch:wrfZDFji3SN2HfUCY54zv_QoabnTs4QF@squid.rmq.cloudamqp.com/felhazch'
 
 # AMAZON S3
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
