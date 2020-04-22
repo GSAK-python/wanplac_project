@@ -39,7 +39,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING date change - CLIENT_PANEL': {
         'task': 'client_panel.tasks.booking_change_date',
-        'schedule': crontab(minute=5, hour=12),
+        'schedule': crontab(minute=10, hour=12),
         'args': (),
     },
     'TEMPLATE date change - APP2': {
@@ -54,7 +54,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING date change - APP2': {
         'task': 'app2.tasks.booking_change_date',
-        'schedule': crontab(minute=5, hour=12),
+        'schedule': crontab(minute=10, hour=12),
         'args': (),
     },
     'TEMPLATE date change - APP1': {
@@ -69,7 +69,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING date change - APP1': {
         'task': 'app1.tasks.booking_change_date',
-        'schedule': crontab(minute=5, hour=12),
+        'schedule': crontab(minute=10, hour=12),
         'args': (),
     }
 }
