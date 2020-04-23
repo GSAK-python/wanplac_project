@@ -159,9 +159,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_URL = '/static/'
-#
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -189,7 +189,7 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_ACKS_LATE = True
 BROKER_POOL_LIMIT = 3
-CELERY_BROKER_URL = 'amqp://felhazch:wrfZDFji3SN2HfUCY54zv_QoabnTs4QF@squid.rmq.cloudamqp.com/felhazch'
+CELERY_BROKER_URL = 'amqp://felhazch:wrfZDFji3SN2HfUCY54zv_QoabnTs4QF@squid.rmq.cloudamqp.com/felhazch'  # broker do heroku
 
 # AMAZON S3
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
@@ -199,17 +199,17 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION = 'static'
+# AWS_LOCATION = 'static'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATICFILES_LOCATION = 'static'
-STATICFILES_STORAGE = 'client_panel.storage_backends.StaticStorage'
+# STATICFILES_STORAGE = 'client_panel.storage_backends.StaticStorage'
 
 AWS_DEFAULT_ACL = None
 

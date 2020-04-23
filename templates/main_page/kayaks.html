@@ -15,13 +15,13 @@
         {% csrf_token %}
 
         <div class="limiter">
-	        <div class="container-login100" style="min-height: 5vh; padding: 0px">
+	        <div class="container-login100" style="min-height: 10vh; padding: 0px">
                 <div class="login100-form row flex-sb flex-w">
                     <div class=".col-md-4">
-                        <a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+                        <a class="quick-btn" href="{% url 'main:main' %}">Strona główna</a>
                     </div>
                     <div class=".col-md-4 .offset-md-4">
-                        <a class="btn" href="{% url 'registration:sign_up' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Załóż konto</a>
+                        <a class="quick-btn" href="{% url 'registration:sign_up' %}">Załóż konto</a>
                     </div>
                 </div>
             </div>
@@ -43,58 +43,58 @@
                     </div>
 
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Nazwa kajaka:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.name }}
                         </div>
                     </div>
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Typ:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.type }}
                         </div>
                     </div>
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Cena za kajak:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.prize }} PLN
                         </div>
                     </div>
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Waga:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.weight }}
                         </div>
                     </div>
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Wymiary:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.dimenstions }}
                         </div>
                     </div>
                     <div class="row m-b-10">
-                        <div class="input100 col-sm-6 route">
+                        <div class="input100 col-sm-6 route" style="color:black">
                             Wyporność:
                         </div>
-                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu">
+                        <div class="input100 col-sm-6 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.displacement }}
                         </div>
                     </div>
                      <div class="row">
-                        <div class="input100 m-b-10 route">
+                        <div class="input100 m-b-10 route" style="color:black">
                             Opis:
                         </div>
-                        <div class="input100 route" style="font-family: Ubuntu">
+                        <div class="input100 route" style="font-family: Ubuntu; color:black">
                             {{ kayak.description }}
                         </div>
                     </div>

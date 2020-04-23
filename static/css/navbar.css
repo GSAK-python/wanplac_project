@@ -20,6 +20,22 @@ a {
     border-width: 3px;
 }
 
+.quick-btn {
+    font-size: 17px;
+    font-family: Ubuntu-Bold;
+    width: 250px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #827ffe;
+    background-color: #fff;
+    border-color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+}
+
 .main-page-button:hover {
     background-color:  rgba(62, 69, 81, 0.1);
 }

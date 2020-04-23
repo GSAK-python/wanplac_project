@@ -15,19 +15,19 @@
 			{% csrf_token %}
 
 			<div class="limiter">
-				<div class="container-login100" style="min-height: 5vh; padding: 0px">
+				<div class="container-login100" style="min-height: 10vh; padding: 0px">
 					<div class="login100-form row flex-sb flex-w">
 						<div class=".col-md-4">
-							<a class="btn" href="{% url 'main:main' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Powrót do strony głównej</a>
+							<a class="quick-btn" href="{% url 'main:main' %}">Strona główna</a>
 						</div>
 						<div class=".col-md-4 .offset-md-4">
-							<a class="btn" href="{% url 'main:my_booking' %}" style="float: right; font-family: Ubuntu-Bold; font-size: 16px; background-color: #827ffe; color: #fff;" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Moje zamówienia</a>
+							<a class="quick-btn" href="{% url 'main:my_booking' %}">Moje zamówienia</a>
 						</div>
 					</div>
 				</div>
         	</div>
 
-			<span class="login100-form-title p-t-20 p-b-30" style="font-size: 20px">
+			<span class="login100-form-title p-t-40 p-b-30" style="font-size: 20px">
 				Rezerwacja została zatwierdzona!
 			</span>
 
@@ -56,7 +56,7 @@
 							<div class="input100 col-sm-6">
 								Data zamówienia:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.exact_time }}
 							</div>
 						</div>
@@ -64,7 +64,7 @@
 							<div class="input100 col-sm-6">
 								Rezerwacja na:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.first_name }} {{ union.last_name }}
 							</div>
 						</div>
@@ -72,7 +72,7 @@
 							<div class="input100 col-sm-6">
 								Wybrana trasa:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.route.name }}
 							</div>
 						</div>
@@ -80,7 +80,7 @@
 							<div class="input100 col-sm-6">
 								Dystans:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.route.distance }}
 							</div>
 						</div>
@@ -88,7 +88,7 @@
 							<div class="input100 col-sm-6">
 								Data spływu:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{% for date in date %}
 									{% if date.id == union.booking_date_id %}
 										{{ date.booking_date }}
@@ -97,39 +97,39 @@
 							</div>
 						</div>
 						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="color: black">
 								Godzina spływu:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.time }}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="color: black">
 								Nr telefonu:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.phone }}
 							</div>
 						</div>
 						<div class="row" style="height: 35px">
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="color: black">
 								Adres email:
 							</div>
-							<div class="input100 col-sm-6">
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 								{{ union.email }}
 							</div>
 						</div>
 
 
                         <div class="row m-t-30" style="height: 35px">
-                            <div class="input100 col-sm-5">
+                            <div class="input100 col-sm-5" style="color: black">
                                 Wypożyczony sprzęt:
                             </div>
-                            <div class="input100 col-sm-3">
+                            <div class="input100 col-sm-3" style="color: black">
                                 Rodzaj
                             </div>
-                            <div class="input100 col-sm-2">
+                            <div class="input100 col-sm-2" style="color: black">
                                 Ilość
                             </div>
                         </div>
@@ -140,10 +140,10 @@
 										<div class="input100 col-sm-5">
 
 										</div>
-										<div class="input100 col-sm-3">
+										<div class="input100 col-sm-3" style="font-family: Ubuntu; color: black">
 											{{ kayak.kayak.name }}
 										</div>
-										<div class="input100 col-sm-2">
+										<div class="input100 col-sm-2" style="font-family: Ubuntu; color: black">
 											{{ kayak.quantity }}
 										</div>
 									</div>
