@@ -10,7 +10,7 @@
 {% include "main_page/navbar.html" %}
 
 
-<div class="container-login100 flex-sb flex-w" style="min-height: 20vh;">
+<div class="container-login100 flex-sb flex-w" style="min-height: 40vh;">
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
         <div class="m-b-40 m-t-40" style="font-size: 20px; font-family: Ubuntu-Bold; text-align: center">
@@ -60,6 +60,8 @@
 
     </div>
 </div>
+
+{% include "main_page/footerbar.html" %}
 
 {% endblock %}
 

@@ -49,3 +49,16 @@ a {
     height: auto;
     text-align: justify
 }
+
+.my-footer {
+    font-size: 20px;
+    font-family: Ubuntu-Bold;
+    color: #403866;
+    text-align:center;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.footer-border {
+    border-top: 3px solid #fb8c00;
+}
