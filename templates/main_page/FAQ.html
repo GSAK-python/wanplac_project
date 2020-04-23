@@ -34,10 +34,11 @@
 
         {% for question in faq %}
 
-            <button  class="faq-question" type="button" data-toggle="collapse" data-target="#{{ question.id }}" aria-expanded="true">
-                {{ question.id }}. {{ question.question }}
-            </button>
-
+            <div class="container-login100-form-btn m-b-10">
+                <button  class="faq-question" type="button" data-toggle="collapse" data-target="#{{ question.id }}" aria-expanded="true">
+                    {{ question.id }}. {{ question.question }}
+                </button>
+            </div>
             <div class="collapse" id="{{ question.id }}" style="width:100%">
                 <div class="m-b-50 m-t-20">
                     <div class="route faq-answer">
