@@ -62,3 +62,17 @@ a {
 .footer-border {
     border-top: 3px solid #fb8c00;
 }
+
+.faq-question {
+    font-family: Ubuntu-Bold;
+    font-size: 20px;
+    text-align: justify;
+    color: #827ffe;
+}
+
+.faq-answer {
+    font-family: Ubuntu;
+    font-size: 20px;
+    text-align: justify;
+    color: #black;
+}

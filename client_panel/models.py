@@ -105,3 +105,11 @@ class TermKayaks(models.Model):
 
     def __str__(self):
         return '{}'.format(self.kayak.name)
+
+
+class FAQ(models.Model):
+    question = models.TextField()
+    answer = models.TextField()
+
+    def __str__(self):
+        return 'Pytanie: {}'.format(self.question)

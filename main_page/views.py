@@ -21,6 +21,11 @@ class AboutUsView(TemplateView):
 class FAQView(TemplateView):
     template_name = 'main_page/FAQ.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(FAQView, self).get_context_data()
+        context['faq'] = client_panel.models.FAQ.objects.all()
+        return context
+
 
 class ContactView(TemplateView):
     template_name = 'main_page/contact.html'

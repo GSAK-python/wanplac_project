@@ -10,12 +10,46 @@
 {% include "main_page/navbar.html" %}
 
 
-<div class="container-login100 flex-sb flex-w border border-dark" style="min-height: 20vh">
-    <div class="row login100-form border border-dark" style="width:600px">
+<div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
+    <div class="row login100-form" style="width:600px">
         {% csrf_token %}
-        <div class="m-b-20">
-            FAQ
+
+
+        <div class="limiter">
+	        <div class="container-login100" style="min-height: 10vh; padding: 0px">
+                <div class="login100-form row flex-sb flex-w">
+                    <div class=".col-md-4">
+                        <a class="quick-btn" href="{% url 'main:main' %}">Strona główna</a>
+                    </div>
+                    <div class=".col-md-4 .offset-md-4">
+                        <a class="quick-btn" href="{% url 'main:choose_date' %}">Zarezerwuj kajak</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="m-b-20 m-t-20" style="text-align: center; font-family: Ubuntu-Bold; font-size: 20px; width: 100%;">
+            Odpowiedzi na prawdopodobnie najważniejsze pytania:
+        </div>
+
+        {% for question in faq %}
+
+            <button  class="faq-question" type="button" data-toggle="collapse" data-target="#{{ question.id }}" aria-expanded="true">
+                {{ question.id }}. {{ question.question }}
+            </button>
+
+            <div class="collapse" id="{{ question.id }}" style="width:100%">
+                <div class="m-b-50 m-t-20">
+                    <div class="route faq-answer">
+                            {{ question.answer }}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+
+
     </div>
 </div>
 
