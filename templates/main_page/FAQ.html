@@ -20,9 +20,9 @@
 
         {% for question in faq %}
 
-            <div class="container-login100-form-btn m-b-10">
+            <div class="container-login100-form-btn m-b-20">
                 <button  class="faq-question" type="button" data-toggle="collapse" data-target="#{{ question.id }}" aria-expanded="true">
-                    {{ question.id }}. {{ question.question }}
+                    <i class="fas fa-arrow-right"></i> {{ question.question }}
                 </button>
             </div>
             <div class="collapse" id="{{ question.id }}" style="width:100%">

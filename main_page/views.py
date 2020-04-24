@@ -23,7 +23,7 @@ class FAQView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(FAQView, self).get_context_data()
-        context['faq'] = client_panel.models.FAQ.objects.all()
+        context['faq'] = client_panel.models.FAQ.objects.all().order_by('id')
         return context
 
 
