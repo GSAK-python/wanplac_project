@@ -12,21 +12,6 @@
 	<div class="container-login100" style="min-height: 80vh">
 		<div class="row wrap-login100 p-b-90" style="width:600px">
 
-			<div class="limiter">
-				<div class="container-login100" style="min-height: 10vh; padding: 0px">
-					<div class="login100-form row flex-sb flex-w">
-						<div class=".col-md-4">
-							<a class="quick-btn" href="{% url 'main:main' %}">
-								Strona główna</a>
-						</div>
-						<div class=".col-md-4 .offset-md-4">
-							<a class="quick-btn" href="{% url 'main:choose_date' %}">
-								Wybór daty</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			{% if current_time >= start_break and current_time <= stop_break %}
 				<div class="p-t-50" style="width: 100%">
 					<span class="login100-form-title p-b-40" style="text-align:center">Przerwa techniczna</span>

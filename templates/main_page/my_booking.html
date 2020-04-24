@@ -11,24 +11,15 @@
 
 
 <div class="limiter">
-	<div class="container-login100 flex-sb flex-w" style="min-height: 40vh">
+
+			<div class="">
+				<a class="quick-btn" href="{% url 'main:booking_detail' %}" style="width: 100%; font-size: 20px">
+					Szczegółowe informacje o ostanim zamówieniu</a>
+			</div>
+
+	<div class="container-login100 flex-sb flex-w" style="min-height: 70vh">
 		<div class="row login100-form p-b-90" style="width:600px">
 			{% csrf_token %}
-
-			<div class="limiter">
-				<div class="container-login100" style="min-height: 10vh; padding: 0px">
-					<div class="login100-form row flex-sb flex-w">
-						<div class=".col-md-4">
-							<a class="quick-btn" href="{% url 'main:main' %}">
-								Strona główna</a>
-						</div>
-						<div class=".col-md-4 .offset-md-4">
-							<a class="quick-btn" href="{% url 'main:booking_detail' %}">
-								Ostatnia rezerwacja</a>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<span class="login100-form-title p-t-40 p-b-51">
 				Moje zamówienia
@@ -36,7 +27,6 @@
 
 			{% language 'pl' %}
 			{% for booking in union %}
-
 
 				<div class="container-login100-form-btn m-b-10">
 					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">{{ booking.exact_time}}</button>

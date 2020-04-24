@@ -19,7 +19,8 @@
     <nav class="navbar navbar-expand-lg static-top" style="background-color: #fb8c00">
         <div class="container">
             <div>
-                <a target="_blank" class="nav-item" href="https://krutyniasplywy.pl/" style="text-align:left; color: #fff" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">Odwiedź naszą stronę internetową</a>
+                <a class="nav-item" href="{% url 'main:main' %}" style="text-align:left; color: #fff" onmouseover="this.style.color='black'" onmouseout="this.style.color='#fff'">
+                    Strona główna</a>
             </div>
             <div id="navbarResponsive">
                 <ul class="navbar">
@@ -29,10 +30,9 @@
                                 Menu <i class="fas fa-bars"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
-                                <a class="dropdown-item" href="{% url 'main:main' %}" style=" color: #black;">Strona główna</a>
                                 <a class="dropdown-item" href="{% url 'main:contact' %}" style=" color: #black;">Kontakt</a>
                                 <a class="dropdown-item" href="{% url 'main:about_us' %}" style=" color: #black;">O nas</a>
-                                <a class="dropdown-item" href="{% url 'main:choose_date' %}" style=" color: #black;">Zarezerwuj kajak</a>
+                                <a class="dropdown-item" href="{% url 'main:faq' %}" style=" color: #black;">Pytania i odpowiedzi</a>
                                 <a class="dropdown-item" href="{% url 'main:my_booking' %}" style=" color: #black;">Moje zamówienia</a>
                                 <a class="dropdown-item" href="{% url 'registration:logout' %}" style=" color: #black;">Wyloguj się</a>
                             </div>
@@ -43,7 +43,9 @@
                                 Menu <i class="fas fa-bars"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownNoLogin" style="right: 0; left: auto;">
-                                <a class="dropdown-item" href="{% url 'main:main' %}" style=" color: #black;">Strona główna</a>
+                                <a class="dropdown-item" href="{% url 'main:contact' %}" style=" color: #black;">Kontakt</a>
+                                <a class="dropdown-item" href="{% url 'main:about_us' %}" style=" color: #black;">O nas</a>
+                                <a class="dropdown-item" href="{% url 'main:faq' %}" style=" color: #black;">Pytania i odpowiedzi</a>
                                 <a class="dropdown-item" href="{% url 'registration:login' %}" style=" color: #black;">Zaloguj się</a>
                                 <a class="dropdown-item" href="{% url 'registration:sign_up' %}" style=" color: #black;">Załóż konto</a>
                             </div>
