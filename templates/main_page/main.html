@@ -10,7 +10,7 @@
 {% include "main_page/navbar.html" %}
 
 
-<div class="container-login100 flex-sb flex-w m-b-60" style="min-height: 40vh;">
+<div class="container-login100 flex-sb flex-w m-b-60 " style="min-height: 40vh; padding: 5px;">
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
         <div class="m-b-40 m-t-40" style="font-size: 20px; font-family: Ubuntu-Bold; text-align: center">
@@ -38,23 +38,24 @@
         </div>
 
         <div class="m-t-50">
-            <a type="button" class="btn main-page-button" href="{% url 'main:route' %}">
-                <span class="m-r-10 m-t-15">1. Zobacz nasze TRASY </span><i class="fas fa-map-marked-alt fa-2x m-t-5" style="color: #827ffe"></i></a>
+            <a type="button" class="btn main-page-button button1" href="{% url 'main:route' %}">
+                <span class="m-t-50">Nasze TRASY</span></a>
         </div>
 
-        <div class="m-t-50">
-            <a type="button" class="btn main-page-button" href="{% url 'main:kayaks' %}">
-                <span class="m-r-10 m-t-15">2. Zobacz nasze KAJAKI </span><i class="fas fa-ship fa-2x m-t-5" style="color: #827ffe"></i></a>
+        <div>
+            <a type="button" class="btn main-page-button button2" href="{% url 'main:kayaks' %}">
+                <span class="m-t-50">Zobacz KAJAKI</span></a>
         </div>
 
-        <div class="m-t-50">
-            <a type="button" class="btn main-page-button" href="{% url 'registration:sign_up' %}">
-                <span class="m-r-10 m-t-15">3. Załóż KONTO </span><i class="fas fa-user-plus fa-2x" style="color: #827ffe"></i></a>
+        <div>
+            <a type="button" class="btn main-page-button button3" href="{% url 'registration:sign_up' %}">
+                <span class="m-t-50">Załóż KONTO</span>
+                </a>
         </div>
 
-        <div class="m-t-50">
-            <a type="button" class="btn main-page-button" href="{% url 'main:choose_date' %}">
-                <span class="m-r-10 m-t-15">4. Zarezewuj KAJAKI </span><i class="far fa-check-circle fa-2x" style="color: #827ffe"></i></a>
+        <div>
+            <a type="button" class="main-page-button button4" href="{% url 'main:choose_date' %}">
+                <span class="m-t-50">Zarezewuj KAJAKI</span></a>
         </div>
 
 

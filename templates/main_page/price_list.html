@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} O nas {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+
+<div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
+    <div class="row login100-form" style="width:600px">
+        {% csrf_token %}
+
+        CENNIK
+
+        </div>
+    </div>
+</div>
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

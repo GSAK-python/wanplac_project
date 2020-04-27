@@ -7,16 +7,16 @@ a {
 }
 
 .main-page-button {
-    font-size: 25px;
+    font-size: 50px;
     font-family: Ubuntu-Bold;
     width: 600px;
-    height: 80px;
+    height: 250px;
     display: flex;
     justify-content: center;
-    color: black;
-    border-color: black;
+    color: white;
+    border-color: white;
     border-style: solid;
-    border-radius: 5px;
+    border-radius: 0px;
     border-width: 3px;
 }
 
@@ -34,10 +34,6 @@ a {
     border-style: solid;
     border-radius: 5px;
     border-width: 2px;
-}
-
-.main-page-button:hover {
-    background-color:  rgba(62, 69, 81, 0.1);
 }
 
 .box {
@@ -83,4 +79,61 @@ a {
     font-size: 20px;
     text-align: justify;
     color: #black;
+}
+
+.button1 {
+    background: url(/static/media/trasy.jpg) no-repeat;
+    background-size: cover;
+}
+
+.button1:hover {
+    background: linear-gradient(
+      rgba(61,114,172,0.4),
+      rgba(61,114,172,0.4)
+    ), url(/static/media/trasy.jpg) no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.button2 {
+    background: url(/static/media/kajaki-bg3.jpg) no-repeat;
+    background-size: cover;
+}
+
+.button2:hover {
+    background: linear-gradient(
+      rgba(61,114,172,0.4),
+      rgba(61,114,172,0.4)
+    ), url(/static/media/kajaki-bg3.jpg) no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.button3 {
+    background: url(/static/media/konto2.png) no-repeat;
+    background-size: cover;
+}
+
+.button3:hover {
+    background: linear-gradient(
+      rgba(61,114,172,0.4),
+      rgba(61,114,172,0.4)
+    ), url(/static/media/konto2.png) no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.button4 {
+    background: url(/static/media/rezerwacja2.jpg) no-repeat;
+    background-size: cover;
+}
+
+.button4:hover {
+    background: linear-gradient(
+      rgba(61,114,172,0.4),
+      rgba(61,114,172,0.4)
+    ), url(/static/media/rezerwacja2.jpg) no-repeat;
+    background-size: cover;
+    color: white;
+
 }
