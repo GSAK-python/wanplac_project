@@ -4,7 +4,7 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block title %} O nas {% endblock %}
+{% block title %} Cennik {% endblock %}
 {% block body %}
 
 {% include "main_page/navbar.html" %}
@@ -14,9 +14,64 @@
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
 
-        CENNIK
+        <div style="width: 100%">
+            <div class="main-price-list m-b-40">
+                CENNIK
+            </div>
 
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Dla tras:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                {% for route in route %}
+                    <div>
+                        <i class="fas fa-map-marker-alt m-r-15" style="color: #3366ff"></i> {{ route.name }} {{ route.distance }}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Obowiązują następujące ceny:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                {% for kayak in kayak %}
+                    <div>
+                        <i class="fas fa-check m-r-15" style="color: #3366ff"></i> {{ kayak.name }} ({{ kayak.type }}) - <b>{{ kayak.prize }} PLN</b>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Cena za kajak obejmuje:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>dowóz w miejsce startu
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>odbiór z miejsca zakończenia spływu
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>duży, strzeżony parking na samochód
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>WC
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>kamizelki ratunkowe - dla każdej osoby w kajaku
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>wiosła - dla każdej osoby w kajaku
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>poduszki na siedzenia - dla każdej osoby w kajaku
+                </div>
+
+            </div>
         </div>
+
+
+
     </div>
 </div>
 

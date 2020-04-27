@@ -2,7 +2,7 @@ from django.urls import path, reverse_lazy
 from django.views.generic import RedirectView
 
 from main_page.views import MainPageView, BookingListView, ChooseDateView, BookingDetailView, AboutUsView, ContactView, \
-    FAQView, RouteView, KayaksView
+    FAQView, RouteView, KayaksView, PriceListView, HowItLooksView
 
 app_name = 'main'
 
@@ -16,6 +16,8 @@ urlpatterns = [
     path('contact', ContactView.as_view(), name='contact'),
     path('route', RouteView.as_view(), name='route'),
     path('kayaks', KayaksView.as_view(), name='kayaks'),
+    path('price_list', PriceListView.as_view(), name='price_list'),
+    path('how', HowItLooksView.as_view(), name='how'),
     path('app1/', RedirectView.as_view(pattern_name='app1:app1_create')),
     path('client_panel/', RedirectView.as_view(pattern_name='booking:create')),
     path('app2/', RedirectView.as_view(pattern_name='app2:app2_create'))

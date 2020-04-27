@@ -135,5 +135,10 @@ a {
     ), url(/static/media/rezerwacja2.jpg) no-repeat;
     background-size: cover;
     color: white;
+}
 
+.main-price-list {
+    font-size: 30px;
+    font-family: Ubuntu-Bold;
+    text-align: left
 }

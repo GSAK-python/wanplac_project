@@ -49,6 +49,20 @@ class KayaksView(TemplateView):
         return context
 
 
+class PriceListView(TemplateView):
+    template_name = 'main_page/price_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PriceListView, self).get_context_data()
+        context['kayak'] = client_panel.models.Kayak.objects.all().order_by('type')
+        context['route'] = client_panel.models.Route.objects.all()
+        return context
+
+
+class HowItLooksView(TemplateView):
+    template_name = 'main_page/how.html'
+
+
 class ChooseDateView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/choose_date.html'
 

@@ -199,6 +199,10 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+
+"""
+Below settings (commented) are for loading statics from S3
+"""
 # AWS_LOCATION = 'static'
 
 # STATICFILES_DIRS = [

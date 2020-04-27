@@ -30,11 +30,14 @@
                 <span style="font-family: Ubuntu-Bold">Zapoznaj się z FAQ:<a class="btn m-b-15" href="{% url 'main:faq' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
                     <b class="m-r-10">Pytania i odpowiedzi</b><i class="fas fa-book-open fa-2x"></i></a>
                 </span><br>
-                <span style="font-family: Ubuntu-Bold">Skontaktuj się z nami:<a class="btn m-b-20" href="{% url 'main:contact' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
-                    <b class="m-r-10">Kontakt</b><i class="fas fa-mobile-alt fa-2x"></i></a>
-                </span><br>
             </div>
 
+        </div>
+
+        <div  class="main-price-list" style="font-size: 25px">
+            Odwiedź naszą stronę<i class="fas fa-long-arrow-alt-right m-l-10" style="color: #fb8c00; font-size:25px"></i>
+            <a target="_blank" href="https://krutyniasplywy.pl/" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+            krutyniasplywy.pl</a>
         </div>
 
         <div class="m-t-50">
@@ -56,6 +59,22 @@
         <div>
             <a type="button" class="main-page-button button4" href="{% url 'main:choose_date' %}">
                 <span class="m-t-50">Zarezewuj KAJAKI</span></a>
+        </div>
+
+        <div  class="m-b-40 m-t-40 main-price-list">
+            Zobacz CENNIK <i class="fas fa-long-arrow-alt-right m-l-10" style="color: #fb8c00"></i>
+            <a href="{% url 'main:price_list' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+            więcej</a>
+        </div>
+        <div  class="m-b-40 main-price-list">
+            Jak to WYGLĄDA<i class="fas fa-long-arrow-alt-right m-l-10" style="color: #fb8c00"></i>
+            <a href="{% url 'main:how' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+            więcej</a>
+        </div>
+        <div  class="m-b-40 main-price-list">
+            Kontakt<i class="fas fa-long-arrow-alt-right m-l-10" style="color: #fb8c00"></i>
+            <a href="{% url 'main:contact' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+            więcej</a>
         </div>
 
 
