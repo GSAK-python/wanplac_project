@@ -14,9 +14,96 @@
     <div class="row login100-form" style="width:600px">
         {% csrf_token %}
 
-        Jak to wygląda
+        <div style="width: 100%">
+            <div class="main-price-list m-b-40">
+                Jak to się odbywa
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Etap 1 - rezerwacja kajaków w aplikacji:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Wybierz swoją trasę - <a href="{% url 'main:route' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                                            więcej</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Wybierz swój kajak - <a href="{% url 'main:kayaks' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                                            więcej</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Załóż konto (jeśli go nie posiadasz) - <a href="{% url 'registration:sign_up' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                                            więcej</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Zarezerwuj kajak - <a href="{% url 'main:choose_date' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                                            więcej</a>
+                </div>
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Etap 2 - potwierdzenie rezerwacji:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Potwiedź swoją rezerwację - informację jak to zrobić otrzymasz po złożeniu zamówienia
+                </div>
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Etap 3 - przyjazd do naszego miejsca w Krutyni:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Wyznacz drogę w Google Maps - zrobisz to
+                    <a href="{% url 'main:contact' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                        tutaj</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Zadzwoń i zapytaj o drogę - telefon znajdziesz
+                    <a href="{% url 'main:contact' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                        tutaj</a>
+                </div>
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Etap 4 - przygotowanie do spływu:
+            </div>
+            <div class="main-price-list m-b-20" style="font-size:25px; font-family: Ubuntu">
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Pokaż numer rezerwacji - otrzymasz go po złożeniu zamówienia. Znajdziejsz go w mailu lub
+                    <a href="{% url 'main:my_booking' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                        tutaj</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Zapłata za kajaki - <a href="{% url 'main:price_list' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
+                        cennik</a>
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Na życzenie klientów możemy jeszcze raz omówić wybraną trasę tuż przed spływem
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Dojazd na miescje startu spływu
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Spokojny, relaksujacy spływ <i class="far fa-smile"></i>
+                </div>
+                <div style="text-align: justify">
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Zakończenie spływu. Na każdym kajaku znajduje się logo naszej
+                    firmy z numerami telefonów. Należy zadzwonić pod wybrany numer i zgłosić miejsce zakończenia oraz chęć powrotu.
+                </div>
+                <div>
+                    <i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Powrót na nasz parking
+                </div>
+            </div>
+
+            <div class="main-price-list m-b-20" style="font-size:25px">
+                Etap 5 - bezpieczny powrót do domu
+            </div>
 
         </div>
+
+
     </div>
 </div>
 
