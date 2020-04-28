@@ -10,7 +10,7 @@ class BookingCreateForm(forms.ModelForm):
 
     class Meta:
         model = Booking
-        exclude = ['user', 'email']
+        exclude = ['user', 'email', 'code']
 
     def clean(self):
         # rdb.set_trace()

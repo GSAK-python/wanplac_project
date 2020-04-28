@@ -24,7 +24,7 @@ class LoginCreateForm(AuthenticationForm):
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['user', 'email']
+        exclude = ['user', 'email', 'code']
         # widgets = {
         #     'date': TextInput(attrs={'readonly':'readonly'})
         # }

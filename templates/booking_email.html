@@ -11,7 +11,7 @@
     </div>
     <br>
     <div>
-        <b>Pamiętaj żeby potwierdzić swoją rezerwację!</b> Należy tego dokonać w <b>dzień spływu</b> do godziny <b>9:00</b>.<br>
+        <b>Pamiętaj żeby potwierdzić swoją rezerwację!</b>
         <br>
         Jeśli zamawiasz z conajmniej jednodniowym wyprzedzeniem - wykonaj potwierdzenie w <b>dzień spływu</b> do godziny <b>9.00</b>!<br>
         <br>
@@ -32,6 +32,9 @@
     {% language 'pl' %}
 
         Data wykonania zamówienia: <b>{{ detail.booking.exact_time }}</b>
+        <div>
+            Numer zamówienia: <b>{{ detail.booking.code }}</b>
+        </div>
         <div>
             Rezerwacja na: <b>{{ detail.booking.first_name }} {{ detail.booking.last_name }}</b>
         </div>

@@ -6,7 +6,7 @@ from app2.models import Booking, TermKayaks
 class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
-        exclude = ['user', 'email']
+        exclude = ['user', 'email', 'code']
 
     def clean(self):
         super(BookingCreateForm, self).clean()
