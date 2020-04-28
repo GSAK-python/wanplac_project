@@ -1,6 +1,7 @@
 import datetime
 from celery.contrib import rdb
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.views.generic import TemplateView, ListView
 import app1
 import app2
@@ -61,6 +62,15 @@ class PriceListView(TemplateView):
 
 class HowItLooksView(TemplateView):
     template_name = 'main_page/how.html'
+
+
+class ProfileView(TemplateView):
+    template_name = 'main_page/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileView, self).get_context_data()
+        context['user'] = User.objects.get(username=self.request.user)
+        return context
 
 
 class ChooseDateView(LoginRequiredMixin, TemplateView):

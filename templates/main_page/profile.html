@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Moje konto {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+
+<div class="container-login100 flex-sb flex-w" style="min-height: 75vh; align-items: start">
+    <div class="row login100-form" style="width:600px">
+        {% csrf_token %}
+
+        <div class="m-t-50">
+            <div class="main-price-list m-b-40" style="width: 600px; padding: 0px; text-align: center;">
+                Moje dane
+            </div>
+
+            <div class="m-b-50 m-t-20">
+                <div class="row" style="height: 35px">
+                    <div class="col-sm-6 profile-subtitle">
+                        Nazwa użytkownika:
+                    </div>
+                    <div class="col-sm-6 profile-variable">
+                        {{ user.username }}
+                    </div>
+                </div>
+                <div class="row" style="height: 35px">
+                    <div class="col-sm-6 profile-subtitle">
+                        Imię i nazwisko:
+                    </div>
+                    <div class="col-sm-6 profile-variable">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </div>
+                </div>
+                <div class="row" style="height: 35px">
+                    <div class="col-sm-6 profile-subtitle">
+                        Adres email:
+                    </div>
+                    <div class="col-sm-6 profile-variable">
+                        {{ user.email }}
+                    </div>
+                </div>
+                <div class="row" style="height: 35px">
+                    <div class="col-sm-6 profile-subtitle">
+                        Data dołączenia:
+                    </div>
+                    <div class="col-sm-6 profile-variable">
+                        {% language 'pl' %}
+                            {{ user.date_joined }}
+                        {% endlanguage %}
+                    </div>
+                </div>
+                <div class="profile-subtitle m-t-40 m-b-5">
+                    Hasło:
+                </div>
+                <div class="profile-variable m-b-20" style="text-align:justify">
+                    Aby sprawdzić dotychczasowe hasło wejdź w skrzynkę email. Hasło znajduje się w wiadomości zatytułowanej:
+                    <b>Utworzenie nowego konta - Wan-Plac Krutyń</b>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

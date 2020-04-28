@@ -142,3 +142,16 @@ a {
     font-family: Ubuntu-Bold;
     text-align: left
 }
+
+.profile-variable {
+    font-family: Ubuntu;
+    color: black;
+    font-size: 25px;
+    padding: 0px
+}
+
+.profile-subtitle {
+    font-family: Ubuntu-Bold;
+    color: black;
+    font-size: 25px;
+}
