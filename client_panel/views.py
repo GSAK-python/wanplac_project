@@ -81,7 +81,6 @@ class SignUpCreateView(CreateView):
         subject, from_email, to = 'Utworzenie nowego konta - Wan-Plac Krutyń', 'gsak.python@gmail.com', form.cleaned_data['email']
         html_content = render_to_string('registration/user_data_email.html',
                                         {
-                                         'pass': form.cleaned_data['password1'],
                                          'email': form.cleaned_data['email'],
                                          'first_name': form.cleaned_data['first_name'],
                                          'last_name': form.cleaned_data['last_name'],
