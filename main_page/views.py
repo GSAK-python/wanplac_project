@@ -148,6 +148,14 @@ class DeleteUserView(DeleteView):
         user_ = self.request.user
         return get_object_or_404(User, username=user_)
 
+    def delete(self, request, *args, **kwargs):
+        a = self.get_object()
+        a.delete()
+        a.last_name = 'brak'
+        a.email = 'brak'
+        a.save()
+        return HttpResponseRedirect(self.success_url)
+
     def get_context_data(self, **kwargs):
         context = super(DeleteUserView, self).get_context_data()
         context['user'] = User.objects.get(username=self.request.user)

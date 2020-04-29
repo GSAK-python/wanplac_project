@@ -81,7 +81,7 @@ class Booking(models.Model):
     time = models.CharField(choices=TIMECHOICE, max_length=32, default='')
     booking_date = models.ForeignKey(BookingDate, related_name='app2_booking_date', on_delete=models.CASCADE, limit_choices_to=booking_dates_limit,
                                      default='')
-    user = models.ForeignKey(User, related_name='user_app2', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='user_app2', null=True, on_delete=models.SET_NULL)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     phone = models.CharField(max_length=13)
     email = models.EmailField()
