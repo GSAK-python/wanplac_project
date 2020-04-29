@@ -141,7 +141,7 @@ class BookingDetailView(LoginRequiredMixin, ListView):
 
 class DeleteUserView(DeleteView):
     template_name = 'main_page/user_delete.html'
-    success_url = reverse_lazy('main:main')
+    success_url = reverse_lazy('main:user_delete_confirmation')
 
     def get_object(self, queryset=None):
         user_ = self.request.user
@@ -151,3 +151,7 @@ class DeleteUserView(DeleteView):
         context = super(DeleteUserView, self).get_context_data()
         context['user'] = User.objects.get(username=self.request.user)
         return context
+
+
+class DeleteUserConfirmationView(TemplateView):
+    template_name = 'main_page/user_delete_confirmation.html'
