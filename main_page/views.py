@@ -2,7 +2,9 @@ import datetime
 from celery.contrib import rdb
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, ListView
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, DeleteView
 import app1
 import app2
 import client_panel
@@ -135,3 +137,17 @@ class BookingDetailView(LoginRequiredMixin, ListView):
         data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         data['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
         return data
+
+
+class DeleteUserView(DeleteView):
+    template_name = 'main_page/user_delete.html'
+    success_url = reverse_lazy('main:main')
+
+    def get_object(self, queryset=None):
+        user_ = self.request.user
+        return get_object_or_404(User, username=user_)
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteUserView, self).get_context_data()
+        context['user'] = User.objects.get(username=self.request.user)
+        return context
