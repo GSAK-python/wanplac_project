@@ -116,3 +116,11 @@ class FAQ(models.Model):
 
     def __str__(self):
         return 'Pytanie: {}'.format(self.question)
+
+
+class PrivacyPolicy(models.Model):
+    title = models.TextField(blank=True, null=True)
+    text = models.TextField()
+
+    def __str__(self):
+        return '{}'.format(self.text)

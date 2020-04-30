@@ -3,7 +3,7 @@ from django.views.generic import RedirectView
 
 from main_page.views import MainPageView, BookingListView, ChooseDateView, BookingDetailView, AboutUsView, ContactView, \
     FAQView, RouteView, KayaksView, PriceListView, HowItLooksView, ProfileView, DeleteUserView, \
-    DeleteUserConfirmationView
+    DeleteUserConfirmationView, PrivacyPolicyView
 
 app_name = 'main'
 
@@ -22,6 +22,7 @@ urlpatterns = [
     path('profile', ProfileView.as_view(), name='profile'),
     path('user_delete', DeleteUserView.as_view(), name='user_delete'),
     path('user_delete_confirmation', DeleteUserConfirmationView.as_view(), name='user_delete_confirmation'),
+    path('privacy_policy', PrivacyPolicyView.as_view(), name='privacy_policy'),
     path('app1/', RedirectView.as_view(pattern_name='app1:app1_create')),
     path('client_panel/', RedirectView.as_view(pattern_name='booking:create')),
     path('app2/', RedirectView.as_view(pattern_name='app2:app2_create'))

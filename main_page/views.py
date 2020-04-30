@@ -164,3 +164,12 @@ class DeleteUserView(DeleteView):
 
 class DeleteUserConfirmationView(TemplateView):
     template_name = 'main_page/user_delete_confirmation.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'main_page/privacy_policy.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PrivacyPolicyView, self).get_context_data()
+        context['privacy_policy'] = client_panel.models.PrivacyPolicy.objects.all().order_by('id')
+        return context

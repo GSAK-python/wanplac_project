@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Polityka prywatności {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+
+<div class="container-login100 flex-sb flex-w" style="min-height: 20vh">
+    <div class="row login100-form" style="width:600px">
+        {% csrf_token %}
+
+        <div style="width: 100%">
+            <div class="main-price-list m-b-40">
+                Polityka bezpieczeństwa i ochrona danych osobowych
+            </div>
+
+            {% for object in privacy_policy %}
+                <div class="main-price-list m-b-20" style="font-size:20px">
+                    {{ object.title }}
+                </div>
+                <div class="main-price-list m-b-20" style="font-size:15px; font-family: Ubuntu; text-align: justify">
+                    {{ object.text }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}
