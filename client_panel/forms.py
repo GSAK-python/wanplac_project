@@ -73,6 +73,7 @@ class SignUpCreateForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, help_text='IMIĘ')
     last_name = forms.CharField(max_length=30)
     email = forms.EmailField(max_length=128)
+    privace_policy = forms.BooleanField()
     error_messages = {
         'password_mismatch': 'Podane hasła nie są takie same.',
     }
