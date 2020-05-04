@@ -1,4 +1,6 @@
 import datetime
+from typing import Dict, Any
+
 from celery.contrib import rdb
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -148,14 +150,6 @@ class DeleteUserView(DeleteView):
         user_ = self.request.user
         return get_object_or_404(User, username=user_)
 
-    def delete(self, request, *args, **kwargs):
-        a = self.get_object()
-        a.delete()
-        a.last_name = 'brak'
-        a.email = 'brak'
-        a.save()
-        return HttpResponseRedirect(self.success_url)
-
     def get_context_data(self, **kwargs):
         context = super(DeleteUserView, self).get_context_data()
         context['user'] = User.objects.get(username=self.request.user)
@@ -172,4 +166,27 @@ class PrivacyPolicyView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PrivacyPolicyView, self).get_context_data()
         context['privacy_policy'] = client_panel.models.PrivacyPolicy.objects.all().order_by('id')
+        return context
+
+
+class AdminPanelView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_page/admin_panel.html'
+    # queryset = app1.models.Booking.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminPanelView, self).get_context_data()
+        my_booking_app1 = app1.models.Booking.objects.all()
+        my_kayak_app1 = app1.models.TermKayaks.objects.all()
+        my_booking_app2 = app2.models.Booking.objects.all()
+        my_kayak_app2 = app2.models.TermKayaks.objects.all()
+        my_booking_client_panel = client_panel.models.Booking.objects.all()
+        my_kayak_client_panel = client_panel.models.TermKayaks.objects.all()
+        my_date_app1 = app1.models.BookingDate.objects.all()
+        my_date_app2 = app2.models.BookingDate.objects.all()
+        my_date_client_panel = client_panel.models.BookingDate.objects.all()
+        union = my_booking_app1.union(my_booking_app2, my_booking_client_panel)
+        context['union'] = union
+        context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
+        context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel).order_by('-booking_date')
+        context['app1'] = client_panel.models.Booking.objects.all()
         return context

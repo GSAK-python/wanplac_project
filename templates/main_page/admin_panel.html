@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Admin Panel {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+<div class="limiter">
+
+		<div class="container-login100 flex-sb flex-w" style="min-height: 70vh">
+		<div class="row login100-form p-b-90" style="width:600px">
+			{% csrf_token %}
+
+			<span class="login100-form-title p-t-40 p-b-51">
+				Wszystkie zamówienia
+			</span>
+
+
+			{% language 'pl' %}
+				{% for date in date %}
+
+						<div class="container-login100-form-btn m-b-10">
+							<button  type="button" class="admin-panel-date-btn" data-toggle="collapse" data-target="#{{ date.booking_date }}" aria-expanded="true">
+								{{ date.booking_date }} </button>
+						</div>
+						<div class="collapse" id="{{ date.booking_date }}" style="width:600px; ">
+							<div class="m-b-50 m-t-20">
+
+								{% for booking in union %}
+									{% if date.id == booking.booking_date_id %}
+
+										<div class="m-b-10">
+											<button  type="button" class="admin-panel-booking-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
+												{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }}</button>
+										</div>
+										<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
+											<div class="m-b-50 m-t-20">
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Data zamówienia:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.exact_time }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Numer zamówienia:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.code }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Rezerwacja na:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.first_name }} {{ booking.last_name }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Wybrana trasa:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.route.name }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Dystans:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.route.distance }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Godzina spływu:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.time }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Nr telefonu:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.phone }}
+													</div>
+												</div>
+												<div class="row" style="height: 35px">
+													<div class="input100 col-sm-6" style="color: black">
+														Adres email:
+													</div>
+													<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+														{{ booking.email }}
+													</div>
+												</div>
+
+
+												<div class="row m-t-30" style="height: 35px">
+													<div class="input100 col-sm-5" style="color: black">
+														Wypożyczony sprzęt:
+													</div>
+													<div class="input100 col-sm-3" style="color: black">
+														Rodzaj
+													</div>
+													<div class="input100 col-sm-2" style="color: black">
+														Ilość
+													</div>
+												</div>
+												{% for kayak in kayak %}
+													{% if kayak.booking_id == booking.id and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
+														<div class="row" style="height: 35px">
+															<div class="input100 col-sm-5">
+
+															</div>
+															<div class="input100 col-sm-3" style="font-family: Ubuntu; color: black">
+																{{ kayak }}
+															</div>
+															<div class="input100 col-sm-2" style="font-family: Ubuntu; color: black">
+																{{ kayak.quantity }}
+															</div>
+														</div>
+													{% endif %}
+												{% endfor %}
+											</div>
+										</div>
+									{% endif %}
+								{% endfor %}
+
+
+							</div>
+						</div>
+
+				{% endfor %}
+			{% endlanguage %}
+
+		</div>
+	</div>
+</div>
+
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+{% endblock body_scripts_additional %}

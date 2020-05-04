@@ -183,3 +183,62 @@ a {
 .user-delete-btn:hover {
     background-color: #CC0000;
     color: #fff;
+    }
+
+.admin-panel-date-btn {
+    font-family: Ubuntu-Bold;
+    font-size: 16px;
+    color: #black;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 62px;
+    background-color: #fff;
+    border-radius: 3px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    border: 2px solid black
+}
+
+.admin-panel-date-btn:hover {
+    background-color: #e0e0e0;
+    color: #black;
+    }
+
+.admin-panel-booking-btn {
+    font-family: Ubuntu-Bold;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 62px;
+    background-color: #827ffe;
+    border-radius: 3px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.admin-panel-booking-btn:hover {
+    background-color: #403866;
+    color: #fff;
+    }
