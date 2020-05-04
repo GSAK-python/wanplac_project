@@ -16,6 +16,45 @@
 			{% csrf_token %}
 
 			<span class="login100-form-title p-t-40 p-b-51">
+				Stan kajaków
+			</span>
+
+			<div class="m-b-50 m-t-20" style="width: 100%; padding: 15px">
+                <div class="row" style="height: auto">
+					<div class="col-sm-4 border border-dark">
+						<div class="profile-variable">
+							<b>{{ app1_current_day }}</b>
+						</div>
+						{% for kayak in app1_current_kayak %}
+							<div class="profile-variable">
+								{{ kayak.name }}: {{ kayak.store }}/{{ kayak.stock }}
+							</div>
+						{% endfor %}
+					</div>
+					<div class="col-sm-4 border border-dark">
+						<div class="profile-variable">
+							<b>{{ app2_current_day }}</b>
+						</div>
+						{% for kayak in app2_current_kayak %}
+							<div class="profile-variable">
+								{{ kayak.name }}: {{ kayak.store }}/{{ kayak.stock }}
+							</div>
+						{% endfor %}
+					</div>
+					<div class="col-sm-4 border border-dark">
+						<div class="profile-variable">
+							<b>{{ client_panel_current_day }}</b>
+						</div>
+						{% for kayak in client_panel_current_kayak %}
+							<div class="profile-variable">
+								{{ kayak.name }}: {{ kayak.store }}/{{ kayak.stock }}
+							</div>
+						{% endfor %}
+					</div>
+                </div>
+			</div>
+
+			<span class="login100-form-title p-t-40 p-b-51">
 				Wszystkie zamówienia
 			</span>
 
