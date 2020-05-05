@@ -156,7 +156,7 @@
 													</div>
 												</div>
 												{% for kayak in kayak %}
-													{% if kayak.booking_id == booking.id and kayak.exact_time|time:"H:i:s" == booking.exact_time|time:"H:i:s" %}
+													{% if kayak.booking_id == booking.id %}
 														<div class="row" style="height: 35px">
 															<div class="input100 col-sm-5">
 
