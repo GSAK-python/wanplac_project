@@ -190,9 +190,9 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
         context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel).order_by('-booking_date')
         context['app1'] = client_panel.models.Booking.objects.all()
         context['app1_current_day'] = app1.models.BookingDate.objects.latest('booking_date')
-        context['app1_current_kayak'] = app1.models.Kayak.objects.all()
+        context['app1_current_kayak'] = app1.models.Kayak.objects.all().order_by('id')
         context['app2_current_day'] = app2.models.BookingDate.objects.latest('booking_date')
-        context['app2_current_kayak'] = app2.models.Kayak.objects.all()
+        context['app2_current_kayak'] = app2.models.Kayak.objects.all().order_by('id')
         context['client_panel_current_day'] = client_panel.models.BookingDate.objects.latest('booking_date')
-        context['client_panel_current_kayak'] = client_panel.models.Kayak.objects.all()
+        context['client_panel_current_kayak'] = client_panel.models.Kayak.objects.all().order_by('id')
         return context
