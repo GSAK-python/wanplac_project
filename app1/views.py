@@ -2,6 +2,7 @@ import datetime
 from celery.contrib import rdb
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
+from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
@@ -71,19 +72,16 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('main:booking_detail')
 
     def get_object(self, queryset=None):
-        a = Booking.objects.filter(user=self.request.user).latest('exact_time')
+        a = Booking.objects.filter(user=self.request.user).latest('id')
+        b = TermKayaks.objects.filter(booking__user=self.request.user)
         return a
 
     def get_context_data(self, **kwargs):
         data = super(BookingUpdateView, self).get_context_data(**kwargs)
-        data['current_time'] = datetime.datetime.now().time()
-        data['start_break'] = datetime.time(12)
-        data['stop_break'] = datetime.time(12, 30)
-
-        if self.request.POST:
-            data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
-        else:
-            data['kayak_set'] = TermKayaksFormSet(instance=self.object, prefix='kayak_set')
+        # data['current_time'] = datetime.datetime.now().time()
+        # data['start_break'] = datetime.time(12)
+        # data['stop_break'] = datetime.time(12, 30)
+        data['kayak_set'] = TermKayaksFormSet(queryset=TermKayaks.objects.filter(booking_id=self.get_object().id), prefix='kayak_set')
 
         return data
 
@@ -113,3 +111,4 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
                 return super(BookingUpdateView, self).form_valid(form)
 
         return super(BookingUpdateView, self).form_invalid(form)
+

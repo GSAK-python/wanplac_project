@@ -17,6 +17,11 @@
 					Szczegółowe informacje o ostanim zamówieniu</a>
 			</div>
 
+			<div class="">
+				<a class="quick-btn" href="{% url 'app1:app1_update' %}" style="width: 100%; font-size: 20px">
+					Edytuj ostatnie zamówienie</a>
+			</div>
+
 	<div class="container-login100 flex-sb flex-w" style="min-height: 70vh">
 		<div class="row login100-form p-b-90" style="width:600px">
 			{% csrf_token %}
@@ -139,10 +144,7 @@
 								</div>
 							{% endif %}
 						{% endfor %}
-						<div class="profile-variable m-b-20">
-							<a href="{% url 'app1:app1_update' %}" class="m-l-10 m-b-10" style="font-family: Ubuntu-Bold; font-size: 25px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">
-                                            Edytuj</a>
-						</div>
+
 
 					</div>
 				</div>
