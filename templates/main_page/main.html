@@ -20,40 +20,42 @@
             Nasza aplikacja pozwoli Ci w prosty sposób na rezerawcję kajków w kilku krokach. Zanim przejdziesz do realizacji swojego zamówienia zapoznaj się z Menu w prawym górnym rogu.
         </div>
 
-<!--        <div class="container-login100-form-btn m-b-10">-->
-<!--            <button  type="button" class="login100-form-btn m-b-15" data-toggle="collapse" data-target="#info" aria-expanded="true">Dodatkowe informacje</button>-->
+        {% if user.is_authenticated %}
+            <div class="m-t-50">
+                <a type="button" class="btn main-page-button button1" href="{% url 'main:route' %}">
+                    <span class="m-t-50">1. Nasze TRASY</span></a>
+            </div>
 
-<!--            <div class="collapse" id="info" style="width: 100%; text-align:center">-->
-<!--                <span style="font-family: Ubuntu-Bold">Dowiedz się kim jesteśmy:<a class="btn m-b-15" href="{% url 'main:about_us' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">-->
-<!--                    <b class="m-r-10">Wan-Plac Krutyń</b><i class="far fa-address-card fa-2x"></i></a>-->
-<!--                </span><br>-->
-<!--                <span style="font-family: Ubuntu-Bold">Zapoznaj się z FAQ:<a class="btn m-b-15" href="{% url 'main:faq' %}" style="font-size: 17px; color: #827ffe" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'">-->
-<!--                    <b class="m-r-10">Pytania i odpowiedzi</b><i class="fas fa-book-open fa-2x"></i></a>-->
-<!--                </span><br>-->
-<!--            </div>-->
+            <div>
+                <a type="button" class="btn main-page-button button2" href="{% url 'main:kayaks' %}">
+                    <span class="m-t-50">2. Zobacz KAJAKI</span></a>
+            </div>
+            <div>
+                <a type="button" class="main-page-button button4" href="{% url 'main:choose_date' %}">
+                    <span class="m-t-50">3. Zarezewuj KAJAKI</span></a>
+            </div>
+        {% else %}
+            <div class="m-t-50">
+                <a type="button" class="btn main-page-button button1" href="{% url 'main:route' %}">
+                    <span class="m-t-50">1. Nasze TRASY</span></a>
+            </div>
 
-<!--        </div>-->
+            <div>
+                <a type="button" class="btn main-page-button button2" href="{% url 'main:kayaks' %}">
+                    <span class="m-t-50">2. Zobacz KAJAKI</span></a>
+            </div>
 
-        <div class="m-t-50">
-            <a type="button" class="btn main-page-button button1" href="{% url 'main:route' %}">
-                <span class="m-t-50">Nasze TRASY</span></a>
-        </div>
+            <div>
+                <a type="button" class="btn main-page-button button3" href="{% url 'registration:sign_up' %}">
+                    <span class="m-t-50">3. Załóż KONTO</span>
+                    </a>
+            </div>
 
-        <div>
-            <a type="button" class="btn main-page-button button2" href="{% url 'main:kayaks' %}">
-                <span class="m-t-50">Zobacz KAJAKI</span></a>
-        </div>
-
-        <div>
-            <a type="button" class="btn main-page-button button3" href="{% url 'registration:sign_up' %}">
-                <span class="m-t-50">Załóż KONTO</span>
-                </a>
-        </div>
-
-        <div>
-            <a type="button" class="main-page-button button4" href="{% url 'main:choose_date' %}">
-                <span class="m-t-50">Zarezewuj KAJAKI</span></a>
-        </div>
+            <div>
+                <a type="button" class="main-page-button button4" href="{% url 'main:choose_date' %}">
+                    <span class="m-t-50">4. Zarezewuj KAJAKI</span></a>
+            </div>
+        {% endif %}
 
         <div  class="m-b-40 m-t-40 main-price-list">
             Zobacz CENNIK <i class="fas fa-long-arrow-alt-right m-l-10" style="color: #fb8c00"></i>

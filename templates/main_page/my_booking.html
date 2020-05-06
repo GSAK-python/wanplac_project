@@ -34,7 +34,12 @@
 			{% for booking in union %}
 
 				<div class="container-login100-form-btn m-b-10">
-					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">{{ booking.exact_time}}</button>
+					<button  type="button" class="login100-form-btn" style="text-transform : capitalize" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
+						{% for date in date %}
+							{% if date.id == booking.booking_date_id%}
+								{{ date.booking_date }}
+							{% endif %}
+						{% endfor %} - godz. {{ booking.time }}</button>
 				</div>
 				<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
 					<div class="m-b-50 m-t-20">
