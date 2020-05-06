@@ -35,6 +35,7 @@ class CustomFormSet(BaseInlineFormSet):
                 raise forms.ValidationError('Ilość wybranych kajaków nie może być równa 0.')
             if quantity > kayak.store:
                 raise forms.ValidationError('Ilość wybranych kajaków ({}) nie może być większa od ilości dostępnych kajaków ({}).'.format(quantity, kayak.store))
+            kayak_list.append(kayak.name)
         if len(set(kayak_list)) != len(kayak_list):
             raise forms.ValidationError('Taki sam rodzaj kajaka w więcej niż jednym wierszu')
 
