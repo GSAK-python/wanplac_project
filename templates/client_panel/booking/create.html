@@ -23,6 +23,13 @@
 				<span class="login100-form-title p-b-51 p-t-40">
 					Zarezerwuj kajak
 				</span>
+				{% if form.errors %}
+					{% for key, value in form.errors.items %}
+						<div class="input100 text-danger m-b-5" style="text-align:center">
+							{{ value }}
+						</div>
+					{% endfor %}
+				{% endif %}
 				{% if form.non_field_errors %}
 					<div class="input100 text-danger m-b-5" style="text-align:center">
 						{{ form.non_field_errors }}

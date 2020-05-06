@@ -1,6 +1,7 @@
 import datetime
 from celery.contrib import rdb
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 
 from app2.code_generator import random_string
@@ -83,7 +84,8 @@ class Booking(models.Model):
                                      default='')
     user = models.ForeignKey(User, related_name='user_app2', null=True, on_delete=models.SET_NULL)
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=13)
+    alphanumeric = RegexValidator('^[0-9]*$', message='Numer telefonu może zawierać tylko cyfry.')
+    phone = models.CharField(max_length=13, validators=[alphanumeric])
     email = models.EmailField()
     exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     code = models.CharField(max_length=32, default=random_string)
