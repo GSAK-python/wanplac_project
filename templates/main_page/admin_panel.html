@@ -82,6 +82,8 @@
 													<i class="m-l-10 fas fa-ellipsis-h fa-3x" style="color: orange"></i>
 												{% elif booking.active is False and current_time > change_booking_state %}
 													<i class="m-l-10 far fa-times-circle fa-3x" style="color:red"></i>
+												{% elif booking.active is False and booking.exact_time|time:"H:i" > change_booking_state %}
+													<i class="m-l-10 fas fa-ellipsis-h fa-3x" style="color: orange"></i>
 												{% endif %}
 											</button>
 										</div>

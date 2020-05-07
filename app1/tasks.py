@@ -52,27 +52,58 @@ def return_kayak_store():
 
 
 @shared_task
-def is_booking_active():
+def is_booking_active_before_day():
+    """
+    For booking that where made atleast day before today or same day to 8 a.m
+    booking has to be confirmed to 9 a.m.
+    :return: - return 3 lists - first with active booking, second with booking waiting for activations, third with faileure booking
+    - max_booking_confirmation_time - max time booking can be confirmed
+    - threshold_time - if booking is made this day until time value from threshold_time it will be confirmed in this function
+    """
     # rdb.set_trace()
-    booking_list = Booking.objects.all()
+    booking_list = Booking.objects.filter(booking_date__booking_date=datetime.datetime.now().date())
     term_kayaks = TermKayaks.objects.all()
-    active_booking = []
-    inactive_booking = []
-    expired_booking = []
+    active_booking_before_9 = []
+    inactive_booking_before_9 = []
+    expired_booking_before_9 = []
+    today = datetime.datetime.now().date()
+    max_booking_confirmation_time = datetime.time(9)
+    current_time = datetime.datetime.now().time()
+    threshold_time = datetime.time(8)
+    for booking in booking_list:
+        if booking.exact_time.time() < threshold_time and booking.exact_time.date() <= today:
+            if booking.active is True:
+                active_booking_before_9.append('Rezerwacja {} ACTIVE'.format(booking.code))
+            else:
+                if current_time <= max_booking_confirmation_time:
+                    inactive_booking_before_9.append(
+                        'Rezerwacja {} INACTIVE'.format(booking.code))
+                if current_time > max_booking_confirmation_time:
+                    for detail in term_kayaks:
+                        if detail.booking.active is False and booking.id == detail.booking_id:
+                            detail.kayak.store += detail.quantity
+                            detail.kayak.save()
+                            expired_booking_before_9.append(
+                                'Dodano {} sztuk {} do stanu z zamówienia {}'.format(detail.quantity,
+                                                                                     detail.kayak.name,
+                                                                                     detail.booking.code))
+
+    return list(dict.fromkeys(active_booking_before_9)), list(
+        dict.fromkeys(inactive_booking_before_9)), expired_booking_before_9
+
+
+@shared_task
+def is_booking_active_this_day():
+    booking_list = Booking.objects.all(booking_date=datetime.datetime.now().date())
+    term_kayaks = TermKayaks.objects.all()
+    active_booking_after_9 = []
+    inactive_booking_after_9 = []
+    expired_booking_after_9 = []
     change_time = datetime.time(14, 57)
     current_time = datetime.datetime.now().time()
+    current_day = datetime.datetime.now().date()
     for booking in booking_list:
-        if booking.active is True:
-            active_booking.append('Rezerwacja {} została potwierdzona'.format(booking.code))
-        else:
-            if current_time <= change_time:
-                inactive_booking.append('Rezerwacja {} nie została jeszcze potwierdzona'.format(booking.code))
-            if current_time > change_time:
-                for detail in term_kayaks:
-                    if detail.booking.active is False and booking.id == detail.booking_id:
-                        detail.kayak.store += detail.quantity
-                        detail.kayak.save()
-                        expired_booking.append('Dodano {} sztuk {} do stanu z zamówienia {}'.format(detail.quantity, detail.kayak.name, detail.booking.code))
-
-    return list(dict.fromkeys(active_booking)), list(dict.fromkeys(inactive_booking)), expired_booking
-
+        if booking.exact_time == current_day and booking.booking_date == current_day:
+            if current_time > datetime.time(9, 15):
+                if booking.active is True:
+                    active_booking_after_9.append('Rezerwacja {} została potwierdzona'.format(booking.code))
