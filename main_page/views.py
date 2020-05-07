@@ -195,4 +195,6 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
         context['app2_current_kayak'] = app2.models.Kayak.objects.all().order_by('id')
         context['client_panel_current_day'] = client_panel.models.BookingDate.objects.latest('booking_date')
         context['client_panel_current_kayak'] = client_panel.models.Kayak.objects.all().order_by('id')
+        context['change_booking_state'] = datetime.time(14, 57)
+        context['current_time'] = datetime.datetime.now().time()
         return context

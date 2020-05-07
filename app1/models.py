@@ -85,6 +85,7 @@ class Booking(models.Model):
     email = models.EmailField()
     exact_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     code = models.CharField(max_length=32, default=random_string)
+    active = models.BooleanField(default=False)
 
     def __str__(self):
         return 'Rezerwacja: {} {}, {}, {} Godzina {}'.format(self.first_name,

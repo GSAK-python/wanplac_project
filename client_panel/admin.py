@@ -8,7 +8,7 @@ class BookingTermKayakInLine(admin.TabularInline):
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'code', 'first_name', 'last_name', 'user', 'route', 'booking_date', 'time', 'phone', 'email', 'exact_time']
+    list_display = ['id', 'code', 'active', 'first_name', 'last_name', 'user', 'route', 'booking_date', 'time', 'phone', 'email', 'exact_time']
     inlines = [BookingTermKayakInLine]
 
 

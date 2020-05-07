@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
-from app1.models import DateList, Kayak, BookingDate
+from app1.models import DateList, Kayak, BookingDate, Booking, TermKayaks
 
 
 @shared_task
@@ -49,3 +49,30 @@ def return_kayak_store():
                 kayak.available = True
                 kayak.save()
             return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
+
+
+@shared_task
+def is_booking_active():
+    # rdb.set_trace()
+    booking_list = Booking.objects.all()
+    term_kayaks = TermKayaks.objects.all()
+    active_booking = []
+    inactive_booking = []
+    expired_booking = []
+    change_time = datetime.time(14, 57)
+    current_time = datetime.datetime.now().time()
+    for booking in booking_list:
+        if booking.active is True:
+            active_booking.append('Rezerwacja {} została potwierdzona'.format(booking.code))
+        else:
+            if current_time <= change_time:
+                inactive_booking.append('Rezerwacja {} nie została jeszcze potwierdzona'.format(booking.code))
+            if current_time > change_time:
+                for detail in term_kayaks:
+                    if detail.booking.active is False and booking.id == detail.booking_id:
+                        detail.kayak.store += detail.quantity
+                        detail.kayak.save()
+                        expired_booking.append('Dodano {} sztuk {} do stanu z zamówienia {}'.format(detail.quantity, detail.kayak.name, detail.booking.code))
+
+    return list(dict.fromkeys(active_booking)), list(dict.fromkeys(inactive_booking)), expired_booking
+
