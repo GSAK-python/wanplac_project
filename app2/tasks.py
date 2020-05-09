@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
-from app2.models import DateList, Kayak, BookingDate
+from app2.models import DateList, Kayak, BookingDate, Booking, TermKayaks
 
 
 @shared_task
@@ -49,6 +49,39 @@ def return_kayak_store():
                 kayak.available = True
                 kayak.save()
             return 'LICZBA KAJAKOW ZOSTALA UZUPELNIONA'
+
+
+@shared_task
+def is_booking_active_this_day():
+    rdb.set_trace()
+    booking_list = Booking.objects.all()
+    term_kayaks = TermKayaks.objects.all()
+    active_booking_after_9 = []
+    inactive_booking_after_9 = []
+    expired_booking_after_9 = []
+    change_time = datetime.time(9, 15)
+    current_time = datetime.datetime.now().time()
+    current_day = datetime.datetime.now().date()
+    for booking in booking_list:
+        max_booking_confirm_time = booking.exact_time + datetime.timedelta(hours=1)
+        if booking.exact_time.date() == current_day:
+            if booking.exact_time.time() > change_time:
+                if booking.active is True:
+                    active_booking_after_9.append('Rezerwacja {} ACTIVE'.format(booking.code))
+                elif booking.active is False and current_time < max_booking_confirm_time:
+                    inactive_booking_after_9.append('Rezerwacja {} WAITING FOR ACTIVE'.format(booking.code))
+                elif booking.active is False and current_time >= max_booking_confirm_time:
+                    for detail in term_kayaks:
+                        if detail.booking.active is False and booking.id == detail.booking_id:
+                            detail.kayak.store += detail.quantity
+                            detail.kayak.save()
+                            expired_booking_after_9.append(
+                                'Dodano {} sztuk {} do stanu z zamówienia {}'.format(detail.quantity,
+                                                                                     detail.kayak.name,
+                                                                                     detail.booking.code))
+
+    return list(dict.fromkeys(active_booking_after_9)), list(
+        dict.fromkeys(inactive_booking_after_9)), expired_booking_after_9
 
 """
 celery -A wanplac_project  worker --loglevel=info -P solo

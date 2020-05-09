@@ -75,18 +75,15 @@
 										<div class="m-b-10">
 											<button  type="button" class="admin-panel-booking-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
 												<i class="fas fa-chevron-right m-r-15 fa-2x" style="color: #3366ff"></i>
-												{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }}
+												{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }} ({{ booking.exact_time }})
 												{% if booking.active is True %}
 													<i class="m-l-10 far fa-check-circle fa-3x" style="color:green"></i>
-												{% elif booking.active is False and current_time < change_booking_state %}
-													<i class="m-l-10 fas fa-ellipsis-h fa-3x" style="color: orange"></i>
 												{% elif booking.active is False and current_time > change_booking_state %}
 													<i class="m-l-10 far fa-times-circle fa-3x" style="color:red"></i>
-												{% elif booking.active is False and booking.exact_time|time:"H:i" > change_booking_state %}
-													<i class="m-l-10 fas fa-ellipsis-h fa-3x" style="color: orange"></i>
 												{% endif %}
 											</button>
 										</div>
+
 										<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
 											<div class="m-b-50 m-t-20">
 												<div class="row" style="height: 35px">
