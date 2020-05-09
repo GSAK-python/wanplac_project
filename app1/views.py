@@ -46,6 +46,9 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
 
             if kayak_set.is_valid():
                 booking_form = form.save()
+                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12):
+                    booking_form.active = True
+                    booking_form.save()
                 kayak_set.instance = booking_form
                 kayak_set.save()
                 for detail in kayak_set.instance.app1_term_bookings.all():
