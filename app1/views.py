@@ -126,6 +126,9 @@ class BookingConfirmationView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(BookingConfirmationView, self).get_context_data(**kwargs)
         context['booking'] = Booking.objects.filter(user=self.request.user).latest('id')
+        context['current_time'] = datetime.datetime.now().time()
+        context['threshold_time'] = datetime.time(7)
+        context['max_booking_confirm_time'] = datetime.time(9)
         return context
 
     def get_object(self, queryset=None):
