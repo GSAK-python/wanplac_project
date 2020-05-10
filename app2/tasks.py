@@ -2,6 +2,7 @@ from __future__ import absolute_import, unicode_literals
 from celery import shared_task
 from celery.contrib import rdb
 import datetime
+from datetime import timedelta
 from app2.models import DateList, Kayak, BookingDate, Booking, TermKayaks
 
 
@@ -53,24 +54,24 @@ def return_kayak_store():
 
 @shared_task
 def is_booking_active_this_day():
-    rdb.set_trace()
+    # rdb.set_trace()
     booking_list = Booking.objects.all()
     term_kayaks = TermKayaks.objects.all()
     active_booking_after_9 = []
     inactive_booking_after_9 = []
     expired_booking_after_9 = []
-    change_time = datetime.time(9, 15)
+    threshold_time = datetime.time(7)
     current_time = datetime.datetime.now().time()
     current_day = datetime.datetime.now().date()
     for booking in booking_list:
-        max_booking_confirm_time = booking.exact_time + datetime.timedelta(hours=1)
+        max_booking_confirm_time = booking.exact_time + timedelta(hours=1)
         if booking.exact_time.date() == current_day:
-            if booking.exact_time.time() > change_time:
+            if booking.exact_time.time() > threshold_time:
                 if booking.active is True:
                     active_booking_after_9.append('Rezerwacja {} ACTIVE'.format(booking.code))
-                elif booking.active is False and current_time < max_booking_confirm_time:
+                elif booking.active is False and current_time < max_booking_confirm_time.time():
                     inactive_booking_after_9.append('Rezerwacja {} WAITING FOR ACTIVE'.format(booking.code))
-                elif booking.active is False and current_time >= max_booking_confirm_time:
+                elif booking.active is False and current_time >= max_booking_confirm_time.time():
                     for detail in term_kayaks:
                         if detail.booking.active is False and booking.id == detail.booking_id:
                             detail.kayak.store += detail.quantity

@@ -106,10 +106,10 @@ def is_booking_active_this_day():
     expired_booking_after_9 = []
     threshold_time = datetime.time(7)
     current_time = datetime.datetime.now().time()
-    current_day = datetime.datetime.now().date() + datetime.timedelta(days=1)  # + 1 dzien , tylko dla wygody testow
+    current_day = datetime.datetime.now().date()
     for booking in booking_list:
         max_booking_confirm_time = booking.exact_time + timedelta(hours=1)
-        if booking.exact_time.date() + datetime.timedelta(days=1) == current_day:  # + 1 dzien , tylko dla wygody testow
+        if booking.exact_time.date() == current_day:
             if booking.exact_time.time() > threshold_time:
                 if booking.active is True:
                     active_booking_after_9.append('Rezerwacja {} ACTIVE'.format(booking.code))
