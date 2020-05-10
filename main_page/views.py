@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DeleteView
+from django.views.generic import TemplateView, ListView, DeleteView, UpdateView
 import app1
 import app2
 import client_panel
@@ -171,6 +171,7 @@ class PrivacyPolicyView(TemplateView):
 
 class AdminPanelView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/admin_panel.html'
+
     # queryset = app1.models.Booking.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -185,10 +186,9 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
         my_date_app2 = app2.models.BookingDate.objects.all()
         my_date_client_panel = client_panel.models.BookingDate.objects.all()
         union = my_booking_app1.union(my_booking_app2, my_booking_client_panel)
-        context['union'] = union
+        context['union'] = union.order_by('-exact_time')
         context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel).order_by('-booking_date')
-        context['app1'] = client_panel.models.Booking.objects.all()
         context['app1_current_day'] = app1.models.BookingDate.objects.latest('booking_date')
         context['app1_current_kayak'] = app1.models.Kayak.objects.all().order_by('id')
         context['app2_current_day'] = app2.models.BookingDate.objects.latest('booking_date')
@@ -198,3 +198,7 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
         context['change_booking_state'] = datetime.time(9)
         context['current_time'] = datetime.datetime.now().time()
         return context
+
+
+class BookingSuccessfulConfirmationView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_page/booking_successful.html'

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Potwierdź {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+
+<div class="container-login100 flex-sb flex-w" style="min-height: 75vh">
+    <div class="row login100-form" style="width:600px">
+
+        <div class="input100" style="text-align: center; font-size: 20px">
+            Numer zamówienia: {{ booking.code}}
+        </div>
+
+        <form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
+				{% csrf_token %}
+
+            <div>
+                <div class="input100 m-b-25" style="width: 600px; text-align:left">
+                    {{ form.code|add_class:"input100"|attr:"type:text"}}
+                    <span class="focus-input100 border"></span>
+                </div>
+            </div>
+
+            <div>
+                <span class="active-span m-b-20">Zaznacz aby aktywować</span>
+                <div>
+                    <div class="m-b-25">
+                        {{ form.active|add_class:"active-button"|attr:"type:checkbox"}}
+                        <span class="focus-input100 border"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-login100-form-btn m-t-17">
+                <button class="login100-form-btn" onclick="clicked(event)">
+                    Potwierdź rezerwację
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

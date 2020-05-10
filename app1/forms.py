@@ -6,6 +6,12 @@ from app1.models import Booking, TermKayaks
 from wanplac_project import settings
 
 
+class BookingConfirmForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['active', 'code']
+
+
 class BookingCreateForm(forms.ModelForm):
 
     class Meta:

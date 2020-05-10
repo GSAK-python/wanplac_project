@@ -242,3 +242,35 @@ a {
     background-color: #e0e0e0;
     color: #black;
     }
+
+.active-button {
+    font-family: Ubuntu-Bold;
+    color: #403866;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100px;
+    background: transparent;
+    height: 62px;
+    padding: 0 20px 0 38px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active-span {
+    font-family: Ubuntu-Bold;
+    color: #403866;
+    line-height: 1.2;
+    font-size: 30px;
+    display: block;
+    width: 100px;
+    background: transparent;
+    height: 62px;
+    padding: 0 20px 0 38px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    padding: 0px;
+    text-align: center;
+    width: 600px;
+}

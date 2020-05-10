@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
 from django.views.generic import CreateView, UpdateView
-from app1.forms import BookingCreateForm, TermKayaksFormSet
+from app1.forms import BookingCreateForm, TermKayaksFormSet, BookingConfirmForm
 from app1.models import Booking, TermKayaks
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
@@ -58,7 +58,8 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
                     detail.kayak.save()
 
                 subject, from_email, to = 'Rezerwacja kajaków - Wan-Plac Krutyń', 'gsak.python@gmail.com', self.request.user.email
-                html_content = render_to_string('booking_email.html', {'detail': detail, 'kayak': kayak_set.instance.app1_term_bookings.all()})
+                html_content = render_to_string('booking_email.html', {'detail': detail,
+                                                                       'kayak': kayak_set.instance.app1_term_bookings.all()})
                 text_content = strip_tags(html_content)
                 msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                 msg.attach_alternative(html_content, "text/html")
@@ -84,7 +85,8 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
         # data['current_time'] = datetime.datetime.now().time()
         # data['start_break'] = datetime.time(12)
         # data['stop_break'] = datetime.time(12, 30)
-        data['kayak_set'] = TermKayaksFormSet(queryset=TermKayaks.objects.filter(booking_id=self.get_object().id), prefix='kayak_set')
+        data['kayak_set'] = TermKayaksFormSet(queryset=TermKayaks.objects.filter(booking_id=self.get_object().id),
+                                              prefix='kayak_set')
 
         return data
 
@@ -115,3 +117,17 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
 
         return super(BookingUpdateView, self).form_invalid(form)
 
+
+class BookingConfirmationView(LoginRequiredMixin, UpdateView):
+    template_name = 'app1/booking/booking_confirmation.html'
+    form_class = BookingConfirmForm
+    success_url = reverse_lazy('main:thanks')
+
+    def get_context_data(self, **kwargs):
+        context = super(BookingConfirmationView, self).get_context_data(**kwargs)
+        context['booking'] = Booking.objects.filter(user=self.request.user).latest('id')
+        return context
+
+    def get_object(self, queryset=None):
+        booking = Booking.objects.filter(user=self.request.user).latest('id')
+        return booking
