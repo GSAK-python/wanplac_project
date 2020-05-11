@@ -89,5 +89,9 @@ class SignUpCreateForm(UserCreationForm):
             'username': '150 znaków lub mniej. Litery, cyfry oraz @/./+/-/_ ',
         }
 
+class BookingConfirmForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['active', 'code']
 
 

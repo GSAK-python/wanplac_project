@@ -50,3 +50,9 @@ TermKayaksFormSet = inlineformset_factory(
     Booking, TermKayaks, form=TermKayaksForm, formset=CustomFormSet,
     fields=['kayak', 'quantity'], extra=1, can_delete=True, max_num=5, validate_max=True
 )
+
+
+class BookingConfirmForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['active', 'code']

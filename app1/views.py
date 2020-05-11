@@ -119,13 +119,13 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class App1BookingConfirmationView(LoginRequiredMixin, UpdateView):
-    template_name = 'main_page/booking_confirmation.html'
+    template_name = 'app1/booking/booking_confirmation.html'
     form_class = BookingConfirmForm
     success_url = reverse_lazy('main:thanks')
 
     def get_context_data(self, **kwargs):
         context = super(App1BookingConfirmationView, self).get_context_data(**kwargs)
-        context['booking'] = Booking.objects.filter(user=self.request.user).latest('id')
+        context['app1_booking'] = Booking.objects.filter(user=self.request.user).latest('id')
         context['current_time'] = datetime.datetime.now().time()
         context['threshold_time'] = datetime.time(7)
         context['max_booking_confirm_time'] = datetime.time(9)

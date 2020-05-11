@@ -7,8 +7,9 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
-from django.views.generic import CreateView
-from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm
+from django.views.generic import CreateView, UpdateView
+from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm, \
+    BookingConfirmForm
 from client_panel.models import Booking
 
 
@@ -95,5 +96,23 @@ class SignUpCreateView(CreateView):
         msg.attach_alternative(html_content, "text/html")
         msg.send()
         return super(SignUpCreateView, self).form_valid(form)
+
+
+class CPBookingConfirmationView(LoginRequiredMixin, UpdateView):
+    template_name = 'client_panel/booking/booking_confirmation.html'
+    form_class = BookingConfirmForm
+    success_url = reverse_lazy('main:thanks')
+
+    def get_context_data(self, **kwargs):
+        context = super(CPBookingConfirmationView, self).get_context_data(**kwargs)
+        context['cp_booking'] = Booking.objects.filter(user=self.request.user).latest('id')
+        context['current_time'] = datetime.datetime.now().time()
+        context['threshold_time'] = datetime.time(7)
+        context['max_booking_confirm_time'] = datetime.time(9)
+        return context
+
+    def get_object(self, queryset=None):
+        booking = Booking.objects.filter(user=self.request.user).latest('id')
+        return booking
 
 

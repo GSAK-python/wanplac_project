@@ -1,10 +1,11 @@
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView, LogoutView
 from django.urls import path, include, reverse_lazy
-from client_panel.views import BookingCreateView, SignUpCreateView, Login
+from client_panel.views import BookingCreateView, SignUpCreateView, Login, CPBookingConfirmationView
 
 booking_patterns = ([
                         path('create/', BookingCreateView.as_view(), name='create'),
+                        path('confirm/', CPBookingConfirmationView.as_view(), name='confirm'),
                     ], 'booking')
 
 

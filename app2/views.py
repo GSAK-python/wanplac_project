@@ -6,8 +6,8 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
-from django.views.generic import CreateView
-from app2.forms import BookingCreateForm, TermKayaksFormSet
+from django.views.generic import CreateView, UpdateView
+from app2.forms import BookingCreateForm, TermKayaksFormSet, BookingConfirmForm
 from app2.models import Booking
 
 
@@ -65,3 +65,21 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
                 return super(BookingCreateView, self).form_valid(form)
 
         return super(BookingCreateView, self).form_invalid(form)
+
+
+class App2BookingConfirmationView(LoginRequiredMixin, UpdateView):
+    template_name = 'app2/booking/booking_confirmation.html'
+    form_class = BookingConfirmForm
+    success_url = reverse_lazy('main:thanks')
+
+    def get_context_data(self, **kwargs):
+        context = super(App2BookingConfirmationView, self).get_context_data(**kwargs)
+        context['app2_booking'] = Booking.objects.filter(user=self.request.user).latest('id')
+        context['current_time'] = datetime.datetime.now().time()
+        context['threshold_time'] = datetime.time(7)
+        context['max_booking_confirm_time'] = datetime.time(9)
+        return context
+
+    def get_object(self, queryset=None):
+        booking = Booking.objects.filter(user=self.request.user).latest('id')
+        return booking
