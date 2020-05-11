@@ -14,30 +14,34 @@
     <div class="row login100-form" style="width:600px">
 
 
-        {% if booking.active is False and threshold_time < current_time < max_booking_confirm_time %}
-
-            <div class="input100" style="text-align: center; font-size: 20px">
-                Numer zamówienia: {{ booking.code}}
-            </div>
+        {% if booking.active is False and current_time < max_booking_confirm_time %}
 
             <form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
-                    {% csrf_token %}
+                {% csrf_token %}
 
-                <div>
-                    <div class="input100 m-b-25" style="width: 600px; text-align:left">
-                        {{ form.code|add_class:"input100"|attr:"type:text"}}
-                        <span class="focus-input100 border"></span>
-                    </div>
+                {% if form.non_field_errors %}
+					<div class="input100 text-danger m-b-5" style="text-align:center">
+						{{ form.non_field_errors }}
+					</div>
+				{% endif %}
+
+                <div class="m-b-25" style="text-align:center">
+                    {{ form.code}}
+                    <span class="focus-input100 border"></span>
                 </div>
 
                 <div>
-                    <span class="active-span m-b-20">Zaznacz aby aktywować</span>
+                    <span class="active-span m-b-20">Zaznacz aby aktywować rezerwacje</span>
                     <div>
-                        <div class="m-b-25">
+                        <div class="active-butto m-b-25">
                             {{ form.active|add_class:"active-button"|attr:"type:checkbox"}}
                             <span class="focus-input100 border"></span>
                         </div>
                     </div>
+                </div>
+
+                <div class="input100" style="text-align: center; font-size: 20px">
+                    Numer zamówienia: {{ booking.code}}
                 </div>
 
                 <div class="container-login100-form-btn m-t-17">

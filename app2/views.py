@@ -3,6 +3,7 @@ from celery.contrib import rdb
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
@@ -71,6 +72,7 @@ class App2BookingConfirmationView(LoginRequiredMixin, UpdateView):
     template_name = 'app2/booking/booking_confirmation.html'
     form_class = BookingConfirmForm
     success_url = reverse_lazy('main:thanks')
+    model = Booking
 
     def get_context_data(self, **kwargs):
         context = super(App2BookingConfirmationView, self).get_context_data(**kwargs)
@@ -83,3 +85,6 @@ class App2BookingConfirmationView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         booking = Booking.objects.filter(user=self.request.user).latest('id')
         return booking
+
+
+

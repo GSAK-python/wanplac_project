@@ -11,6 +11,12 @@ class BookingConfirmForm(forms.ModelForm):
         model = Booking
         fields = ['active', 'code']
 
+    def clean(self):
+        super(BookingConfirmForm, self).clean()
+        active = self.cleaned_data['active']
+        if active is False:
+            raise forms.ValidationError('Zaznacz aby aktywować rezerwacje.')
+
 
 class BookingCreateForm(forms.ModelForm):
 

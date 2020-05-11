@@ -89,9 +89,16 @@ class SignUpCreateForm(UserCreationForm):
             'username': '150 znaków lub mniej. Litery, cyfry oraz @/./+/-/_ ',
         }
 
+
 class BookingConfirmForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ['active', 'code']
+
+    def clean(self):
+        super(BookingConfirmForm, self).clean()
+        active = self.cleaned_data['active']
+        if active is False:
+            raise forms.ValidationError('Zaznacz aby aktywować rezerwacje.')
 
 

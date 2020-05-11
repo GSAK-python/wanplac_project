@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils import formats
 from django.views.generic import TemplateView, ListView, DeleteView, UpdateView
 import app1
 import app2
@@ -117,6 +118,10 @@ class BookingListView(LoginRequiredMixin, ListView):
         context['union'] = union
         context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
+        context['current_day'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
+        context['app1_date'] = my_date_app1.latest('id')
+        context['app2_date'] = my_date_app2.latest('id')
+        context['cp_date'] = my_date_client_panel.latest('id')
         return context
 
 
