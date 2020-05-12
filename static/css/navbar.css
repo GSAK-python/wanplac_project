@@ -48,8 +48,8 @@ a {
 
 .footer-pos {
     background-color: #fff;
-    position: sticky;
-    position: -webkit-sticky;
+    width: 100%;
+    position: fixed;
     bottom: 0;
 }
 
