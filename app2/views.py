@@ -82,6 +82,7 @@ class App2BookingConfirmationView(LoginRequiredMixin, UpdateView):
         context['current_time'] = datetime.datetime.now().time()
         context['threshold_time'] = datetime.time(7)
         context['max_booking_confirm_time'] = datetime.time(9)
+        context['booking_cancel_info'] = datetime.time(12, 30)
         return context
 
     def get_object(self, queryset=None):
