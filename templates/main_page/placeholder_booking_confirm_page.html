@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Strona główna {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+<div class="limiter">
+
+    <div class="">
+		<a class="quick-btn" href="{% url 'main:my_booking' %}" style="width: 100%; font-size: 20px">
+			Przejdź do Moje zamówienia</a>
+	</div>
+
+	<div class="container-login100 flex-sb flex-w" style="min-height: 75vh">
+		<div class="row login100-form" style="width:600px; padding: 15px; min-height: 60vh">
+			{% csrf_token %}
+
+            <span class="active-span m-b-20">Potwierdzenie rezerwacji aktywne od
+                <span style="color:red">7:00</span>
+                do
+                <span style="color:red">9:00</span> w dniu spływu.
+            </span>
+
+		</div>
+	</div>
+</div>
+
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

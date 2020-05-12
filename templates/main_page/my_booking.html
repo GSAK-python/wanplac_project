@@ -33,6 +33,11 @@
 						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 25px">
 							Potwierdź aktualne zamówienie</a>
 					</div>
+				{% else %}
+					<div class="">
+						<a class="quick-btn-confirm" href="{% url 'main:confirm' %}" style="width: 100%; font-size: 25px">
+							Potwierdź aktualne zamówienie</a>
+					</div>
 				{% endif %}
 			{% endif %}
 
@@ -73,6 +78,31 @@
 								</div>
 								<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
 									{{ booking.code }}
+								</div>
+							</div>
+							<div class="row" style="height: 35px">
+								<div class="input100 col-sm-6" style="color: black">
+									Status rezerwacji:
+								</div>
+								<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+
+									{% if booking.booking_date == current_day %}
+
+										{% if booking.active is False and current_time <= max_booking_confirm_time %}
+											<div style="color: orange"><b>Niepotwierdzona</b></div>
+										{% elif booking.active is False and current_time > max_booking_confirm_time %}
+											<div style="color: red"><b>Anulowana</b></div>
+										{% elif booking.active is True %}
+											<div style="color: green"><b>Potwierdzona</b></div>
+										{% endif %}
+
+									{% elif booking.booking_date != current_day %}
+
+										{% if booking.active is False %}
+											<div style="color: orange"><b>Niepotwierdzona</b></div>
+										{% endif %}
+
+									{% endif %}
 								</div>
 							</div>
 							<div class="row" style="height: 35px">

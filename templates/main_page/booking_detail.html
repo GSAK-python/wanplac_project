@@ -27,7 +27,7 @@
 				<span class="login100-form-title p-b-30" style="font-size: 20px; text-align: left; color: red">
 					UWAGA! WAŻNE!
 				</span>
-				<span class="m-b-30" style="text-align: justify"><b>Pamiętaj aby potwierdzić swoją rezerwację!</b></span>
+				<span class="m-b-30" style="text-align: justify; color: red"><b>Pamiętaj aby potwierdzić swoją rezerwację!</b></span>
 
 				<span class="m-b-15" style="text-align:justify"><i class="fas fa-arrow-circle-right" style="color: green"></i>
 					Jeśli zamawiasz z conajmniej jednodniowym wyprzedzeniem - wykonaj potwierdzenie w <b>dzień spływu</b>
@@ -53,9 +53,14 @@
 						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 25px">
 							Potwierdź aktualne zamówienie</a>
 					</div>
+				{% else %}
+					<div class="">
+						<a class="quick-btn-confirm" href="{% url 'main:confirm' %}" style="width: 100%; font-size: 25px">
+							Potwierdź aktualne zamówienie</a>
+					</div>
 				{% endif %}
 
-				<span class="m-b-5 m-t-20" style="text-align: justify">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
+				<span class="m-b-5 m-t-20" style="text-align: justify">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Tobą pod podany w
 												formularzu numer telefonu w celu weryfikacji rezerwacji.</span>
 
 

@@ -123,6 +123,8 @@ class BookingListView(LoginRequiredMixin, ListView):
         context['app1_date'] = my_date_app1.latest('id')
         context['app2_date'] = my_date_app2.latest('id')
         context['cp_date'] = my_date_client_panel.latest('id')
+        context['current_time'] = datetime.datetime.now().time()
+        context['max_booking_confirm_time'] = datetime.time(9, 30)
         return context
 
 
@@ -212,3 +214,7 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
 
 class BookingSuccessfulConfirmationView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/booking_successful.html'
+
+
+class BookingPlaceHolderView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_page/placeholder_booking_confirm_page.html'
