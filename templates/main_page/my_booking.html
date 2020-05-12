@@ -48,10 +48,8 @@
 			<span class="login100-form-title p-b-51">
 				Moje zamówienia
 			</span>
-
 			{% language 'pl' %}
 			{% for booking in union %}
-
 				<div class="container-login100-form-btn m-b-10">
 					<button  type="button" class="login100-form-btn" style="text-transform : capitalize" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
 						{% for date in date %}
@@ -85,24 +83,37 @@
 									Status rezerwacji:
 								</div>
 								<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+									{% for date in date %}
 
-									{% if booking.booking_date == current_day %}
+										{% if date.id == booking.booking_date_id %}
 
-										{% if booking.active is False and current_time <= max_booking_confirm_time %}
-											<div style="color: orange"><b>Niepotwierdzona</b></div>
-										{% elif booking.active is False and current_time > max_booking_confirm_time %}
-											<div style="color: red"><b>Anulowana</b></div>
-										{% elif booking.active is True %}
-											<div style="color: green"><b>Potwierdzona</b></div>
+											{% if date.booking_date == current_day %}
+
+												{% if booking.active is False and current_time <= max_booking_confirm_time %}
+													<div style="color: orange"><b>Niepotwierdzona</b></div>
+												{% elif booking.active is False and current_time > max_booking_confirm_time %}
+													<div style="color: red"><b>Anulowana</b></div>
+												{% elif booking.active is True %}
+													<div style="color: green"><b>Potwierdzona</b></div>
+												{% endif %}
+
+											{% else %}
+
+												{% if booking.active is False and date.booking_date > current_day %}
+													<div style="color: orange"><b>Niepotwierdzona</b></div>
+												{% elif booking.active is False and date.booking_date < current_day %}
+													<div style="color: red"><b>Anulowana</b></div>
+												{% elif booking.active is True %}
+													<div style="color: green"><b>Potwierdzona</b></div>
+												{% endif %}
+
+											{% endif %}
+
 										{% endif %}
 
-									{% elif booking.booking_date != current_day %}
+									{% endfor %}
 
-										{% if booking.active is False %}
-											<div style="color: orange"><b>Niepotwierdzona</b></div>
-										{% endif %}
 
-									{% endif %}
 								</div>
 							</div>
 							<div class="row" style="height: 35px">

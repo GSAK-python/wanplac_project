@@ -8,7 +8,10 @@
 {% block body %}
 
 {% include "main_page/navbar.html" %}
-
+<div class="">
+    <a class="quick-btn" href="{% url 'main:my_booking' %}" style="width: 100%; font-size: 20px">
+        Przejdź do Moje zamówienia</a>
+</div>
 
 <div class="container-login100 flex-sb flex-w" style="min-height: 75vh">
     <div class="row login100-form" style="width:600px">
@@ -20,7 +23,7 @@
                 <span style="color:red">9:00</span> w dniu spływu
             </span>
 
-        {% elif booking.active is False and current_time < max_booking_confirm_time %}
+        {% elif booking.active is False and threshold_time < current_time < max_booking_confirm_time %}
 
             <form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
                 {% csrf_token %}
