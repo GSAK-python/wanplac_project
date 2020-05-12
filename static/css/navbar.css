@@ -274,3 +274,19 @@ a {
     text-align: center;
     width: 600px;
 }
+
+.quick-btn-confirm {
+    font-size: 17px;
+    font-family: Ubuntu-Bold;
+    width: 250px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    background-color: #fff;
+    border-color: #fff;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+}

@@ -27,141 +27,151 @@
 				<span class="login100-form-title p-b-30" style="font-size: 20px; text-align: left; color: red">
 					UWAGA! WAŻNE!
 				</span>
-			<span class="m-b-30" style="text-align: justify"><b>Pamiętaj aby potwierdzić swoją rezerwację!</b></span>
+				<span class="m-b-30" style="text-align: justify"><b>Pamiętaj aby potwierdzić swoją rezerwację!</b></span>
 
-			<span class="m-b-15" style="text-align:justify"><i class="fas fa-arrow-circle-right" style="color: green"></i>
-				Jeśli zamawiasz z conajmniej jednodniowym wyprzedzeniem - wykonaj potwierdzenie w <b>dzień spływu</b> do godziny <b>9.00</b>!</span>
+				<span class="m-b-15" style="text-align:justify"><i class="fas fa-arrow-circle-right" style="color: green"></i>
+					Jeśli zamawiasz z conajmniej jednodniowym wyprzedzeniem - wykonaj potwierdzenie w <b>dzień spływu</b>
+					od godziny <b>7:00</b> do godziny <b>9:00</b>!</span>
 
-			<span class="m-b-30" style="text-align:justify"><i class="fas fa-arrow-circle-right" style="color: green"></i>
-				Jeśli zamawiasz na dziś - wykonaj potwierdzenie na <b>godzinę</b> przed przyjazdem!</span>
+				<span class="m-b-30" style="text-align:justify"><i class="fas fa-arrow-circle-right" style="color: green"></i>
+					Jeśli zamawiasz na <b>dziś</b> - potwierdzenie nie jest wymagane.</span>
 
-			<span class="m-b-15"><b>Sposoby potwierdzenia rezerwacji (do wyboru):</b></span>
+				<span class="m-b-15" style="width: 100%"><b>Potwierdzenie rezerwacji:</b></span>
 
-			<span>1. Wysłać wiadomość <b>SMS</b> pod numer<b><a style="color: #827ffe; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="tel:+48600029035">
-				<i class="fas fa-phone"></i> 600 029 035</a></b> z informacją:</span>
-
-			<span class="m-b-15 m-t-15" style="text-align: center; width: 100%"><b>Imię Nazwisko potwierdzam rezerwację.</b></span>
-
-			<span class="m-b-20">2. <b>Zadzwonić</b> pod numer <b><a style="color: #827ffe; font-size: 17px" onmouseover="this.style.color='black'" onmouseout="this.style.color='#827ffe'" href="tel:+48600029035">
-				<i class="fas fa-phone"></i> 600 029 035</a></b> i potwierdzić swój przyjazd.</span>
-
-			<span class="m-b-5" style="text-align: justify">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
-											formularzu numer telefonu w celu weryfikacji rezerwacji.</span>
-
-
-			<div class="container-login100-form-btn m-t-30 m-b-50">
-				<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ union.exact_time }}" aria-expanded="true">Sprawdź szczegóły swojego zamówienia</button>
-			</div>
-			<div class="collapse" id="{{ union.exact_time }}" style="width:550px">
-				<div class="m-b-50 m-t-20">
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Data zamówienia:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.exact_time }}
-						</div>
+				{% if app1_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn-confirm" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 25px">
+							Potwierdź aktualne zamówienie</a>
 					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Numer zamówienia:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.code }}
-						</div>
+				{% elif app2_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn-confirm" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 25px">
+							Potwierdź aktualne zamówienie</a>
 					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Rezerwacja na:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.first_name }} {{ union.last_name }}
-						</div>
+				{% elif cp_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 25px">
+							Potwierdź aktualne zamówienie</a>
 					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Wybrana trasa:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.route.name }}
-						</div>
-					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Dystans:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.route.distance }}
-						</div>
-					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6">
-							Data spływu:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{% for date in date %}
-								{% if date.id == union.booking_date_id %}
-									{{ date.booking_date }}
-								{% endif %}
-							{% endfor %}
-						</div>
-					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6" style="color: black">
-							Godzina spływu:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.time }}
-						</div>
-					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6" style="color: black">
-							Nr telefonu:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.phone }}
-						</div>
-					</div>
-					<div class="row" style="height: 35px">
-						<div class="input100 col-sm-6" style="color: black">
-							Adres email:
-						</div>
-						<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-							{{ union.email }}
-						</div>
-					</div>
+				{% endif %}
+
+				<span class="m-b-5 m-t-20" style="text-align: justify">Jeśli rezerwacja nie zostanie potwierdzona skontaktujemy się z Państwem pod podany w
+												formularzu numer telefonu w celu weryfikacji rezerwacji.</span>
 
 
-					<div class="row m-t-30" style="height: 35px">
-						<div class="input100 col-sm-5" style="color: black">
-							Wypożyczony sprzęt:
-						</div>
-						<div class="input100 col-sm-3" style="color: black">
-							Rodzaj
-						</div>
-						<div class="input100 col-sm-2" style="color: black">
-							Ilość
-						</div>
-					</div>
-					{% for kayak in kayak %}
-						{% if kayak.booking_id == union.id %}
-
-								<div class="row" style="height: 35px">
-									<div class="input100 col-sm-5">
-
-									</div>
-									<div class="input100 col-sm-3" style="font-family: Ubuntu; color: black">
-										{{ kayak.kayak.name }}
-									</div>
-									<div class="input100 col-sm-2" style="font-family: Ubuntu; color: black">
-										{{ kayak.quantity }}
-									</div>
-								</div>
-
-						{% endif %}
-					{% endfor %}
+				<div class="container-login100-form-btn m-t-30 m-b-50">
+					<button  type="button" class="login100-form-btn" data-toggle="collapse" data-target="#{{ union.exact_time }}" aria-expanded="true">Sprawdź szczegóły swojego zamówienia</button>
 				</div>
-			</div>
+				<div class="collapse" id="{{ union.exact_time }}" style="width:550px">
+					<div class="m-b-50 m-t-20">
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data zamówienia:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.exact_time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Numer zamówienia:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.code }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Rezerwacja na:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.first_name }} {{ union.last_name }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Wybrana trasa:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.route.name }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Dystans:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.route.distance }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6">
+								Data spływu:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{% for date in date %}
+									{% if date.id == union.booking_date_id %}
+										{{ date.booking_date }}
+									{% endif %}
+								{% endfor %}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6" style="color: black">
+								Godzina spływu:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.time }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6" style="color: black">
+								Nr telefonu:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.phone }}
+							</div>
+						</div>
+						<div class="row" style="height: 35px">
+							<div class="input100 col-sm-6" style="color: black">
+								Adres email:
+							</div>
+							<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
+								{{ union.email }}
+							</div>
+						</div>
+
+
+						<div class="row m-t-30" style="height: 35px">
+							<div class="input100 col-sm-5" style="color: black">
+								Wypożyczony sprzęt:
+							</div>
+							<div class="input100 col-sm-3" style="color: black">
+								Rodzaj
+							</div>
+							<div class="input100 col-sm-2" style="color: black">
+								Ilość
+							</div>
+						</div>
+						{% for kayak in kayak %}
+							{% if kayak.booking_id == union.id %}
+
+									<div class="row" style="height: 35px">
+										<div class="input100 col-sm-5">
+
+										</div>
+										<div class="input100 col-sm-3" style="font-family: Ubuntu; color: black">
+											{{ kayak.kayak.name }}
+										</div>
+										<div class="input100 col-sm-2" style="font-family: Ubuntu; color: black">
+											{{ kayak.quantity }}
+										</div>
+									</div>
+
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
 
 			{% endlanguage %}
 

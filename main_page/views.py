@@ -145,6 +145,10 @@ class BookingDetailView(LoginRequiredMixin, ListView):
         data['union'] = union
         data['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         data['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
+        data['current_day'] = datetime.datetime.now().date()
+        data['app1_date'] = my_date_app1.latest('id')
+        data['app2_date'] = my_date_app2.latest('id')
+        data['cp_date'] = my_date_client_panel.latest('id')
         return data
 
 

@@ -33,6 +33,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         data['current_time'] = datetime.datetime.now().time()
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
+        data['current_day'] = datetime.datetime.now().date()
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
@@ -44,6 +45,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         context = self.get_context_data()
         kayak_set = context['kayak_set']
+        current_day = context['current_day']
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -53,7 +55,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
             form.instance.email = self.request.user.email
             if kayak_set.is_valid():
                 booking_form = form.save()
-                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12):
+                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12) and booking_form.exact_time.date() == current_day:
                     booking_form.active = True
                     booking_form.save()
                 kayak_set.instance = booking_form

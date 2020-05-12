@@ -20,17 +20,17 @@
 
 				{% if app1_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 20px">
+						<a class="quick-btn-confirm" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 25px">
 							Potwierdź aktualne zamówienie</a>
 					</div>
 				{% elif app2_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 20px">
+						<a class="quick-btn-confirm" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 25px">
 							Potwierdź aktualne zamówienie</a>
 					</div>
 				{% elif cp_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 20px">
+						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 25px">
 							Potwierdź aktualne zamówienie</a>
 					</div>
 				{% endif %}
@@ -40,7 +40,7 @@
 		<div class="row login100-form p-b-90" style="width:600px">
 			{% csrf_token %}
 
-			<span class="login100-form-title p-t-40 p-b-51">
+			<span class="login100-form-title p-b-51">
 				Moje zamówienia
 			</span>
 
