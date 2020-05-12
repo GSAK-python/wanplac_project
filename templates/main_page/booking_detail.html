@@ -18,7 +18,7 @@
 
 
 	<div class="container-login100 flex-sb flex-w" style="min-height: 75vh">
-		<div class="row login100-form p-b-90" style="width:600px; padding: 15px">
+		<div class="row login100-form" style="width: 600px; padding: 15px; min-height: 70vh; vertical-align: top">
 			{% csrf_token %}
 
 			<span class="m-b-40 m-t-20" style="text-align: justify">Na adres <b>{{ union.email }}</b> została wysłana wiadomość z informacjami dotyczącymi Twojego zamówienia.</span>
@@ -40,23 +40,33 @@
 
 				{% if app1_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn-confirm" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 25px">
+						<a class="quick-btn-confirm" href="{% url 'app1:confirm' %}" style="width: auto; font-size: 25px">
+							<i class="fas fa-long-arrow-alt-right m-r-10 fa-3x" style="color: black"></i>
 							Potwierdź aktualne zamówienie</a>
+							<i class="fas fa-long-arrow-alt-left m-l-10 fa-3x" style="color: black"></i>
 					</div>
 				{% elif app2_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn-confirm" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 25px">
+						<a class="quick-btn-confirm" href="{% url 'app2:confirm' %}" style="width: auto; font-size: 25px">
+							<i class="fas fa-long-arrow-alt-right m-r-10 fa-3x" style="color: black"></i>
 							Potwierdź aktualne zamówienie</a>
+							<i class="fas fa-long-arrow-alt-left m-l-10 fa-3x" style="color: black"></i>
 					</div>
 				{% elif cp_date.booking_date == current_day %}
 					<div class="">
-						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 25px">
+						<a class="quick-btn-confirm" href="{% url 'booking:confirm' %}" style="width: auto; font-size: 25px">
+							<i class="fas fa-long-arrow-alt-right m-r-10 fa-3x" style="color: black"></i>
 							Potwierdź aktualne zamówienie</a>
+							<i class="fas fa-long-arrow-alt-left m-l-10 fa-3x" style="color: black"></i>
 					</div>
 				{% else %}
 					<div class="">
-						<a class="quick-btn-confirm" href="{% url 'main:confirm' %}" style="width: 100%; font-size: 25px">
-							Potwierdź aktualne zamówienie</a>
+
+						<a class="quick-btn-confirm" href="{% url 'main:confirm' %}" style="width: auto; font-size: 25px">
+							<i class="fas fa-long-arrow-alt-right m-r-10 fa-3x" style="color: black"></i>
+							Potwierdź aktualne zamówienie
+							<i class="fas fa-long-arrow-alt-left m-l-10 fa-3x" style="color: black"></i>
+						</a>
 					</div>
 				{% endif %}
 
