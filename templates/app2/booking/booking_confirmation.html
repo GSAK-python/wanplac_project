@@ -13,17 +13,23 @@
 <div class="container-login100 flex-sb flex-w" style="min-height: 75vh">
     <div class="row login100-form" style="width:600px">
 
+        {% if booking == None %}
+            <span class="active-span m-b-20">Potwierdzenie rezerwacji aktywne od
+                <span style="color:red">7:00</span>
+                do
+                <span style="color:red">9:00</span> w dniu spływu
+            </span>
 
-        {% if booking.active is False and current_time < max_booking_confirm_time %}
+        {% elif booking.active is False and current_time < max_booking_confirm_time %}
 
             <form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
                 {% csrf_token %}
 
                 {% if form.non_field_errors %}
-					<div class="input100 text-danger m-b-5" style="text-align:center">
-						{{ form.non_field_errors }}
-					</div>
-				{% endif %}
+                    <div class="input100 text-danger m-b-5" style="text-align:center">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
 
                 <div class="m-b-25" style="text-align:center">
                     {{ form.code}}
@@ -64,6 +70,7 @@
         {% elif booking.active is True %}
             <span class="active-span m-b-20">Rezerwacja <span style="color:red">{{booking.code }}</span> została potwierdzona</span>
         {% endif %}
+
     </div>
 </div>
 

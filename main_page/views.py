@@ -116,9 +116,10 @@ class BookingListView(LoginRequiredMixin, ListView):
         my_date_client_panel = client_panel.models.BookingDate.objects.all()
         union = my_booking_app1.union(my_booking_app2, my_booking_client_panel).order_by('-exact_time')
         context['union'] = union
+        context['union_content'] = len(union)
         context['kayak'] = my_kayak_app2.union(my_kayak_app1, my_kayak_client_panel).distinct('booking_id')
         context['date'] = my_date_app1.union(my_date_app2, my_date_client_panel)
-        context['current_day'] = datetime.datetime.now().date() + datetime.timedelta(days=1)
+        context['current_day'] = datetime.datetime.now().date()
         context['app1_date'] = my_date_app1.latest('id')
         context['app2_date'] = my_date_app2.latest('id')
         context['cp_date'] = my_date_client_panel.latest('id')

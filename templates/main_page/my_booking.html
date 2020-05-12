@@ -12,26 +12,28 @@
 
 <div class="limiter">
 
-			<div class="">
-				<a class="quick-btn" href="{% url 'main:booking_detail' %}" style="width: 100%; font-size: 20px">
-					Szczegółowe informacje o ostanim zamówieniu</a>
-			</div>
+			{% if union_content != 0 %}
+				<div class="">
+					<a class="quick-btn" href="{% url 'main:booking_detail' %}" style="width: 100%; font-size: 20px">
+						Szczegółowe informacje o ostanim zamówieniu</a>
+				</div>
 
-			{% if app1_date.booking_date == current_day %}
-				<div class="">
-					<a class="quick-btn" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 20px">
-						Potwierdź aktualne zamówienie</a>
-				</div>
-			{% elif app2_date.booking_date == current_day %}
-				<div class="">
-					<a class="quick-btn" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 20px">
-						Potwierdź aktualne zamówienie</a>
-				</div>
-			{% elif cp_date.booking_date == current_day %}
-				<div class="">
-					<a class="quick-btn" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 20px">
-						Potwierdź aktualne zamówienie</a>
-				</div>
+				{% if app1_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn" href="{% url 'app1:confirm' %}" style="width: 100%; font-size: 20px">
+							Potwierdź aktualne zamówienie</a>
+					</div>
+				{% elif app2_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn" href="{% url 'app2:confirm' %}" style="width: 100%; font-size: 20px">
+							Potwierdź aktualne zamówienie</a>
+					</div>
+				{% elif cp_date.booking_date == current_day %}
+					<div class="">
+						<a class="quick-btn" href="{% url 'booking:confirm' %}" style="width: 100%; font-size: 20px">
+							Potwierdź aktualne zamówienie</a>
+					</div>
+				{% endif %}
 			{% endif %}
 
 	<div class="container-login100 flex-sb flex-w" style="min-height: 70vh">

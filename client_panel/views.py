@@ -112,7 +112,7 @@ class CPBookingConfirmationView(LoginRequiredMixin, UpdateView):
         return context
 
     def get_object(self, queryset=None):
-        booking = Booking.objects.filter(user=self.request.user).latest('id')
+        booking = Booking.objects.filter(user=self.request.user).last()
         return booking
 
 
