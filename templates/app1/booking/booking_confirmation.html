@@ -15,7 +15,7 @@
 </div>
 
 <div class="container-login100 flex-sb flex-w" style="min-height: auto">
-    <div class="row login100-form" style="width:600px; min-height: 50vh">
+    <div class="row login100-form m-t-100" style="width:600px; min-height: 50vh">
 
         {% if booking == None %}
             <span class="active-span m-b-20">Potwierdzenie rezerwacji aktywne od
@@ -24,7 +24,7 @@
                 <span style="color:red">9:00</span> w dniu spływu
             </span>
 
-        {% elif booking.active is False and threshold_time < current_time < max_booking_confirm_time %}
+        {% elif booking.active is False and threshold_time < current_time and current_time < max_booking_confirm_time %}
 
             <form class="login100-form validate-form flex-sb flex-w" method="post" role="form">
                     {% csrf_token %}
@@ -57,7 +57,7 @@
                 </div>
             </form>
 
-        {% elif booking.active is False and max_booking_confirm_time < current_time < booking_cancel_info %}
+        {% elif booking.active is False and max_booking_confirm_time < current_time and current_time < booking_cancel_info %}
             <span class="active-span m-b-20">Rezerwacja <span style="color:red">{{booking.code }}</span> została anulowana</span>
 
         {% elif booking.active is False and current_time > booking_cancel_info %}

@@ -55,7 +55,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
             form.instance.email = self.request.user.email
             if kayak_set.is_valid():
                 booking_form = form.save()
-                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12) and booking_form.booking_date == current_day:
+                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12) and booking_form.booking_date.booking_date == current_day:
                     booking_form.active = True
                     booking_form.save()
                 kayak_set.instance = booking_form
