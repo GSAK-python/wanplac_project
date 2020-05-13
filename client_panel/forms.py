@@ -1,3 +1,5 @@
+import datetime
+
 from celery.contrib import rdb
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -25,9 +27,6 @@ class BookingCreateForm(forms.ModelForm):
     class Meta:
         model = Booking
         exclude = ['user', 'email', 'code']
-        # widgets = {
-        #     'date': TextInput(attrs={'readonly':'readonly'})
-        # }
 
     def clean(self):
         super(BookingCreateForm, self).clean()

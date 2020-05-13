@@ -1,9 +1,9 @@
 import datetime
 from celery.contrib import rdb
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
@@ -24,6 +24,9 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
         data['current_day'] = datetime.datetime.now().date()
+        data['today_users'] = Booking.objects.filter(
+            booking_date__booking_date=datetime.datetime.now().date()).values_list('user',
+                                                                                   flat=True)
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
@@ -37,6 +40,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         context = self.get_context_data()
         kayak_set = context['kayak_set']
         current_day = context['current_day']
+        today_users = context['today_users']
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -44,9 +48,17 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
                 form.instance.last_name = self.request.user.last_name
             form.instance.user = self.request.user
             form.instance.email = self.request.user.email
+            today_users_list = []
+            for user in today_users:
+                today_users_list.append(user)
+            if self.request.user.id in today_users_list:
+                messages.add_message(self.request, messages.INFO,
+                                     'Użytkownik może mieć tylko jedną rezerwację na dzień.')
+                return super(BookingCreateView, self).form_invalid(form)
             if kayak_set.is_valid():
                 booking_form = form.save()
-                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(12) and booking_form.booking_date.booking_date == current_day:
+                if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(
+                        12) and booking_form.booking_date.booking_date == current_day:
                     booking_form.active = True
                     booking_form.save()
                 kayak_set.instance = booking_form

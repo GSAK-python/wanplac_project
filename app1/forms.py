@@ -1,9 +1,9 @@
+import datetime
+
 from celery.contrib import rdb
 from django import forms
-from django.forms import inlineformset_factory, BaseInlineFormSet, DateInput, TextInput
-
+from django.forms import inlineformset_factory, BaseInlineFormSet
 from app1.models import Booking, TermKayaks
-from wanplac_project import settings
 
 
 class BookingConfirmForm(forms.ModelForm):
@@ -38,6 +38,12 @@ class BookingCreateForm(forms.ModelForm):
         # for code in eu_country_code:
         #     if not phone.startswith(code):
         #         raise forms.ValidationError('Nieprawidłowy numer kierunkowy ({})'.format(phone[:2]))
+        today_users = Booking.objects.filter(booking_date__booking_date=datetime.datetime.now().date() + datetime.timedelta(days=1)).values_list('user', flat=True)
+        today_users_list = []
+        for user in today_users:
+            today_users_list.append(user)
+        if self.request.POST.user in today_users_list:
+            raise forms.ValidationError('Dopuszczalne tylko jedno zamówienie na każdy dzień dla jednego użytkownika')
 
 
 class TermKayaksForm(forms.ModelForm):
