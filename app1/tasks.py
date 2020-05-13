@@ -74,19 +74,19 @@ def is_booking_active_before_day():
     kayaks_returned = []
     today = datetime.datetime.now().date()
     current_time = datetime.datetime.now().time()
-    start_activation = datetime.time(11, 15)
-    stop_activation = datetime.time(12, 15)
-    phone_check_activation = datetime.time(12, 30)
+    start_activation = datetime.time(7)
+    stop_activation = datetime.time(9)
+    phone_check_activation = datetime.time(9, 30)
     for booking in booking_list:
         if booking.exact_time.time() < start_activation and booking.exact_time.date() <= today:
             if booking.active is True:
-                active.append('Booking {} ACTIVE. {}'.format(booking.code, current_time))
+                active.append('Booking {} ACTIVE'.format(booking.code))
             else:
                 if start_activation <= current_time <= stop_activation:
                     waiting_for_active.append(
                         'Booking {} WAITING FOR ACTIVE'.format(booking.code))
                 elif stop_activation < current_time < phone_check_activation:
-                    inactive.append('Rezerwacja {} INACTIVE - phone call check')
+                    inactive.append('Rezerwacja {} INACTIVE - phone call check'.format(booking.code))
                 elif current_time >= phone_check_activation:
                     canceled.append('Booking {} CANCELED'.format(booking.code))
                     for detail in term_kayaks:
@@ -94,7 +94,7 @@ def is_booking_active_before_day():
                             detail.kayak.store += detail.quantity
                             detail.kayak.save()
                             kayaks_returned.append(
-                                'Dodano {} sztuk {} do stanu z zamówienia {}'.format(detail.quantity,
+                                'Dodano {} sztuk {} do stanu z zamowienia {}'.format(detail.quantity,
                                                                                      detail.kayak.name,
                                                                                      detail.booking.code))
 
