@@ -11,7 +11,7 @@ from django.utils.html import strip_tags
 from django.views.generic import CreateView, UpdateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm, \
     BookingConfirmForm
-from client_panel.models import Booking
+from client_panel.models import Booking, BookingDate
 
 
 class Login(LoginView):
@@ -35,9 +35,8 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
         data['current_day'] = datetime.datetime.now().date()
-        data['today_users'] = Booking.objects.filter(
-            booking_date__booking_date=datetime.datetime.now().date()).values_list('user',
-                                                                                   flat=True)
+        data['today_users'] = Booking.objects.values_list('user', flat=True)
+        data['date'] = BookingDate.objects.last()
 
         if self.request.POST:
             data['kayak_set'] = TermKayaksFormSet(self.request.POST, instance=self.object, prefix='kayak_set')
@@ -51,6 +50,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         kayak_set = context['kayak_set']
         current_day = context['current_day']
         today_users = context['today_users']
+        date = context['date']
         with transaction.atomic():
             if not form.cleaned_data['first_name']:
                 form.instance.first_name = self.request.user.first_name
@@ -61,7 +61,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
             today_users_list = []
             for user in today_users:
                 today_users_list.append(user)
-            if self.request.user.id in today_users_list:
+            if form.instance.user_id in today_users_list and date.id == form.instance.booking_date.id:
                 messages.add_message(self.request, messages.INFO,
                                      'Użytkownik może mieć tylko jedną rezerwację na dzień.')
                 return super(BookingCreateView, self).form_invalid(form)
