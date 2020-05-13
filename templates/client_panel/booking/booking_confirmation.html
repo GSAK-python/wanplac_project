@@ -75,8 +75,16 @@
                 <span style="color:red">9:00</span>
             </span>
 
-        {% elif booking.active is True %}
+        {% elif booking.active is True and current_time < booking_cancel_info %}
             <span class="active-span m-b-20">Rezerwacja <span style="color:red">{{booking.code }}</span> została potwierdzona</span>
+
+        {% elif booking.active is True and current_time > booking_cancel_info %}
+            <span class="active-span m-b-20">Potwierdzenie rezerwacji aktywne od
+                <span style="color:red">7:00</span>
+                do
+                <span style="color:red">9:00</span>
+            </span>
+
         {% endif %}
     </div>
 </div>
