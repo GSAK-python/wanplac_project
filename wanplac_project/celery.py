@@ -71,7 +71,12 @@ app.conf.beat_schedule = {
         'task': 'app1.tasks.booking_change_date',
         'schedule': crontab(minute=10, hour=12),
         'args': (),
-    }
+    },
+    # 'BOOKING ACTIVATION - APP1': {
+    #     'task': 'app1.tasks.is_booking_active_before_day',
+    #     'schedule': crontab(minute=10, hour=12),
+    #     'args': (),
+    # }
 }
 
 

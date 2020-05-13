@@ -189,7 +189,7 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_ACKS_LATE = True
 BROKER_POOL_LIMIT = 3
-CELERY_BROKER_URL = 'amqp://felhazch:wrfZDFji3SN2HfUCY54zv_QoabnTs4QF@squid.rmq.cloudamqp.com/felhazch'  # broker do heroku
+# CELERY_BROKER_URL = 'amqp://felhazch:wrfZDFji3SN2HfUCY54zv_QoabnTs4QF@squid.rmq.cloudamqp.com/felhazch'  # broker do heroku
 
 # https://wanplac.herokuapp.com/main/my_booking/
 
