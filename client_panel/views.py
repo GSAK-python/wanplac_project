@@ -8,7 +8,7 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 from client_panel.forms import BookingCreateForm, SignUpCreateForm, TermKayaksFormSet, LoginCreateForm, \
     BookingConfirmForm
 from client_panel.models import Booking, BookingDate
@@ -131,3 +131,4 @@ class CPBookingConfirmationView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         booking = Booking.objects.filter(user=self.request.user).last()
         return booking
+

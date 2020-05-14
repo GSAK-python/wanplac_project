@@ -101,3 +101,5 @@ class BookingConfirmForm(forms.ModelForm):
             raise forms.ValidationError('Zaznacz aby aktywować rezerwacje.')
 
 
+
+

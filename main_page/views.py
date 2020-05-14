@@ -209,6 +209,12 @@ class AdminPanelView(LoginRequiredMixin, TemplateView):
         context['client_panel_current_kayak'] = client_panel.models.Kayak.objects.all().order_by('id')
         context['change_booking_state'] = datetime.time(9)
         context['current_time'] = datetime.datetime.now().time()
+        context['current_day'] = datetime.datetime.now().date()
+        context['union_content'] = len(union)
+        context['app1_date'] = my_date_app1.last()
+        context['app2_date'] = my_date_app2.last()
+        context['cp_date'] = my_date_client_panel.last()
+        context['max_booking_confirm_time'] = datetime.time(9, 30)
         return context
 
 
@@ -218,3 +224,5 @@ class BookingSuccessfulConfirmationView(LoginRequiredMixin, TemplateView):
 
 class BookingPlaceHolderView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/placeholder_booking_confirm_page.html'
+
+
