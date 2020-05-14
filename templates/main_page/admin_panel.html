@@ -107,7 +107,7 @@
 													Rezerwacja na:
 												</div>
 												<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-													{{ booking.first_name }} {{ booking.last_name }}
+													{{ booking.first_name }} {{ booking.last_name }} {{ booking.user }}
 												</div>
 											</div>
 											<div class="row" style="height: 35px">
@@ -178,6 +178,11 @@
 													</div>
 												{% endif %}
 											{% endfor %}
+
+											<form action="{% url 'app2:change_status' pk=booking.user.id %}" method="post">
+												{% csrf_token %}
+												<button class="btn border border-dark" id="approve-btn" type="submit">Zmień status</button>
+											</form>
 										</div>
 									</div>
 

@@ -3,6 +3,10 @@ from celery import shared_task
 from celery.contrib import rdb
 import datetime
 from datetime import timedelta
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+
 from app2.models import DateList, Kayak, BookingDate, Booking, TermKayaks
 
 
@@ -99,6 +103,20 @@ def is_booking_active_before_day():
         dict.fromkeys(waiting_for_active)), list(
         dict.fromkeys(inactive)), list(
         dict.fromkeys(canceled)), kayaks_returned
+
+
+@shared_task
+def change_status(request, pk):
+    # rdb.set_trace()
+    users = Booking.objects.get(user_id=pk)
+    if users.active is False:
+        users.active = True
+        users.save()
+    else:
+        users.active = False
+        users.save()
+    return HttpResponseRedirect(reverse_lazy('main:admin_panel'))
+
 """
 celery -A wanplac_project  worker --loglevel=info -P solo
 
