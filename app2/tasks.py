@@ -7,6 +7,8 @@ from datetime import timedelta
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
+import app1
+import client_panel
 from app2.models import DateList, Kayak, BookingDate, Booking, TermKayaks
 
 
@@ -108,14 +110,35 @@ def is_booking_active_before_day():
 @shared_task
 def change_status(request, pk):
     # rdb.set_trace()
-    users = Booking.objects.get(user_id=pk)
-    if users.active is False:
-        users.active = True
-        users.save()
-    else:
-        users.active = False
-        users.save()
+    my_booking_app1 = app1.models.Booking.objects.all()
+    my_booking_app2 = Booking.objects.all()
+    my_booking_client_panel = client_panel.models.Booking.objects.all()
+    for user in my_booking_app1:
+        if user.code == str(pk):
+            if user.active is False:
+                user.active = True
+                user.save()
+            else:
+                user.active = False
+                user.save()
+    for user in my_booking_app2:
+        if user.code == str(pk):
+            if user.active is False:
+                user.active = True
+                user.save()
+            else:
+                user.active = False
+                user.save()
+    for user in my_booking_client_panel:
+        if user.code == str(pk):
+            if user.active is False:
+                user.active = True
+                user.save()
+            else:
+                user.active = False
+                user.save()
     return HttpResponseRedirect(reverse_lazy('main:admin_panel'))
+
 
 """
 celery -A wanplac_project  worker --loglevel=info -P solo

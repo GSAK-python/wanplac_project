@@ -290,3 +290,19 @@ a {
     border-radius: 5px;
     border-width: 2px;
 }
+
+.change-status-btn {
+    font-size: 17px;
+    font-family: Ubuntu-Bold;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #33b5e5;
+    background-color: #fff;
+    border-color: #33b5e5;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+}

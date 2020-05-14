@@ -72,7 +72,7 @@
 							{% for booking in union %}
 								{% if date.id == booking.booking_date_id %}
 
-									<div class="m-b-10">
+									<div class="m-b-10k">
 										<button  type="button" class="admin-panel-booking-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
 											<i class="fas fa-chevron-right m-r-15 fa-2x" style="color: #3366ff"></i>
 											{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }} ({{ booking.exact_time }})
@@ -84,7 +84,7 @@
 										</button>
 									</div>
 
-									<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
+									<div class="collapse" id="{{ booking.exact_time }}" style="width: 100%; border: 3px solid #e0e0e0; border-radius: 10px">
 										<div class="m-b-50 m-t-20">
 											<div class="row" style="height: 35px">
 												<div class="input100 col-sm-6" style="color: black">
@@ -179,9 +179,11 @@
 												{% endif %}
 											{% endfor %}
 
-											<form action="{% url 'app2:change_status' pk=booking.user.id %}" method="post">
+											<form action="{% url 'app2:change_status' pk=booking.code %}" method="post">
 												{% csrf_token %}
-												<button class="btn border border-dark" id="approve-btn" type="submit">Zmień status</button>
+												<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
+													Zmień status
+												</button>
 											</form>
 										</div>
 									</div>
