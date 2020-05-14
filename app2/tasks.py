@@ -137,7 +137,7 @@ def change_status(request, pk):
             else:
                 user.active = False
                 user.save()
-    return HttpResponseRedirect(reverse_lazy('main:admin_panel'))
+    return HttpResponseRedirect(reverse_lazy('main:thanks'))
 
 
 """

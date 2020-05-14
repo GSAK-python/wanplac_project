@@ -9,15 +9,26 @@
 
 {% include "main_page/navbar.html" %}
 
+<div class="limiter">
+    <div class="container-login100 flex-sb flex-w m-b-120" style="min-height: auto">
+        <div class="row login100-form" style="width:600px">
+            {% csrf_token %}
 
-<div class="container-login100 flex-sb flex-w m-b-120" style="min-height: auto">
-    <div class="row login100-form" style="width:600px">
-        {% csrf_token %}
+            {% if user.is_superuser %}
+                <div style="width: 100%">
+                        <a class="quick-btn" href="{% url 'main:admin_panel' %}" style="width: 100%; font-size: 20px">
+                            Powrót</a>
+                    </div>
 
-        <span class="login100-form-title p-b-51">
-            Dziękujemy za potwierdzenie rezerwacji
-        </span>
-
+                <span class="login100-form-title p-b-51 m-t-100" style="min-height: 50vh">
+                    Status rezerwacji został zmieniony
+                </span>
+            {% else %}
+                <span class="login100-form-title p-b-51 m-t-100" style="min-height: 50vh">
+                    Dziękujemy za potwierdzenie rezerwacji
+                </span>
+            {% endif %}
+        </div>
     </div>
 </div>
 

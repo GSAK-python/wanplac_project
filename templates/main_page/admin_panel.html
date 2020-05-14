@@ -62,7 +62,7 @@
 			{% language 'pl' %}
 				{% for date in date %}
 
-					<div class="container-login100-form-btn m-b-10">
+					<div class="container-login100-form-btn m-b-20">
 						<button  type="button" class="admin-panel-date-btn" data-toggle="collapse" data-target="#{{ date.booking_date }}" aria-expanded="true">
 							{{ date.booking_date }} </button>
 					</div>
@@ -72,7 +72,7 @@
 							{% for booking in union %}
 								{% if date.id == booking.booking_date_id %}
 
-									<div class="m-b-10k">
+									<div class="">
 										<button  type="button" class="admin-panel-booking-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
 											<i class="fas fa-chevron-right m-r-15 fa-2x" style="color: #3366ff"></i>
 											{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }} ({{ booking.exact_time }})
@@ -84,7 +84,7 @@
 										</button>
 									</div>
 
-									<div class="collapse" id="{{ booking.exact_time }}" style="width: 100%; border: 3px solid #e0e0e0; border-radius: 10px">
+									<div class="collapse m-b-20" id="{{ booking.exact_time }}" style="width: 100%; border: 3px solid #e0e0e0; border-radius: 10px">
 										<div class="m-b-50 m-t-20">
 											<div class="row" style="height: 35px">
 												<div class="input100 col-sm-6" style="color: black">
@@ -181,10 +181,13 @@
 
 											<form action="{% url 'app2:change_status' pk=booking.code %}" method="post">
 												{% csrf_token %}
-												<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
-													Zmień status
-												</button>
+												<div>
+													<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
+														Zmień status
+													</button>
+												</div>
 											</form>
+
 										</div>
 									</div>
 
@@ -208,5 +211,6 @@
 
 {% block body_scripts_additional %}
 
+<script type="text/javascript" src="{% static 'js/same_after_refresh.js' %}"></script>
 
 {% endblock body_scripts_additional %}
