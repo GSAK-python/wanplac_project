@@ -74,7 +74,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING ACTIVATION possibility - APP1': {
         'task': 'app1.tasks.is_booking_active_before_day',
-        'schedule': crontab(minute='*/20', hour='7-8'),
+        'schedule': crontab(minute='*/20', hour='7-9'),
         'args': (),
     },
     'BOOKING ACTIVATION phone call check - APP1': {
@@ -84,7 +84,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING ACTIVATION possibility - APP2': {
         'task': 'app2.tasks.is_booking_active_before_day',
-        'schedule': crontab(minute='*/20', hour='7-8'),
+        'schedule': crontab(minute='*/20', hour='7-9'),
         'args': (),
     },
     'BOOKING ACTIVATION phone call check - APP2': {
@@ -94,7 +94,7 @@ app.conf.beat_schedule = {
     },
     'BOOKING ACTIVATION possibility - CLIENT_PANEL': {
         'task': 'client_panel.tasks.is_booking_active_before_day',
-        'schedule': crontab(minute='*/20', hour='7-8'),
+        'schedule': crontab(minute='*/20', hour='7-9'),
         'args': (),
     },
     'BOOKING ACTIVATION phone call check - CLIENT_PANEL': {
