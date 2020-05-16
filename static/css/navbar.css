@@ -306,3 +306,19 @@ a {
     border-radius: 5px;
     border-width: 2px;
 }
+
+.booking-delete-btn {
+    font-size: 17px;
+    font-family: Ubuntu-Bold;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    background-color: #fff;
+    border-color: red;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+}

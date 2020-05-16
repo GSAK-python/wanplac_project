@@ -220,3 +220,5 @@ class BookingPlaceHolderView(LoginRequiredMixin, TemplateView):
     template_name = 'main_page/placeholder_booking_confirm_page.html'
 
 
+class BookingDeleteView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_page/booking_delete.html'

@@ -7,7 +7,7 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.html import strip_tags
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from app2.forms import BookingCreateForm, TermKayaksFormSet, BookingConfirmForm
 from app2.models import Booking, BookingDate
 
@@ -24,7 +24,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
         data['current_day'] = datetime.datetime.now().date()
-        data['today_users'] = Booking.objects.values_list('user', flat=True)
+        data['today_users'] = Booking.objects.filter(booking_date=BookingDate.objects.last()).values_list('user', flat=True)
         data['date'] = BookingDate.objects.last()
 
         if self.request.POST:
@@ -100,3 +100,4 @@ class App2BookingConfirmationView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         booking = Booking.objects.filter(user=self.request.user).last()
         return booking
+

@@ -140,6 +140,23 @@ def change_status(request, pk):
     return HttpResponseRedirect(reverse_lazy('main:thanks'))
 
 
+@shared_task
+def booking_delete(request, pk):
+    my_booking_app1 = app1.models.Booking.objects.all()
+    my_booking_app2 = Booking.objects.all()
+    my_booking_client_panel = client_panel.models.Booking.objects.all()
+    for booking in my_booking_app1:
+        if booking.id == pk:
+            booking.delete()
+    for booking in my_booking_app2:
+        if booking.id == pk:
+            booking.delete()
+    for booking in my_booking_client_panel:
+        if booking.id == pk:
+            booking.delete()
+    return HttpResponseRedirect(reverse_lazy('main:delete_booking'))
+
+
 """
 celery -A wanplac_project  worker --loglevel=info -P solo
 

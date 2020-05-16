@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %} Dziękujemy za potwierdzenie {% endblock %}
+{% block body %}
+
+{% include "main_page/navbar.html" %}
+
+<div class="limiter">
+    <div class="container-login100 flex-sb flex-w m-b-120" style="min-height: auto">
+        <div class="row login100-form" style="width:600px">
+            {% csrf_token %}
+            <span class="login100-form-title p-b-51 m-t-100" style="min-height: 50vh">
+                Rezerwacja została usunięta
+            </span>
+        </div>
+    </div>
+</div>
+
+{% include "main_page/footerbar.html" %}
+
+{% endblock %}
+
+{% block body_scripts_additional %}
+
+
+
+{% endblock body_scripts_additional %}

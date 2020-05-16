@@ -24,7 +24,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
         data['start_break'] = datetime.time(12)
         data['stop_break'] = datetime.time(12, 30)
         data['current_day'] = datetime.datetime.now().date()
-        data['today_users'] = Booking.objects.values_list('user', flat=True)
+        data['today_users'] = Booking.objects.filter(booking_date=BookingDate.objects.last()).values_list('user', flat=True)
         data['date'] = BookingDate.objects.last()
 
         if self.request.POST:
