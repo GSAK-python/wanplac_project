@@ -190,28 +190,31 @@
 													</div>
 												{% endif %}
 											{% endfor %}
-											<div class="row">
-												<div class="col-sm-6">
-													<form action="{% url 'app2:change_status' pk=booking.id %}" method="post">
-														{% csrf_token %}
-														<div>
-															<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
-																Zmień status
-															</button>
-														</div>
-													</form>
+
+											{% if booking.booking_date.booking_date >= current_day %}
+												<div class="row">
+													<div class="col-sm-6">
+														<form action="{% url 'app2:change_status' pk=booking.id %}" method="post">
+															{% csrf_token %}
+															<div>
+																<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
+																	Zmień status
+																</button>
+															</div>
+														</form>
+													</div>
+													<div class="col-sm-6">
+														<form action="{% url 'app2:booking_delete' pk=booking.id %}" method="post">
+															{% csrf_token %}
+															<div>
+																<button class="booking-delete-btn m-l-15" id="" type="submit" onclick="clicked(event)">
+																	Usuń zamówienie
+																</button>
+															</div>
+														</form>
+													</div>
 												</div>
-												<div class="col-sm-6">
-													<form action="{% url 'app2:booking_delete' pk=booking.id %}" method="post">
-														{% csrf_token %}
-														<div>
-															<button class="booking-delete-btn m-l-15" id="" type="submit">
-																Usuń zamówienie
-															</button>
-														</div>
-													</form>
-												</div>
-											</div>
+											{% endif %}
 										</div>
 									</div>
 
@@ -236,5 +239,12 @@
 {% block body_scripts_additional %}
 
 <script type="text/javascript" src="{% static 'js/same_after_refresh.js' %}"></script>
+
+<script>
+function clicked(e)
+{
+    if(!confirm('Czy na pewno chcesz usunąć zamówienie? Jeśli tak wciśnij OK.'))e.preventDefault();
+}
+</script>
 
 {% endblock body_scripts_additional %}
