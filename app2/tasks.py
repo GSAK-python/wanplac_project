@@ -114,7 +114,7 @@ def change_status(request, pk):
     my_booking_app2 = Booking.objects.all()
     my_booking_client_panel = client_panel.models.Booking.objects.all()
     for user in my_booking_app1:
-        if user.code == str(pk):
+        if user.id == pk:
             if user.active is False:
                 user.active = True
                 user.save()
@@ -122,7 +122,7 @@ def change_status(request, pk):
                 user.active = False
                 user.save()
     for user in my_booking_app2:
-        if user.code == str(pk):
+        if user.id == pk:
             if user.active is False:
                 user.active = True
                 user.save()
@@ -130,7 +130,7 @@ def change_status(request, pk):
                 user.active = False
                 user.save()
     for user in my_booking_client_panel:
-        if user.code == str(pk):
+        if user.id == pk:
             if user.active is False:
                 user.active = True
                 user.save()

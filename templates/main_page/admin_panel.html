@@ -18,12 +18,13 @@
 			<span class="login100-form-title p-t-40 p-b-51">
 				Stan kajaków
 			</span>
+			{% language 'pl' %}
 
-			<div class="m-b-50 m-t-20" style="width: 100%; padding: 15px">
+				<div class="m-b-50 m-t-20" style="width: 100%; padding: 15px">
                 <div class="row" style="height: auto">
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ app1_current_day }}</b>
+							<b>{{ app1_current_day.booking_date }}</b>
 						</div>
 						{% for kayak in app1_current_kayak %}
 							<div class="profile-variable">
@@ -33,7 +34,7 @@
 					</div>
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ app2_current_day }}</b>
+							<b>{{ app2_current_day.booking_date }}</b>
 						</div>
 						{% for kayak in app2_current_kayak %}
 							<div class="profile-variable">
@@ -43,7 +44,7 @@
 					</div>
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ client_panel_current_day }}</b>
+							<b>{{ client_panel_current_day.booking_date }}</b>
 						</div>
 						{% for kayak in client_panel_current_kayak %}
 							<div class="profile-variable">
@@ -53,6 +54,8 @@
 					</div>
                 </div>
 			</div>
+
+			{% endlanguage %}
 
 			<span class="login100-form-title p-t-40 p-b-51">
 				Ręczne dodanie zamówienia
@@ -116,7 +119,7 @@
 													Rezerwacja na:
 												</div>
 												<div class="input100 col-sm-6" style="font-family: Ubuntu; color: black">
-													{{ booking.first_name }} {{ booking.last_name }} {{ booking.user }}
+													{{ booking.first_name }} {{ booking.last_name }}
 												</div>
 											</div>
 											<div class="row" style="height: 35px">
@@ -188,7 +191,7 @@
 												{% endif %}
 											{% endfor %}
 
-											<form action="{% url 'app2:change_status' pk=booking.code %}" method="post">
+											<form action="{% url 'app2:change_status' pk=booking.id %}" method="post">
 												{% csrf_token %}
 												<div>
 													<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
