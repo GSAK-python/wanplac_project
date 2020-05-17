@@ -101,6 +101,11 @@ app.conf.beat_schedule = {
         'task': 'client_panel.tasks.is_booking_active_before_day',
         'schedule': crontab(minute='15,30', hour=9),
         'args': (),
+    },
+    'SEND REMINDER EMAIL - MAIN_PAGE': {
+        'task': 'main_page.tasks.send_reminder_mail',
+        'schedule': crontab(minute=30, hour=6),
+        'args': (),
     }
 }
 
