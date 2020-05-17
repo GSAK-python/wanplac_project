@@ -58,7 +58,7 @@
 							{% endif %}
 						{% endfor %} - godz. {{ booking.time }}</button>
 				</div>
-				<div class="collapse" id="{{ booking.exact_time }}" style="width:550px">
+				<div class="collapse" id="{{ booking.exact_time }}" style="width:600px">
 					<div class="m-b-50 m-t-20">
 
 
@@ -205,7 +205,20 @@
 							{% endif %}
 						{% endfor %}
 
-
+						{% for date in last_date_list %}
+							{% if date.booking_date >= current_day and date.id == booking.booking_date_id %}
+								<div class="m-t-20">
+									<form action="{% url 'main:booking_delete' pk=booking.id %}" method="post">
+										{% csrf_token %}
+										<div>
+											<button class="booking-delete-btn m-l-65" id="" type="submit" onclick="clicked(event)">
+												Usuń zamówienie
+											</button>
+										</div>
+									</form>
+								</div>
+							{% endif %}
+						{% endfor %}
 					</div>
 				</div>
 
@@ -223,7 +236,12 @@
 
 {% block body_scripts_additional %}
 
-
+<script>
+function clicked(e)
+{
+    if(!confirm('Czy na pewno chcesz usunąć zamówienie? Jeśli tak wciśnij OK.'))e.preventDefault();
+}
+</script>
 
 {% endblock body_scripts_additional %}
 

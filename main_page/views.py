@@ -125,6 +125,7 @@ class BookingListView(LoginRequiredMixin, ListView):
         context['cp_date'] = my_date_client_panel.last()
         context['current_time'] = datetime.datetime.now().time()
         context['max_booking_confirm_time'] = datetime.time(9, 30)
+        context['last_date_list'] = [my_date_app1.last(), my_date_app2.last(), my_date_client_panel.last()]
         return context
 
 
