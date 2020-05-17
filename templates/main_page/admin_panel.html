@@ -24,7 +24,7 @@
                 <div class="row" style="height: auto">
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ app1_current_day.booking_date }}</b>
+							<b>{{ app1_current_day.booking_date }}</b> <b style="color:green">{{ app1_current_day.booking_date|date:"l" }}</b>
 						</div>
 						{% for kayak in app1_current_kayak %}
 							<div class="profile-variable">
@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ app2_current_day.booking_date }}</b>
+							<b>{{ app2_current_day.booking_date }} </b> <b style="color:green">{{ app2_current_day.booking_date|date:"l" }}</b>
 						</div>
 						{% for kayak in app2_current_kayak %}
 							<div class="profile-variable">
@@ -44,7 +44,7 @@
 					</div>
 					<div class="col-sm-4 border border-dark">
 						<div class="profile-variable">
-							<b>{{ client_panel_current_day.booking_date }}</b>
+							<b>{{ client_panel_current_day.booking_date }} </b> <b style="color:green">{{ client_panel_current_day.booking_date|date:"l" }}</b>
 						</div>
 						{% for kayak in client_panel_current_kayak %}
 							<div class="profile-variable">
@@ -192,7 +192,7 @@
 											{% endfor %}
 
 											{% if date.booking_date >= current_day  %}
-												<div class="row">
+												<div class="row m-t-20">
 													<div class="col-sm-6">
 														<form action="{% url 'main:change_status' pk=booking.id %}" method="post">
 															{% csrf_token %}
@@ -207,7 +207,7 @@
 														<form action="{% url 'main:booking_delete' pk=booking.id %}" method="post">
 															{% csrf_token %}
 															<div>
-																<button class="booking-delete-btn m-l-15" id="" type="submit" onclick="clicked(event)">
+																<button class="booking-delete-btn m-l-65" id="" type="submit" onclick="clicked(event)">
 																	Usuń zamówienie
 																</button>
 															</div>
