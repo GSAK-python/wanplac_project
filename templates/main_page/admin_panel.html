@@ -191,10 +191,10 @@
 												{% endif %}
 											{% endfor %}
 
-											{% if booking.booking_date.booking_date >= current_day %}
+											{% if date.booking_date >= current_day  %}
 												<div class="row">
 													<div class="col-sm-6">
-														<form action="{% url 'app2:change_status' pk=booking.id %}" method="post">
+														<form action="{% url 'main:change_status' pk=booking.id %}" method="post">
 															{% csrf_token %}
 															<div>
 																<button class="change-status-btn m-l-15" id="approve-btn" type="submit">
@@ -204,7 +204,7 @@
 														</form>
 													</div>
 													<div class="col-sm-6">
-														<form action="{% url 'app2:booking_delete' pk=booking.id %}" method="post">
+														<form action="{% url 'main:booking_delete' pk=booking.id %}" method="post">
 															{% csrf_token %}
 															<div>
 																<button class="booking-delete-btn m-l-15" id="" type="submit" onclick="clicked(event)">

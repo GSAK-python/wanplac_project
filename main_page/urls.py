@@ -5,6 +5,7 @@ import app2
 from app1.views import App1BookingConfirmationView
 from app2.views import App2BookingConfirmationView
 from client_panel.views import CPBookingConfirmationView
+from main_page import tasks
 from main_page.views import MainPageView, BookingListView, ChooseDateView, BookingDetailView, AboutUsView, ContactView, \
     FAQView, RouteView, KayaksView, PriceListView, HowItLooksView, ProfileView, DeleteUserView, \
     DeleteUserConfirmationView, PrivacyPolicyView, AdminPanelView, BookingSuccessfulConfirmationView, \
@@ -34,5 +35,7 @@ urlpatterns = [
     path('delete_booking', BookingDeleteView.as_view(), name='delete_booking'),
     path('app1/', RedirectView.as_view(pattern_name='app1:app1_create')),
     path('client_panel/', RedirectView.as_view(pattern_name='booking:create')),
-    path('app2/', RedirectView.as_view(pattern_name='app2:app2_create'))
+    path('app2/', RedirectView.as_view(pattern_name='app2:app2_create')),
+    path('change_status/<int:pk>/', tasks.change_status, name='change_status'),
+    path('booking_delete/<int:pk>/', tasks.booking_delete, name='booking_delete')
 ]
