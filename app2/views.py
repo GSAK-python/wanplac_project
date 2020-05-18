@@ -52,7 +52,7 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
             for user in today_users:
                 today_users_list.append(user)
             if form.instance.user_id in today_users_list and date.id == form.instance.booking_date.id:
-                if form.instance.user.username != 'grzegorz' or 'wanplac':
+                if form.instance.user.username not in ['wanplac', 'grzegorz']:
                     messages.add_message(self.request, messages.INFO,
                                          'Użytkownik może mieć tylko jedną rezerwację na dzień.')
                     return super(BookingCreateView, self).form_invalid(form)
