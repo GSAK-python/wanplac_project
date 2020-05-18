@@ -87,7 +87,7 @@
 									<div class="">
 										<button  type="button" class="admin-panel-booking-btn" data-toggle="collapse" data-target="#{{ booking.exact_time }}" aria-expanded="true">
 											<i class="fas fa-chevron-right m-r-15 fa-2x" style="color: #3366ff"></i>
-											{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }} ({{ booking.exact_time }})
+											{{ booking.first_name }} {{ booking.last_name }} - zamówienie {{ booking.code }} ({{ booking.user }})
 											{% if booking.active is True %}
 												<i class="m-l-10 far fa-check-circle fa-3x" style="color:green"></i>
 											{% elif booking.active is False and current_time > change_booking_state %}

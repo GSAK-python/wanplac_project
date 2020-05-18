@@ -52,9 +52,10 @@ class BookingCreateView(LoginRequiredMixin, CreateView):
             for user in today_users:
                 today_users_list.append(user)
             if form.instance.user_id in today_users_list and date.id == form.instance.booking_date.id:
-                messages.add_message(self.request, messages.INFO,
-                                     'Użytkownik może mieć tylko jedną rezerwację na dzień.')
-                return super(BookingCreateView, self).form_invalid(form)
+                if form.instance.user.username != 'grzegorz' or 'wanplac':
+                    messages.add_message(self.request, messages.INFO,
+                                         'Użytkownik może mieć tylko jedną rezerwację na dzień.')
+                    return super(BookingCreateView, self).form_invalid(form)
             if kayak_set.is_valid():
                 booking_form = form.save()
                 if datetime.time(7) <= booking_form.exact_time.time() <= datetime.time(
