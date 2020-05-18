@@ -14,6 +14,33 @@
 	<div class="container-login100" style="min-height: auto">
 		<div class="row wrap-login100 p-b-90" style="width:600px">
 
+			<div class="" style="width: 600px">
+					<button  type="button" class="quick-btn" style="text-transform : none; width: 100%; font-size: 25px" data-toggle="collapse" data-target="#rules" aria-expanded="true">
+					Sprawdź zasady rezerwowania kajaków
+					</button>
+				</div>
+				<div class="collapse" id="rules" style="width:600px">
+					<div class="m-b-50 m-t-20">
+						<div class="main-price-list m-b-20" style="font-size: 17px; font-family: Ubuntu">
+							<div>
+								<i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Jeden użytkownik może mieć jedno zamówienie na dzień.
+							</div>
+							<div>
+								<i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Nie można zarezerwować więcej kajaków niż jest dostępnych.
+							</div>
+							<div>
+								<i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Po złożeniu rezerwacji dokładnie przeczytaj informację o potwierdzeniu rezerwacji.
+							</div>
+							<div>
+								<i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Rezerwację można zmienić kontaktując się telefonicznie.
+							</div>
+							<div>
+								<i class="fas fa-chevron-right m-r-15" style="color: #3366ff"></i>Rezerwację można usunąć w zakładce <b>Moje zamówienia</b>.
+							</div>
+						</div>
+					</div>
+				</div>
+
 			<form class="login100-form validate-form flex-sb flex-w m-b-120" method="post" role="form">
 				{% csrf_token %}
 
