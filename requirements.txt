@@ -31,7 +31,6 @@ idna==2.9
 jmespath==0.9.5
 kombu==4.6.8
 Pillow==7.1.1
-psycopg2==2.8.5
 psycopg2-binary==2.8.5
 python-crontab==2.4.1
 python-dateutil==2.8.1
