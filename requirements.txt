@@ -23,7 +23,7 @@ django-storages==1.9.1
 django-timezone-field==4.0
 django-vendor-files==0.1.1
 django-widget-tweaks==1.4.8
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 docutils==0.15.2
 gunicorn==20.0.4
 heroku==0.1.4
